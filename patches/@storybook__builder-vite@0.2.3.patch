@@ -1,0 +1,52 @@
+diff --git a/dist/codegen-importfn-script.js b/dist/codegen-importfn-script.js
+index b98d4c561f7135e9aac7aa8da2401060306bf279..dcb75e32fa5cb98868df02c2cfaa55b173b26168 100644
+--- a/dist/codegen-importfn-script.js
++++ b/dist/codegen-importfn-script.js
+@@ -50,7 +50,7 @@ async function toImportFn(stories) {
+     const objectEntries = stories.map((file) => {
+         const ext = path.extname(file);
+         const relativePath = (0, vite_1.normalizePath)(path.relative(process.cwd(), file));
+-        if (!['.js', '.jsx', '.ts', '.tsx', '.mdx'].includes(ext)) {
++        if (!['.js', '.jsx', '.ts', '.tsx', '.mdx', '.vue'].includes(ext)) {
+             node_logger_1.logger.warn(`Cannot process ${ext} file with storyStoreV7: ${relativePath}`);
+         }
+         return `  '${toImportPath(relativePath)}': async () => import('/@fs/${file}')`;
+diff --git a/dist/plugins/vue-docgen.js b/dist/plugins/vue-docgen.js
+index 3d184111c7ee11d34d3c2db980b6fa4dec49627e..0b9bfb803250670ac5bccea4cf1361b8d8c40e37 100644
+--- a/dist/plugins/vue-docgen.js
++++ b/dist/plugins/vue-docgen.js
+@@ -10,7 +10,7 @@ function vueDocgen(vueVersion) {
+     return {
+         name: 'vue-docgen',
+         async transform(src, id) {
+-            if (/\.(vue)$/.test(id)) {
++            if (/\.(vue)$/.test(id) && !/\.(stories)\.(vue)$/.test(id)) {
+                 const metaData = await (0, vue_docgen_api_1.parse)(id);
+                 const metaSource = JSON.stringify(metaData);
+                 const s = new magic_string_1.default(src);
+diff --git a/dist/source-loader-plugin.js b/dist/source-loader-plugin.js
+index 6a87782c2c4d88d0e7fa39c904b2eff78d591d1e..10b91b2b24d9c71300f6288eed697509f7a4485e 100644
+--- a/dist/source-loader-plugin.js
++++ b/dist/source-loader-plugin.js
+@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.sourceLoaderPlugin = void 0;
+ const source_loader_1 = __importDefault(require("@storybook/source-loader"));
+ const magic_string_1 = __importDefault(require("magic-string"));
+-const storyPattern = /\.stories\.[jt]sx?$/;
++const storyPattern = /\.stories\.(([jt]sx?)|(vue))$/;
+ const storySourcePattern = /var __STORY__ = "(.*)"/;
+ const storySourceReplacement = '--STORY_SOURCE_REPLACEMENT--';
+ const mockClassLoader = (id) => ({ emitWarning: (message) => console.warn(message), resourcePath: id });
+diff --git a/dist/vite-config.js b/dist/vite-config.js
+index 37735b8e79b6c62f0ce66e53e48273e7ca175f49..bbf539d14a831019a6395a9b2ba3d830176d722e 100644
+--- a/dist/vite-config.js
++++ b/dist/vite-config.js
+@@ -132,7 +132,7 @@ async function pluginConfig(options, _type) {
+     if (framework === 'vue3') {
+         try {
+             const vuePlugin = require('@vitejs/plugin-vue');
+-            plugins.push(vuePlugin());
++            plugins.push(vuePlugin({exclude: [/\.stories\.vue$/]}));
+         }
+         catch (err) {
+             if (err.code === 'MODULE_NOT_FOUND') {

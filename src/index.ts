@@ -1,12 +1,14 @@
 import { createUnplugin } from 'unplugin'
+import { transform as transformVue } from './core/transform'
 import type { Options } from './types'
 
-export default createUnplugin<Options>(options => ({
+export default createUnplugin<Options>(_options => ({
   name: 'unplugin-starter',
+  enforce: 'pre',
   transformInclude(id) {
-    return id.endsWith('main.ts')
+    return id.endsWith('.stories.vue')
   },
   transform(code) {
-    return code.replace('__UNPLUGIN__', `Hello Unplugin! ${options}`)
+    return transformVue(code)
   },
 }))

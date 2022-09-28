@@ -28,6 +28,26 @@ npm i unplugin-starter
 <details>
 <summary>Vite</summary><br>
 
+In `.storybook/main.js`: 
+```diff
+  "stories": [
+    "../src/**/*.stories.mdx",
+-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
++    "../src/**/*.stories.@(js|jsx|ts|tsx|vue)"
+  ],
+  ...
++ async viteFinal(config, { configType }) {
++   config.plugins.unshift(Unplugin())
++   return config
+
+    // or if vite config is customized
+    // https://github.com/storybookjs/builder-vite#customize-vite-config
+    return mergeConfig(config, {
+      // ...
+    })
++ }
+```
+
 ```ts
 // vite.config.ts
 import Starter from 'unplugin-starter/vite'

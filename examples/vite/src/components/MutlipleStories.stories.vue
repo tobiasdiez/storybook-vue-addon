@@ -1,7 +1,10 @@
 <template>
   <Stories>
     <Story title="Primary">
-      <span>test</span>
+      hello
+    </Story>
+    <Story title="Secondary">
+      world
     </Story>
   </Stories>
 </template>

@@ -37,16 +37,3 @@ index 6a87782c2c4d88d0e7fa39c904b2eff78d591d1e..10b91b2b24d9c71300f6288eed697509
  const storySourcePattern = /var __STORY__ = "(.*)"/;
  const storySourceReplacement = '--STORY_SOURCE_REPLACEMENT--';
  const mockClassLoader = (id) => ({ emitWarning: (message) => console.warn(message), resourcePath: id });
-diff --git a/dist/vite-config.js b/dist/vite-config.js
-index 37735b8e79b6c62f0ce66e53e48273e7ca175f49..bbf539d14a831019a6395a9b2ba3d830176d722e 100644
---- a/dist/vite-config.js
-+++ b/dist/vite-config.js
-@@ -132,7 +132,7 @@ async function pluginConfig(options, _type) {
-     if (framework === 'vue3') {
-         try {
-             const vuePlugin = require('@vitejs/plugin-vue');
--            plugins.push(vuePlugin());
-+            plugins.push(vuePlugin({exclude: [/\.stories\.vue$/]}));
-         }
-         catch (err) {
-             if (err.code === 'MODULE_NOT_FOUND') {

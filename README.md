@@ -18,6 +18,7 @@ Then you can start developing your unplugin 🔥
 
 To test your plugin, run: `pnpm run dev`
 To release a new version, run: `pnpm run release`
+To run playground, use `pnpm play`.
 
 ## Install
 

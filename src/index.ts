@@ -1,4 +1,5 @@
 import { createUnplugin } from 'unplugin'
+import { parseVueRequest } from '@vitejs/plugin-vue'
 import { transform as transformStories } from './core/transform'
 import { logger } from './core/logger'
 import type { Options } from './types'
@@ -10,6 +11,7 @@ export default createUnplugin<Options>(_options => ({
   name: 'unplugin-starter',
   enforce: 'pre',
   async resolveId(source, importer, options) {
+    // logger.debug('resolveId', source)
     if (source.endsWith(STORIES_PUBLIC_SUFFIX)) {
       // Determine what the actual entry would have been. We need "skipSelf" to avoid an infinite loop.
       // @ts-expect-error: private API
@@ -27,11 +29,11 @@ export default createUnplugin<Options>(_options => ({
     }
   },
   transformInclude(id) {
-    logger.debug('transformInclude', id)
+    // logger.debug('transformInclude', id)
     return id.endsWith(STORIES_INTERNAL_SUFFIX)
   },
-  transform(code) {
-    logger.debug('transform', code)
+  transform(code, id) {
+    logger.debug('transform', id)
     return transformStories(code)
   },
 }))

@@ -1,4 +1,5 @@
-import { compileTemplate, parse } from 'vue/compiler-sfc'
+import type { SFCDescriptor, SFCScriptBlock } from 'vue/compiler-sfc'
+import { compileScript, compileTemplate, parse, rewriteDefault } from 'vue/compiler-sfc'
 import type { ElementNode } from '@vue/compiler-core'
 
 /**
@@ -9,7 +10,17 @@ export function transform(code: string) {
   if (descriptor.template === null)
     throw new Error('No template found in SFC')
 
-  return transformTemplate(descriptor.template.content)
+  let result = ''
+  const resolvedScript = resolveScript(descriptor)
+  if (resolvedScript) {
+    result += rewriteDefault(resolvedScript.content, '_sfc_main')
+    result += '\n'
+  }
+  else {
+    result += 'const _sfc_main = {}\n'
+  }
+  result += transformTemplate(descriptor.template.content, resolvedScript)
+  return result
 
   /*
   return `
@@ -69,7 +80,7 @@ export function transform(code: string) {
     */
 }
 
-function transformTemplate(content: string) {
+function transformTemplate(content: string, resolvedScript?: SFCScriptBlock) {
   const template = compileTemplate({
     source: content,
     filename: 'test.vue',
@@ -92,7 +103,7 @@ function transformTemplate(content: string) {
     if (story.type !== 1 || story.tag !== 'Story')
       continue
 
-    result += generateStoryImport(story)
+    result += generateStoryImport(story, resolvedScript)
   }
   return result
 }
@@ -116,7 +127,7 @@ function extractTitle(node: ElementNode) {
   }
 }
 
-function generateStoryImport(story: ElementNode) {
+function generateStoryImport(story: ElementNode, resolvedScript?: SFCScriptBlock) {
   const title = extractTitle(story)
   if (!title)
     throw new Error('Story is missing a title')
@@ -124,10 +135,17 @@ function generateStoryImport(story: ElementNode) {
   if (storyTemplate === undefined)
     throw new Error('No template found in Story')
 
-  const { code } = compileTemplate({ source: storyTemplate.trim(), filename: 'test.vue', id: 'test' })
+  const { code } = compileTemplate({ source: storyTemplate.trim(), filename: 'test.vue', id: 'test', compilerOptions: { bindingMetadata: resolvedScript?.bindings } })
   const renderFunction = code.replace('export function render', `function render${title}`)
 
+  // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `
     ${renderFunction}
-    export const ${title} = render${title}`
+    export const ${title} = () => Object.assign({render: render${title}}, _sfc_main)`
+}
+
+// Minimal version of https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L297
+function resolveScript(descriptor: SFCDescriptor) {
+  if (descriptor.script || descriptor.scriptSetup)
+    return compileScript(descriptor, { id: 'test' })
 }

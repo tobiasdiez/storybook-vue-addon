@@ -1,7 +1,11 @@
+<script lang='ts' setup>
+import MyButton from './Button.vue'
+</script>
+
 <template>
   <Stories>
     <Story title="Primary">
-      <span>test</span>
+      <MyButton label="Button" />
     </Story>
   </Stories>
 </template>

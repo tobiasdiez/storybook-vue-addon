@@ -68,7 +68,9 @@
     "build": "tsup",
     "dev": "tsup --watch src",
     "build:fix": "esno scripts/postbuild.ts",
-    "lint": "eslint .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "lint:eslint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --report-unused-disable-directives .",
+    "lint:prettier": "prettier --check --ignore-path .gitignore . '!pnpm-lock.yaml'",
     "play": "npm -C playground run dev",
     "example:vite": "npm -C examples/vite run storybook",
     "example:vite:app": "npm -C examples/vite run dev",
@@ -78,18 +80,27 @@
     "consola": "^2.15.3",
     "unplugin": "^0.9.6"
   },
+  "peerDependencies": {
+    "vite": "^3.0.0",
+    "vue": "^3.2.25"
+  },
   "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@types/node": "^18.7.23",
     "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.79.1",
     "tsup": "^6.2.3",
     "typescript": "^4.8.4",
     "vite": "^3.1.4",
     "vitest": "^0.23.4",
+    "vue": "^3.2.40",
     "webpack": "^5.74.0"
   },
   "pnpm": {

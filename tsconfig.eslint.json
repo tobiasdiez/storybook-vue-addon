@@ -7,6 +7,10 @@
   "include": [
     // whatever paths you intend to lint
     "src",
-    "test"
+    "test",
+    "examples",
+    "playground",
+    "scripts",
+    "tsup.config.ts"
   ]
 }

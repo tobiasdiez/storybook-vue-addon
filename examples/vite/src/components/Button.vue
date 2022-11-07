@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">{{ label }}</button>
+  <button type="button" :class="classes" :style="style" @click="onClick">{{ label }}</button>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import './button.css';
 import { reactive, computed } from 'vue';
 
 export default {
-  name: 'my-button',
+  name: 'MyButton',
 
   props: {
     label: {
@@ -21,7 +21,7 @@ export default {
     size: {
       type: String,
       validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
+        return ['small', 'medium', 'large'].includes(value);
       },
     },
     backgroundColor: {

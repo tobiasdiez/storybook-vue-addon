@@ -28,7 +28,9 @@
     // Demote this to warning as long as we are still using cjs modules
     "import/named": "warn",
     // Import order is handled by prettier (which is incompatible with this rule: https://github.com/simonhaenisch/prettier-plugin-organize-imports/issues/65)
-    "import/order": "off"
+    "import/order": "off",
+    // Disable vue2-specific rules (until https://github.com/nuxt/eslint-config/issues/216 is fixed)
+    "vue/no-v-model-argument": "off"
   },
   "overrides": [
     {

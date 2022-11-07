@@ -1,5 +1,4 @@
 import { createUnplugin } from 'unplugin'
-import { parseVueRequest } from '@vitejs/plugin-vue'
 import { transform as transformStories } from './core/transform'
 import { logger } from './core/logger'
 import type { Options } from './types'

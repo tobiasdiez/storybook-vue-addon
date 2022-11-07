@@ -1,3 +1,5 @@
+/* eslint-disable -- reenable once this is migrated to nuxt3 */
+
 import type { Options } from './types'
 import unplugin from '.'
 

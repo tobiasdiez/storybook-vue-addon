@@ -1,0 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/ubuntu
+{
+  "name": "Ubuntu",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:0-ubuntu-22.04",
+
+  "onCreateCommand": "corepack enable && pnpm install",
+
+  "remoteUser": "vscode",
+  "features": {
+    // For config options, see https://github.com/devcontainers/features/tree/main/src/node
+    "ghcr.io/devcontainers/features/node:1": "18"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ZixuanChen.vitest-explorer",
+        "streetsidesoftware.code-spell-checker",
+        "github.vscode-pull-request-github"
+      ]
+    }
+  }
+}

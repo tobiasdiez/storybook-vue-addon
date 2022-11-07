@@ -6,7 +6,7 @@ import type { Options } from './types'
 const STORIES_INTERNAL_SUFFIX = '?vue&type=stories'
 const STORIES_PUBLIC_SUFFIX = '.stories.vue'
 
-export default createUnplugin<Options>(_options => ({
+export default createUnplugin<Options>((_options) => ({
   name: 'unplugin-starter',
   enforce: 'pre',
   async resolveId(source, importer, options) {
@@ -14,11 +14,13 @@ export default createUnplugin<Options>(_options => ({
     if (source.endsWith(STORIES_PUBLIC_SUFFIX)) {
       // Determine what the actual entry would have been. We need "skipSelf" to avoid an infinite loop.
       // @ts-expect-error: private API
-      const resolution = await this.resolve(source, importer, { skipSelf: true, ...options })
+      const resolution = await this.resolve(source, importer, {
+        skipSelf: true,
+        ...options,
+      })
 
       // If it cannot be resolved or is external, just return it so that Rollup can display an error
-      if (!resolution || resolution.external)
-        return resolution
+      if (!resolution || resolution.external) return resolution
 
       // We append a custom "type" so that the vue plugin is not handling the import
       resolution.id = resolution.id + STORIES_INTERNAL_SUFFIX

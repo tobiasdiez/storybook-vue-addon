@@ -1,4 +1,4 @@
-<script lang='ts' setup>
+<script lang="ts" setup>
 import MyButton from './Button.vue'
 </script>
 

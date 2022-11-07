@@ -1,5 +1,10 @@
 import type { SFCDescriptor, SFCScriptBlock } from 'vue/compiler-sfc'
-import { compileScript, compileTemplate, parse, rewriteDefault } from 'vue/compiler-sfc'
+import {
+  compileScript,
+  compileTemplate,
+  parse,
+  rewriteDefault,
+} from 'vue/compiler-sfc'
 import type { ElementNode } from '@vue/compiler-core'
 
 /**
@@ -7,16 +12,14 @@ import type { ElementNode } from '@vue/compiler-core'
  */
 export function transform(code: string) {
   const { descriptor } = parse(code)
-  if (descriptor.template === null)
-    throw new Error('No template found in SFC')
+  if (descriptor.template === null) throw new Error('No template found in SFC')
 
   let result = ''
   const resolvedScript = resolveScript(descriptor)
   if (resolvedScript) {
     result += rewriteDefault(resolvedScript.content, '_sfc_main')
     result += '\n'
-  }
-  else {
+  } else {
     result += 'const _sfc_main = {}\n'
   }
   result += transformTemplate(descriptor.template.content, resolvedScript)
@@ -100,8 +103,7 @@ function transformTemplate(content: string, resolvedScript?: SFCScriptBlock) {
 
   let result = generateDefaultImport(root)
   for (const story of root.children ?? []) {
-    if (story.type !== 1 || story.tag !== 'Story')
-      continue
+    if (story.type !== 1 || story.tag !== 'Story') continue
 
     result += generateStoryImport(story, resolvedScript)
   }
@@ -121,22 +123,34 @@ function generateDefaultImport(root: ElementNode) {
 
 function extractTitle(node: ElementNode) {
   if (node.type === 1) {
-    const titleProp = node.props.find(prop => prop.name === 'title')
-    if (titleProp && titleProp.type === 6)
-      return titleProp.value?.content
+    const titleProp = node.props.find((prop) => prop.name === 'title')
+    if (titleProp && titleProp.type === 6) return titleProp.value?.content
   }
 }
 
-function generateStoryImport(story: ElementNode, resolvedScript?: SFCScriptBlock) {
+function generateStoryImport(
+  story: ElementNode,
+  resolvedScript?: SFCScriptBlock
+) {
   const title = extractTitle(story)
-  if (!title)
-    throw new Error('Story is missing a title')
-  const storyTemplate = parse(story.loc.source.replace(/<Story/, '<template').replace(/<\/Story>/, '</template>')).descriptor.template?.content
-  if (storyTemplate === undefined)
-    throw new Error('No template found in Story')
+  if (!title) throw new Error('Story is missing a title')
+  const storyTemplate = parse(
+    story.loc.source
+      .replace(/<Story/, '<template')
+      .replace(/<\/Story>/, '</template>')
+  ).descriptor.template?.content
+  if (storyTemplate === undefined) throw new Error('No template found in Story')
 
-  const { code } = compileTemplate({ source: storyTemplate.trim(), filename: 'test.vue', id: 'test', compilerOptions: { bindingMetadata: resolvedScript?.bindings } })
-  const renderFunction = code.replace('export function render', `function render${title}`)
+  const { code } = compileTemplate({
+    source: storyTemplate.trim(),
+    filename: 'test.vue',
+    id: 'test',
+    compilerOptions: { bindingMetadata: resolvedScript?.bindings },
+  })
+  const renderFunction = code.replace(
+    'export function render',
+    `function render${title}`
+  )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `

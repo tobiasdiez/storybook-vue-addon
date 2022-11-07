@@ -29,7 +29,8 @@ npm i unplugin-starter
 <details>
 <summary>Vite</summary><br>
 
-In `.storybook/main.js`: 
+In `.storybook/main.js`:
+
 ```diff
   "stories": [
     "../src/**/*.stories.mdx",
@@ -55,7 +56,9 @@ import Starter from 'unplugin-starter/vite'
 
 export default defineConfig({
   plugins: [
-    Starter({ /* options */ }),
+    Starter({
+      /* options */
+    }),
   ],
 })
 ```
@@ -73,13 +76,14 @@ import Starter from 'unplugin-starter/rollup'
 
 export default {
   plugins: [
-    Starter({ /* options */ }),
+    Starter({
+      /* options */
+    }),
   ],
 }
 ```
 
 <br></details>
-
 
 <details>
 <summary>Webpack</summary><br>
@@ -89,8 +93,10 @@ export default {
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-starter/webpack')({ /* options */ })
-  ]
+    require('unplugin-starter/webpack')({
+      /* options */
+    }),
+  ],
 }
 ```
 
@@ -103,7 +109,12 @@ module.exports = {
 // nuxt.config.js
 export default {
   buildModules: [
-    ['unplugin-starter/nuxt', { /* options */ }],
+    [
+      'unplugin-starter/nuxt',
+      {
+        /* options */
+      },
+    ],
   ],
 }
 ```
@@ -120,7 +131,9 @@ export default {
 module.exports = {
   configureWebpack: {
     plugins: [
-      require('unplugin-starter/webpack')({ /* options */ }),
+      require('unplugin-starter/webpack')({
+        /* options */
+      }),
     ],
   },
 }

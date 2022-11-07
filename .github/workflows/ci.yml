@@ -1,10 +1,9 @@
-name: CI
+name: ci
 
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -14,19 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set node
-        uses: actions/setup-node@v3
+      - run: corepack enable
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-
-      - name: Setup
-        run: npm i -g @antfu/ni
+          node-version: 16
+          cache: 'pnpm'
 
       - name: Install
-        run: nci
+        run: pnpm install
 
       - name: Lint
-        run: nr lint
+        run: pnpm lint
 
   test:
     runs-on: ${{ matrix.os }}
@@ -44,14 +41,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Setup
-        run: npm i -g @antfu/ni
-
-      - name: Install
-        run: nci
-
       - name: Build
-        run: nr build
+        run: pnpm build
 
       - name: Test
-        run: nr test
+        run: pnpm test --coverage
+
+      - uses: codecov/codecov-action@v3

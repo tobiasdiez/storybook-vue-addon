@@ -48,6 +48,26 @@ describe('transform', () => {
       '"Story is missing a title"'
     )
   })
+  it('handles comment before stories tag', () => {
+    const code =
+      '<template><!-- comment --><Stories><Story title="Primary">hello</Story></Stories></template>'
+    const result = transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {}
+      export default {
+          
+          //component: MyComponent,
+          //decorators: [ ... ],
+          //parameters: { ... }
+          }
+          
+          
+      function renderPrimary(_ctx, _cache) {
+        return \\"hello\\"
+      }
+          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)"
+    `)
+  })
   it('handles multiple stories', () => {
     const code = `
       <template>

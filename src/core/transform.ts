@@ -93,9 +93,13 @@ function transformTemplate(content: string, resolvedScript?: SFCScriptBlock) {
     }, */
   })
 
-  const roots = template.ast?.children ?? []
-  if (roots.length !== 1)
+  const roots =
+    template.ast?.children.filter(
+      (node) => node.type === 1 /* NodeTypes.ELEMENT */
+    ) ?? []
+  if (roots.length !== 1) {
     throw new Error('Expected exactly one <Stories> element as root.')
+  }
 
   const root = roots[0]
   if (root.type !== 1 || root.tag !== 'Stories')

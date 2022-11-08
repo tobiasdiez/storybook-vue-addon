@@ -78,6 +78,8 @@
   },
   "dependencies": {
     "consola": "^2.15.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.1.1",
     "unplugin": "^0.10.2"
   },
   "peerDependencies": {
@@ -87,6 +89,7 @@
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@types/node": "^18.11.9",
+    "@types/prettier": "^2.7.1",
     "@vitest/coverage-c8": "^0.25.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.27.0",
@@ -95,7 +98,6 @@
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "rollup": "^3.2.5",
     "tsup": "^6.4.0",

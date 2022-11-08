@@ -6,6 +6,7 @@ import {
   rewriteDefault,
 } from 'vue/compiler-sfc'
 import type { ElementNode } from '@vue/compiler-core'
+import { format as prettierFormat } from 'prettier'
 
 /**
  * Transforms a vue single-file-component into Storybook's Component Story Format (CSF).
@@ -23,6 +24,7 @@ export function transform(code: string) {
     result += 'const _sfc_main = {}\n'
   }
   result += transformTemplate(descriptor.template.content, resolvedScript)
+  result = organizeImports(result)
   return result
 
   /*
@@ -168,4 +170,12 @@ function generateStoryImport(
 function resolveScript(descriptor: SFCDescriptor) {
   if (descriptor.script || descriptor.scriptSetup)
     return compileScript(descriptor, { id: 'test' })
+}
+
+function organizeImports(result: string): string {
+  // Use prettier to organize imports
+  return prettierFormat(result, {
+    parser: 'babel',
+    plugins: ['prettier-plugin-organize-imports'],
+  })
 }

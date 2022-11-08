@@ -97,7 +97,7 @@
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.79.1",
+    "rollup": "^3.2.5",
     "tsup": "^6.2.3",
     "typescript": "^4.8.4",
     "vite": "^3.1.4",

@@ -1,0 +1,91 @@
+diff --git a/code-generator-plugin.ts b/code-generator-plugin.ts
+index 753cce7a5fa36f5543d2f99604c4cef6dbf4d4c2..ed97182440370740f70d21eaad81edbb0e1f69ee 100644
+--- a/code-generator-plugin.ts
++++ b/code-generator-plugin.ts
+@@ -39,7 +39,7 @@ export function codeGeneratorPlugin(options: ExtendedOptions): Plugin {
+       // HMR to update the importFn.
+       server.watcher.on('add', (path) => {
+         // TODO maybe use the stories declaration in main
+-        if (/\.stories\.([tj])sx?$/.test(path) || /\.(story|stories).mdx$/.test(path)) {
++        if (/\.stories\.(([jt]sx?)|(vue))$/.test(path) || /\.(story|stories).mdx$/.test(path)) {
+           // We need to emit a change event to trigger HMR
+           server.watcher.emit('change', virtualStoriesFile);
+         }
+diff --git a/dist/code-generator-plugin.js b/dist/code-generator-plugin.js
+index 77e01347e14e12fc48bd397e48ab72bcf43d4f80..3042fb2f6806e5e791bd755cd8a0856e24fd875a 100644
+--- a/dist/code-generator-plugin.js
++++ b/dist/code-generator-plugin.js
+@@ -58,7 +58,7 @@ function codeGeneratorPlugin(options) {
+             // HMR to update the importFn.
+             server.watcher.on('add', (path) => {
+                 // TODO maybe use the stories declaration in main
+-                if (/\.stories\.([tj])sx?$/.test(path) || /\.(story|stories).mdx$/.test(path)) {
++                if (/\.stories\.(([jt]sx?)|(vue))$/.test(path) || /\.(story|stories).mdx$/.test(path)) {
+                     // We need to emit a change event to trigger HMR
+                     server.watcher.emit('change', virtual_file_names_1.virtualStoriesFile);
+                 }
+diff --git a/dist/codegen-importfn-script.js b/dist/codegen-importfn-script.js
+index b98d4c561f7135e9aac7aa8da2401060306bf279..a5667d541e60e8d01b16eb4a6d883e15cd274e2f 100644
+--- a/dist/codegen-importfn-script.js
++++ b/dist/codegen-importfn-script.js
+@@ -50,7 +50,7 @@ async function toImportFn(stories) {
+     const objectEntries = stories.map((file) => {
+         const ext = path.extname(file);
+         const relativePath = (0, vite_1.normalizePath)(path.relative(process.cwd(), file));
+-        if (!['.js', '.jsx', '.ts', '.tsx', '.mdx'].includes(ext)) {
++        if (!['.js', '.jsx', '.ts', '.tsx', '.mdx', '.vue'].includes(ext)) {
+             node_logger_1.logger.warn(`Cannot process ${ext} file with storyStoreV7: ${relativePath}`);
+         }
+         return `  '${toImportPath(relativePath)}': async () => import('/@fs/${file}')`;
+diff --git a/dist/inject-export-order-plugin.js b/dist/inject-export-order-plugin.js
+index 0590ec797b8702ccfc8638ea1ee3266a76c3402c..17711dbf7c4b1c833e2628be8e0fb12071f65fd8 100644
+--- a/dist/inject-export-order-plugin.js
++++ b/dist/inject-export-order-plugin.js
+@@ -11,7 +11,7 @@ exports.injectExportOrderPlugin = {
+     // This should only run after the typescript has been transpiled
+     enforce: 'post',
+     async transform(code, id) {
+-        if (!/\.stories\.([tj])sx?$/.test(id) && !/(stories|story).mdx$/.test(id)) {
++        if (!/\.stories\.(([jt]sx?)|(vue))$/.test(id) && !/(stories|story).mdx$/.test(id)) {
+             return;
+         }
+         // TODO: Maybe convert `injectExportOrderPlugin` to function that returns object,
+diff --git a/dist/plugins/vue-docgen.js b/dist/plugins/vue-docgen.js
+index 3d184111c7ee11d34d3c2db980b6fa4dec49627e..e041ae81696404b0fda3c9e9b8cdac8527462ee6 100644
+--- a/dist/plugins/vue-docgen.js
++++ b/dist/plugins/vue-docgen.js
+@@ -10,7 +10,7 @@ function vueDocgen(vueVersion) {
+     return {
+         name: 'vue-docgen',
+         async transform(src, id) {
+-            if (/\.(vue)$/.test(id)) {
++            if (/\.(vue)$/.test(id) && !/\.(stories)\.(vue)$/.test(id)) {
+                 const metaData = await (0, vue_docgen_api_1.parse)(id);
+                 const metaSource = JSON.stringify(metaData);
+                 const s = new magic_string_1.default(src);
+diff --git a/dist/source-loader-plugin.js b/dist/source-loader-plugin.js
+index 6a87782c2c4d88d0e7fa39c904b2eff78d591d1e..2a4a5b95b3a6fdea3b1f487a45931cb301314755 100644
+--- a/dist/source-loader-plugin.js
++++ b/dist/source-loader-plugin.js
+@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.sourceLoaderPlugin = void 0;
+ const source_loader_1 = __importDefault(require("@storybook/source-loader"));
+ const magic_string_1 = __importDefault(require("magic-string"));
+-const storyPattern = /\.stories\.[jt]sx?$/;
++const storyPattern = /\.stories\.(([jt]sx?)|(vue))$/;
+ const storySourcePattern = /var __STORY__ = "(.*)"/;
+ const storySourceReplacement = '--STORY_SOURCE_REPLACEMENT--';
+ const mockClassLoader = (id) => ({ emitWarning: (message) => console.warn(message), resourcePath: id });
+diff --git a/plugins/vue-docgen.ts b/plugins/vue-docgen.ts
+index ab5a1ec739442ac9bf9984aa35aaaf179c4a0219..5891129802051f32ebde64d0d08fb4cd9565224a 100644
+--- a/plugins/vue-docgen.ts
++++ b/plugins/vue-docgen.ts
+@@ -7,7 +7,7 @@ export function vueDocgen(vueVersion: 2 | 3): Plugin {
+     name: 'vue-docgen',
+ 
+     async transform(src: string, id: string) {
+-      if (/\.(vue)$/.test(id)) {
++      if (/\.(vue)$/.test(id) && !/\.(stories)\.(vue)$/.test(id)) {
+         const metaData = await parse(id);
+         const metaSource = JSON.stringify(metaData);
+         const s = new MagicString(src);

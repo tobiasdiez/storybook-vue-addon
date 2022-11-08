@@ -108,6 +108,9 @@
   "pnpm": {
     "patchedDependencies": {
       "@storybook/builder-vite@0.2.3": "patches/@storybook__builder-vite@0.2.3.patch"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": ["@babel/preset-env", "@types/react", "react", "react-dom", "@vue/compiler-sfc", "webpack"]
     }
   }
 }

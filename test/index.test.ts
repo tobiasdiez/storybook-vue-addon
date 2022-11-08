@@ -19,7 +19,8 @@ describe('transform', () => {
       function renderPrimary(_ctx, _cache) {
         return \\"hello\\"
       }
-          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)"
+          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)
+          Primary.storyName = 'Primary'"
     `)
   })
   it('extracts title from Stories', () => {
@@ -39,7 +40,8 @@ describe('transform', () => {
       function renderPrimary(_ctx, _cache) {
         return \\"hello\\"
       }
-          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)"
+          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)
+          Primary.storyName = 'Primary'"
     `)
   })
   it('throws error if story does not have a title', () => {
@@ -47,6 +49,27 @@ describe('transform', () => {
     expect(() => transform(code)).toThrowErrorMatchingInlineSnapshot(
       '"Story is missing a title"'
     )
+  })
+  it('handles title with spaces', () => {
+    const code =
+      '<template><Stories><Story title="Primary story">hello</Story></Stories></template>'
+    const result = transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {}
+      export default {
+          
+          //component: MyComponent,
+          //decorators: [ ... ],
+          //parameters: { ... }
+          }
+          
+          
+      function renderPrimary_story(_ctx, _cache) {
+        return \\"hello\\"
+      }
+          export const Primary_story = () => Object.assign({render: renderPrimary_story}, _sfc_main)
+          Primary_story.storyName = 'Primary story'"
+    `)
   })
   it('handles comment before stories tag', () => {
     const code =
@@ -65,7 +88,8 @@ describe('transform', () => {
       function renderPrimary(_ctx, _cache) {
         return \\"hello\\"
       }
-          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)"
+          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)
+          Primary.storyName = 'Primary'"
     `)
   })
   it('handles multiple stories', () => {
@@ -91,11 +115,13 @@ describe('transform', () => {
         return \\"hello\\"
       }
           export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)
+          Primary.storyName = 'Primary'
           
       function renderSecondary(_ctx, _cache) {
         return \\"world\\"
       }
-          export const Secondary = () => Object.assign({render: renderSecondary}, _sfc_main)"
+          export const Secondary = () => Object.assign({render: renderSecondary}, _sfc_main)
+          Secondary.storyName = 'Secondary'"
     `)
   })
   it('supports components defined in script setup', () => {
@@ -144,7 +170,8 @@ describe('transform', () => {
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return (_openBlock(), _createBlock($setup[\\"test\\"]))
       }
-          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)"
+          export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main)
+          Primary.storyName = 'Primary'"
     `)
   })
 })

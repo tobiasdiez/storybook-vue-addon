@@ -138,6 +138,7 @@ function generateStoryImport(
 ) {
   const title = extractTitle(story)
   if (!title) throw new Error('Story is missing a title')
+  const cleanTitle = title.replace(/[^a-zA-Z0-9]/g, '_')
   const storyTemplate = parse(
     story.loc.source
       .replace(/<Story/, '<template')
@@ -153,13 +154,14 @@ function generateStoryImport(
   })
   const renderFunction = code.replace(
     'export function render',
-    `function render${title}`
+    `function render${cleanTitle}`
   )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `
     ${renderFunction}
-    export const ${title} = () => Object.assign({render: render${title}}, _sfc_main)`
+    export const ${cleanTitle} = () => Object.assign({render: render${cleanTitle}}, _sfc_main)
+    ${cleanTitle}.storyName = '${title}'`
 }
 
 // Minimal version of https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L297

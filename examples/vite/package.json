@@ -7,7 +7,7 @@
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

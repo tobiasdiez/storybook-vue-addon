@@ -88,6 +88,7 @@
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@types/node": "^18.7.23",
     "@vitest/coverage-c8": "^0.25.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",

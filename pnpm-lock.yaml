@@ -8,6 +8,7 @@ importers:
       '@types/node': ^18.7.23
       '@vitest/coverage-c8': ^0.25.0
       consola: ^2.15.3
+      cross-env: ^7.0.3
       eslint: ^8.24.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-unused-imports: ^2.0.0
@@ -31,6 +32,7 @@ importers:
       '@nuxtjs/eslint-config-typescript': 11.0.0_ypn2ylkkyfa5i233caldtndbqa
       '@types/node': 18.7.23
       '@vitest/coverage-c8': 0.25.0
+      cross-env: 7.0.3
       eslint: 8.24.0
       eslint-config-prettier: 8.5.0_eslint@8.24.0
       eslint-plugin-unused-imports: 2.0.0_eslint@8.24.0
@@ -5824,6 +5826,14 @@ packages:
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
       sha.js: 2.4.11
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/6.0.5:

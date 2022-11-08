@@ -13,11 +13,12 @@ export default createUnplugin<Options>((_options) => ({
     // logger.debug('resolveId', source)
     if (source.endsWith(STORIES_PUBLIC_SUFFIX)) {
       // Determine what the actual entry would have been. We need "skipSelf" to avoid an infinite loop.
-      // @ts-expect-error: private API
+      // @ts-expect-error: not yet exposed -- https://github.com/unjs/unplugin/issues/47
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const resolution = await this.resolve(source, importer, {
         skipSelf: true,
         ...options,
-      })
+      }) as { id: string, external: boolean }
 
       // If it cannot be resolved or is external, just return it so that Rollup can display an error
       if (!resolution || resolution.external) return resolution

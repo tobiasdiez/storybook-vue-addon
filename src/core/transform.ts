@@ -182,7 +182,10 @@ function generateStoryImport(
   return `
     ${renderFunction}
     export const ${cleanTitle} = () => Object.assign({render: render${cleanTitle}}, _sfc_main)
-    ${cleanTitle}.storyName = '${title}'`
+    ${cleanTitle}.storyName = '${title}'
+    ${cleanTitle}.parameters = {
+      docs: { source: { code: \`${storyTemplate.trim()}\` } },
+    };`
 }
 
 // Minimal version of https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L297

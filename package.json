@@ -62,7 +62,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "preset.js"
   ],
   "scripts": {
     "build": "tsup",

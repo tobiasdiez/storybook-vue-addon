@@ -1,6 +1,4 @@
 import Inspect from 'vite-plugin-inspect'
-import Unplugin from '../../../src/vite'
-import { mergeConfig } from 'vite'
 
 export default {
   stories: [
@@ -11,6 +9,7 @@ export default {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    '../../../src/storybook.ts',
   ],
   framework: '@storybook/vue3',
   core: {
@@ -21,11 +20,8 @@ export default {
   },
   async viteFinal(config, { configType }) {
     // Inspect result can be found at subroute '/__inspect', e.g. http://127.0.0.1:6006/__inspect/
-    config.plugins.unshift(Inspect(), Unplugin())
+    config.plugins.unshift(Inspect())
 
-    return mergeConfig(config, {
-      // Other customizations: https://github.com/storybookjs/builder-vite#customize-vite-config
-      // ...
-    })
+    return config
   },
 }

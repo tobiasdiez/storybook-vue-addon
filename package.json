@@ -1,23 +1,21 @@
 {
-  "name": "unplugin-starter",
+  "name": "storybook-vue-addon",
   "version": "0.1.0",
   "packageManager": "pnpm@7.14.2",
-  "description": "Register global imports on demand for Vite and Webpack",
+  "description": "Storybook stories in native Vue format",
   "license": "MIT",
-  "homepage": "https://github.com/antfu/unplugin-starter#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/antfu/unplugin-starter.git"
-  },
+  "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
+  "repository": "github:tobiasdiez/unplugin-storybook-vue",
   "bugs": {
-    "url": "https://github.com/antfu/unplugin-starter/issues"
+    "url": "https://github.com/tobiasdiez/unplugin-storybook-vue/issues"
   },
   "keywords": [
+    "vue",
+    "storybook",
+    "storybook-addon",
     "unplugin",
     "vite",
-    "webpack",
-    "rollup",
-    "transform"
+    "webpack"
   ],
   "exports": {
     ".": {

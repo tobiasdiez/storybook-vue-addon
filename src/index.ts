@@ -7,7 +7,7 @@ const STORIES_INTERNAL_SUFFIX = '?vue&type=stories'
 const STORIES_PUBLIC_SUFFIX = '.stories.vue'
 
 export default createUnplugin<Options>((_options) => ({
-  name: 'unplugin-starter',
+  name: 'storybook-vue-addon',
   enforce: 'pre',
   async resolveId(source, importer, options) {
     // logger.debug('resolveId', source)

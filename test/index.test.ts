@@ -9,7 +9,6 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -31,7 +30,7 @@ describe('transform', () => {
       "const _sfc_main = {};
       export default {
         title: \\"test\\",
-        //component: MyComponent,
+
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -51,6 +50,28 @@ describe('transform', () => {
       '"Story is missing a title"'
     )
   })
+  it('extracts component from Stories', () => {
+    const code =
+      '<script>const MyComponent = {}</script><template><Stories :component="MyComponent"><Story title="Primary">hello</Story></Stories></template>'
+    const result = transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const MyComponent = {};
+      const _sfc_main = {};
+      export default {
+        component: MyComponent,
+        //decorators: [ ... ],
+        //parameters: { ... }
+      };
+
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return \\"hello\\";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = \\"Primary\\";
+      "
+    `)
+  })
   it('handles title with spaces', () => {
     const code =
       '<template><Stories><Story title="Primary story">hello</Story></Stories></template>'
@@ -58,7 +79,6 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -79,7 +99,6 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -105,7 +124,6 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -138,7 +156,6 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };
@@ -206,7 +223,6 @@ describe('transform', () => {
         },
       };
       export default {
-        //component: MyComponent,
         //decorators: [ ... ],
         //parameters: { ... }
       };

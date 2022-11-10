@@ -14,7 +14,10 @@ Example: `Button.stories.vue`
 import Button from './Button.vue'
 </script>
 <template>
-  <Stories title="Stories in Vue format 😍">
+  <Stories
+    title="Stories in Vue format 😍"
+    :component="Button"
+  >
     <Story title="Primary">
       <Button
         background="#ff0"

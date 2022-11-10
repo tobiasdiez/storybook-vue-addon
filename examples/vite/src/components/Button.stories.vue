@@ -3,7 +3,7 @@ import MyButton from './Button.vue'
 </script>
 
 <template>
-  <Stories>
+  <Stories :component="MyButton">
     <Story title="Primary">
       <MyButton label="Button" />
     </Story>

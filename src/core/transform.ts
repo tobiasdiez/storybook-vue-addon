@@ -118,20 +118,39 @@ function transformTemplate(content: string, resolvedScript?: SFCScriptBlock) {
 
 function generateDefaultImport(root: ElementNode) {
   const title = extractTitle(root)
+  const component = extractComponent(root)
   return `export default {
     ${title ? `title: '${title}',` : ''}
-    //component: MyComponent,
+    ${component ? `component: ${component},` : ''}
     //decorators: [ ... ],
     //parameters: { ... }
     }
     `
 }
 
-function extractTitle(node: ElementNode) {
+function extractProp(node: ElementNode, name: string) {
   if (node.type === 1) {
-    const titleProp = node.props.find((prop) => prop.name === 'title')
-    if (titleProp && titleProp.type === 6) return titleProp.value?.content
+    return node.props.find(
+      (prop) =>
+        prop.name === name ||
+        (prop.name === 'bind' &&
+          prop.type === 7 &&
+          prop.arg?.type === 4 &&
+          prop.arg?.content === name)
+    )
   }
+}
+function extractTitle(node: ElementNode) {
+  const prop = extractProp(node, 'title')
+  if (prop && prop.type === 6) return prop.value?.content
+}
+
+function extractComponent(node: ElementNode) {
+  const prop = extractProp(node, 'component')
+  if (prop && prop.type === 7)
+    return prop.exp?.type === 4
+      ? prop.exp?.content.replace('_ctx.', '')
+      : undefined
 }
 
 function generateStoryImport(

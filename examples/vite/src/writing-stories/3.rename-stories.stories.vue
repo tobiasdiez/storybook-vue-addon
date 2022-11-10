@@ -7,7 +7,10 @@ import Button from '../components/Button.vue'
     See https://storybook.js.org/docs/vue/configure/overview#configure-story-loading
     to learn how to generate automatic titles
   -->
-  <Stories title="docs/3. Rename stories/native">
+  <Stories
+    title="docs/3. Rename stories/native"
+    :component="Button"
+  >
     <!--
       👇 Instead of using named exports as in a CSF file, 
       a story is defined using the <Story> component.

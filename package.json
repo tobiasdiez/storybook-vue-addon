@@ -86,7 +86,7 @@
     "vue": "^3.2.41"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@types/node": "^18.11.9",
     "@types/prettier": "^2.7.1",
     "@vitest/coverage-c8": "^0.25.1",

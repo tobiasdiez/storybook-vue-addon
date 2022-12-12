@@ -1,7 +1,7 @@
 {
   "name": "storybook-vue-addon",
   "version": "0.1.0",
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@7.18.2",
   "description": "Storybook stories in native Vue format",
   "license": "MIT",
   "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
@@ -77,34 +77,34 @@
   },
   "dependencies": {
     "consola": "^2.15.3",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^3.1.1",
-    "unplugin": "^1.0.0"
+    "prettier": "^2.8.1",
+    "prettier-plugin-organize-imports": "^3.2.1",
+    "unplugin": "^1.0.1"
   },
   "peerDependencies": {
-    "vite": "^3.2.3",
-    "vue": "^3.2.41"
+    "vite": "^3.2.5",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.13",
     "@types/prettier": "^2.7.1",
-    "@vitest/coverage-c8": "^0.25.1",
+    "@vitest/coverage-c8": "^0.25.7",
     "cross-env": "^7.0.3",
-    "eslint": "^8.27.0",
+    "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "nodemon": "^2.0.20",
     "rimraf": "^3.0.2",
-    "rollup": "^3.2.5",
-    "tsup": "^6.4.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.2.3",
-    "vitest": "^0.25.1",
-    "vue": "^3.2.41",
-    "webpack": "^5.74.0"
+    "rollup": "^3.7.3",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vite": "^3.2.5",
+    "vitest": "^0.25.7",
+    "vue": "^3.2.45",
+    "webpack": "^5.75.0"
   },
   "pnpm": {
     "peerDependencyRules": {

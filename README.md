@@ -48,6 +48,8 @@ Please open an issue if you encounter any bugs or missing integrations.
 
 ## Installation
 
+> Note: Currently, only the [vite storybook builder](https://github.com/storybookjs/builder-vite) is supported and `@storybook/builder-vite` version 0.2.7 or higher is required.
+
 1. Add `storybook-vue-addon` to your dev-dependencies.
 
    ```sh

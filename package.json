@@ -69,7 +69,7 @@
     "build:fix": "esno scripts/postbuild.ts",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --report-unused-disable-directives .",
-    "lint:prettier": "prettier --check --ignore-path .gitignore . '!pnpm-lock.yaml'",
+    "lint:prettier": "prettier --check --ignore-path .gitignore . \"!pnpm-lock.yaml\"",
     "play": "npm -C playground run dev",
     "example:vite": "npm -C examples/vite run storybook",
     "example:vite:app": "npm -C examples/vite run dev",

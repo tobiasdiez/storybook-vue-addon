@@ -82,7 +82,7 @@
     "unplugin": "^1.0.1"
   },
   "peerDependencies": {
-    "vite": "^3.2.5",
+    "vite": "^4.0.4",
     "vue": "^3.2.45"
   },
   "devDependencies": {
@@ -101,7 +101,7 @@
     "rollup": "^3.7.3",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4",
-    "vite": "^3.2.5",
+    "vite": "^4.0.4",
     "vitest": "^0.25.7",
     "vue": "^3.2.45",
     "webpack": "^5.75.0"

@@ -70,7 +70,7 @@ importers:
       '@storybook/testing-library': 0.0.13
       '@storybook/vue3': ^6.5.13
       '@types/node': ^18.11.9
-      '@vitejs/plugin-vue': ^3.2.0
+      '@vitejs/plugin-vue': ^4.0.0
       '@vue/tsconfig': ^0.1.3
       babel-loader: ^8.3.0
       npm-run-all: ^4.1.5
@@ -87,12 +87,12 @@ importers:
       '@storybook/addon-essentials': 6.5.13_xh3yxcdgpg2pcuojpiqkzuerjy
       '@storybook/addon-interactions': 6.5.13_typescript@4.8.4
       '@storybook/addon-links': 6.5.13
-      '@storybook/builder-vite': 0.2.5_aayp3vgkui4lxgjpq7ajkcnbli_ko3lk4kful52jxvhtj4iu6p6wq
+      '@storybook/builder-vite': 0.2.5_aayp3vgkui4lxgjpq7ajkcnbli_xu2pbnb67jpdtev6l4qyczr3km
       '@storybook/jest': 0.0.10
       '@storybook/testing-library': 0.0.13
       '@storybook/vue3': 6.5.13_loosgltyazplh3ibdhx4eumvve
       '@types/node': 18.11.9
-      '@vitejs/plugin-vue': 3.2.0_vite@4.0.4+vue@3.2.41
+      '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.41
       '@vue/tsconfig': 0.1.3_@types+node@18.11.9
       babel-loader: 8.3.0_@babel+core@7.20.2
       npm-run-all: 4.1.5
@@ -2771,7 +2771,7 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /@storybook/builder-vite/0.2.5_aayp3vgkui4lxgjpq7ajkcnbli_ko3lk4kful52jxvhtj4iu6p6wq:
+  /@storybook/builder-vite/0.2.5_aayp3vgkui4lxgjpq7ajkcnbli_xu2pbnb67jpdtev6l4qyczr3km:
     resolution: {integrity: sha512-0PktEaYsbR6gGE/YDkW/tI1VxVnaPNZpHGpiWfDU7c5hjCajWYzdFTgHOwcXT8tiTs+WN/rvoCPT2iAhSCcHIw==}
     peerDependencies:
       '@storybook/mdx2-csf': ^0.0.3
@@ -2796,7 +2796,7 @@ packages:
       '@storybook/semver': 7.3.2
       '@storybook/source-loader': 6.5.13
       '@vitejs/plugin-react': 2.2.0_vite@4.0.4
-      '@vitejs/plugin-vue': 3.2.0_vite@4.0.4+vue@3.2.41
+      '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.41
       ast-types: 0.14.2
       es-module-lexer: 0.9.3
       glob: 7.2.3
@@ -4358,11 +4358,11 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/3.2.0_vite@4.0.4+vue@3.2.41:
-    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
+  /@vitejs/plugin-vue/4.0.0_vite@4.0.4+vue@3.2.41:
+    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^3.0.0
+      vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
       vite: 4.0.4_@types+node@18.11.9

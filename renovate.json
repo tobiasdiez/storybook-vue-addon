@@ -1,4 +1,5 @@
 {
   "extends": ["@nuxtjs"],
-  "dependencyDashboard": false
+  "dependencyDashboard": false,
+  "ignorePaths": ["**/node_modules/**"]
 }

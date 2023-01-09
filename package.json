@@ -116,9 +116,6 @@
         "@vue/compiler-sfc",
         "webpack"
       ]
-    },
-    "patchedDependencies": {
-      "@storybook/builder-vite@0.2.5": "patches/@storybook__builder-vite@0.2.5.patch"
     }
   }
 }

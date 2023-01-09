@@ -72,7 +72,7 @@ importers:
       '@types/node': ^18.11.9
       '@vitejs/plugin-vue': ^3.2.0
       '@vue/tsconfig': ^0.1.3
-      babel-loader: ^8.3.0
+      babel-loader: ^9.1.2
       npm-run-all: ^4.1.5
       typescript: ~4.8.4
       vite: ^4.0.4
@@ -90,11 +90,11 @@ importers:
       '@storybook/builder-vite': 0.2.5_aayp3vgkui4lxgjpq7ajkcnbli_ko3lk4kful52jxvhtj4iu6p6wq
       '@storybook/jest': 0.0.10
       '@storybook/testing-library': 0.0.13
-      '@storybook/vue3': 6.5.13_loosgltyazplh3ibdhx4eumvve
+      '@storybook/vue3': 6.5.13_u7b6dqin3eqjnzkypgpiecn4ba
       '@types/node': 18.11.9
       '@vitejs/plugin-vue': 3.2.0_vite@4.0.4+vue@3.2.41
       '@vue/tsconfig': 0.1.3_@types+node@18.11.9
-      babel-loader: 8.3.0_@babel+core@7.20.2
+      babel-loader: 9.1.2_@babel+core@7.20.2
       npm-run-all: 4.1.5
       typescript: 4.8.4
       vite: 4.0.4_@types+node@18.11.9
@@ -2495,7 +2495,7 @@ packages:
       '@storybook/api': 6.5.13
       '@storybook/core-common': 6.5.13_typescript@4.8.4
       '@storybook/node-logger': 6.5.13
-      '@storybook/vue3': 6.5.13_loosgltyazplh3ibdhx4eumvve
+      '@storybook/vue3': 6.5.13_u7b6dqin3eqjnzkypgpiecn4ba
       core-js: 3.26.0
       regenerator-runtime: 0.13.10
       ts-dedent: 2.2.0
@@ -3877,7 +3877,7 @@ packages:
       resolve-from: 5.0.0
     dev: true
 
-  /@storybook/vue3/6.5.13_loosgltyazplh3ibdhx4eumvve:
+  /@storybook/vue3/6.5.13_u7b6dqin3eqjnzkypgpiecn4ba:
     resolution: {integrity: sha512-9tq83Q3eLoE/5deFXXYI6fmx4/AlFg3/OjkZKL5LstRT6cD+Iz95aMY6+wvMObdGaABXYPW1+jyAbNLAr1cZdg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -3899,7 +3899,7 @@ packages:
       '@storybook/store': 6.5.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/node': 16.18.3
       '@types/webpack-env': 1.18.0
-      babel-loader: 8.3.0_@babel+core@7.20.2
+      babel-loader: 9.1.2_@babel+core@7.20.2
       core-js: 3.26.0
       global: 4.4.0
       react: 16.14.0
@@ -4937,6 +4937,15 @@ packages:
       ajv: 6.12.6
     dev: true
 
+  /ajv-formats/2.1.1:
+    resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependenciesMeta:
+      ajv:
+        optional: true
+    dependencies:
+      ajv: 8.12.0
+    dev: true
+
   /ajv-keywords/3.5.2_ajv@6.12.6:
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
     peerDependencies:
@@ -4945,12 +4954,30 @@ packages:
       ajv: 6.12.6
     dev: true
 
+  /ajv-keywords/5.1.0_ajv@8.12.0:
+    resolution: {integrity: sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==}
+    peerDependencies:
+      ajv: ^8.8.2
+    dependencies:
+      ajv: 8.12.0
+      fast-deep-equal: 3.1.3
+    dev: true
+
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
     dependencies:
       fast-deep-equal: 3.1.3
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
+      uri-js: 4.4.1
+    dev: true
+
+  /ajv/8.12.0:
+    resolution: {integrity: sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      json-schema-traverse: 1.0.0
+      require-from-string: 2.0.2
       uri-js: 4.4.1
     dev: true
 
@@ -5300,6 +5327,21 @@ packages:
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 4.46.0
+    dev: true
+
+  /babel-loader/9.1.2_@babel+core@7.20.2:
+    resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      '@babel/core': ^7.12.0
+      webpack: '>=5'
+    peerDependenciesMeta:
+      webpack:
+        optional: true
+    dependencies:
+      '@babel/core': 7.20.2
+      find-cache-dir: 3.3.2
+      schema-utils: 4.0.0
     dev: true
 
   /babel-plugin-apply-mdx-type-prop/1.6.22_@babel+core@7.12.9:
@@ -9466,6 +9508,10 @@ packages:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
     dev: true
 
+  /json-schema-traverse/1.0.0:
+    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    dev: true
+
   /json-stable-stringify-without-jsonify/1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
@@ -11716,6 +11762,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /require-from-string/2.0.2:
+    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -11899,6 +11950,16 @@ packages:
       '@types/json-schema': 7.0.11
       ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
+    dev: true
+
+  /schema-utils/4.0.0:
+    resolution: {integrity: sha512-1edyXKgh6XnJsJSQ8mKWXnN/BVaIbFMLpouRUrXgVq7WYne5kw3MW7UPhO44uRXQSIpTSXoJbmrR2X0w9kUTyg==}
+    engines: {node: '>= 12.13.0'}
+    dependencies:
+      '@types/json-schema': 7.0.11
+      ajv: 8.12.0
+      ajv-formats: 2.1.1
+      ajv-keywords: 5.1.0_ajv@8.12.0
     dev: true
 
   /semver/5.7.1:

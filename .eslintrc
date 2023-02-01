@@ -32,6 +32,7 @@
     // Disable vue2-specific rules (until https://github.com/nuxt/eslint-config/issues/216 is fixed)
     "vue/no-v-model-argument": "off"
   },
+  "ignorePatterns": ["examples/**"],
   "overrides": [
     {
       "files": ["*.ts", "*.vue"],

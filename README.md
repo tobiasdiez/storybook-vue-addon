@@ -214,7 +214,7 @@ Commands:
 [npm-version-href]: https://www.npmjs.com/package/storybook-vue-addon
 [npm-downloads-src]: https://img.shields.io/npm/dm/storybook-vue-addon?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/storybook-vue-addon
-[github-actions-src]: https://img.shields.io/github/workflow/status/tobiasdiez/storybook-vue-addon/ci/main?style=flat-square
+[github-actions-src]: https://img.shields.io/github/actions/workflow/status/tobiasdiez/storybook-vue-addon/ci.yml?branch=main&style=flat-square
 [github-actions-href]: https://github.com/tobiasdiez/storybook-vue-addon/actions?query=workflow%3Aci
 [codecov-src]: https://img.shields.io/codecov/c/gh/tobiasdiez/storybook-vue-addon/main?style=flat-square
 [codecov-href]: https://codecov.io/gh/tobiasdiez/storybook-vue-addon

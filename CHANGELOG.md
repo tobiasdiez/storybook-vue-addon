@@ -2,17 +2,16 @@
 
 ## [0.1.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.1.0...v0.1.1) (2023-02-01)
 
-
 ### 🧹 Miscellaneous
 
-* **deps:** update all non-major dependencies ([#25](https://github.com/tobiasdiez/storybook-vue-addon/issues/25)) ([5008a7b](https://github.com/tobiasdiez/storybook-vue-addon/commit/5008a7b653263208952b88b89c3d1317de6db5dc))
-* **deps:** update devdependency rimraf to v4 ([#26](https://github.com/tobiasdiez/storybook-vue-addon/issues/26)) ([6702f70](https://github.com/tobiasdiez/storybook-vue-addon/commit/6702f706f2276e50e1b9fb044e3248b6874d4ca9))
-* fix dev dependencies ([eaee0ea](https://github.com/tobiasdiez/storybook-vue-addon/commit/eaee0eaeba562f12b6cf5395bd4da91388bf242f))
-* fix linter issues ([f81700b](https://github.com/tobiasdiez/storybook-vue-addon/commit/f81700b8c26a59dcb53c40739f70463f01aa5f05))
-* fix shield url in readme ([318a9f2](https://github.com/tobiasdiez/storybook-vue-addon/commit/318a9f2628ac102edc77d80ce4ae69199e54187c))
-* include upstream changes in unplugin-starter ([cf71c5a](https://github.com/tobiasdiez/storybook-vue-addon/commit/cf71c5a2c8ac8b2cc96d494cca49adc166292523))
-* prettier should ignore pnpm lockfile ([410b03d](https://github.com/tobiasdiez/storybook-vue-addon/commit/410b03dc261c72cad50ce84d1d9b3385a51ba651))
-* run build before publishing ([fbf951d](https://github.com/tobiasdiez/storybook-vue-addon/commit/fbf951d129140ab2907b71aa7274a936608ebe1e))
+- **deps:** update all non-major dependencies ([#25](https://github.com/tobiasdiez/storybook-vue-addon/issues/25)) ([5008a7b](https://github.com/tobiasdiez/storybook-vue-addon/commit/5008a7b653263208952b88b89c3d1317de6db5dc))
+- **deps:** update devdependency rimraf to v4 ([#26](https://github.com/tobiasdiez/storybook-vue-addon/issues/26)) ([6702f70](https://github.com/tobiasdiez/storybook-vue-addon/commit/6702f706f2276e50e1b9fb044e3248b6874d4ca9))
+- fix dev dependencies ([eaee0ea](https://github.com/tobiasdiez/storybook-vue-addon/commit/eaee0eaeba562f12b6cf5395bd4da91388bf242f))
+- fix linter issues ([f81700b](https://github.com/tobiasdiez/storybook-vue-addon/commit/f81700b8c26a59dcb53c40739f70463f01aa5f05))
+- fix shield url in readme ([318a9f2](https://github.com/tobiasdiez/storybook-vue-addon/commit/318a9f2628ac102edc77d80ce4ae69199e54187c))
+- include upstream changes in unplugin-starter ([cf71c5a](https://github.com/tobiasdiez/storybook-vue-addon/commit/cf71c5a2c8ac8b2cc96d494cca49adc166292523))
+- prettier should ignore pnpm lockfile ([410b03d](https://github.com/tobiasdiez/storybook-vue-addon/commit/410b03dc261c72cad50ce84d1d9b3385a51ba651))
+- run build before publishing ([fbf951d](https://github.com/tobiasdiez/storybook-vue-addon/commit/fbf951d129140ab2907b71aa7274a936608ebe1e))
 
 ## 0.1.0 (2023-01-09)
 

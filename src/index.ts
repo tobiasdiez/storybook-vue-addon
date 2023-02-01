@@ -6,7 +6,7 @@ import type { Options } from './types'
 const STORIES_INTERNAL_SUFFIX = '?vue&type=stories'
 const STORIES_PUBLIC_SUFFIX = '.stories.vue'
 
-export default createUnplugin<Options>((_options) => ({
+export default createUnplugin<Options | undefined>((_options) => ({
   name: 'storybook-vue-addon',
   enforce: 'pre',
   async resolveId(source, importer, options) {

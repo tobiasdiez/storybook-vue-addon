@@ -66,6 +66,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch src",
+    "prepublishOnly": "pnpm test && pnpm build",
     "build:fix": "esno scripts/postbuild.ts",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --report-unused-disable-directives .",

@@ -81,6 +81,7 @@
     "lint:prettier": "prettier --check --ignore-path .gitignore . \"!pnpm-lock.yaml\"",
     "play": "npm -C playground run dev",
     "example:vite": "npm -C examples/vite run storybook",
+    "example:vite:build": "npm -C examples/vite run build-storybook",
     "example:vite:app": "npm -C examples/vite run dev",
     "test": "vitest"
   },

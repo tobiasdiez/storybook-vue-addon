@@ -62,7 +62,7 @@ jobs:
         run: pnpm run example:vite:build
 
       - name: Publish and test example Storybook
-        if: matrix.node === '16.x' && matrix.os === 'ubuntu-latest'
+        if: matrix.node == '16.x' && matrix.os == 'ubuntu-latest'
         uses: chromaui/action@v1
         with:
           projectToken: '574df7cc3736'

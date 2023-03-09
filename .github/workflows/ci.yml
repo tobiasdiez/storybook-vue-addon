@@ -12,9 +12,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'pnpm'
@@ -35,9 +40,15 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - name: Set node ${{ matrix.node }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -52,4 +63,19 @@ jobs:
       - name: Test
         run: pnpm run test --coverage
 
-      - uses: codecov/codecov-action@v3
+      - name: Build example Storybook
+        run: pnpm run example:vite:build
+
+      - name: Publish and test example Storybook
+        if: matrix.node == '16.x' && matrix.os == 'ubuntu-latest'
+        uses: chromaui/action@v1
+        with:
+          projectToken: '574df7cc3736'
+          # Don't wait until Chroma verified the build (for this we have the Github check)
+          exitOnceUploaded: true
+          storybookBuildDir: examples/vite/storybook-static/
+          debug: true
+
+      - name: Upload coverage
+        if: matrix.node == '16.x' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v3

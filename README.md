@@ -42,9 +42,17 @@ import Button from './Button.vue'
 
 ## Features
 
+- Write stories as idiomatic Vue templates, bye bye string-based templates, as wished for in [storybookjs/storybook#9768](https://github.com/storybookjs/storybook/issues/9768)
+- Syntax highlighting and full editor support (including Volar) for writing story templates
+- The component that is displayed needs only be declared once (via `<Stories :component="...">`) and not for every story
+- Simple integration with Storybook and automatic Vite support
+- Light: Vue stories are transpiled into ordinary CSF stories on the fly with minimal overhead
+
 This package is currently in an early alpha stage and supports only the fundamental Storybook features.
 Compatibility with more advanced features and addons is work in progress.
 Please open an issue if you encounter any bugs or missing integrations.
+
+The way to write stories as idiomatic Vue templates is heavily inspired by the great [Histoire](https://histoire.dev/).
 
 ## Installation
 

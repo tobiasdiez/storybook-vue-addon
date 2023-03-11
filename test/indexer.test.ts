@@ -16,8 +16,27 @@ describe('indexer', () => {
         },
         "stories": [
           {
-            "id": "Primary",
+            "id": "simple--primary",
             "name": "Primary",
+          },
+        ],
+      }
+    `)
+  })
+
+  it('handles stories with complex names', () => {
+    const code =
+      '<template><Stories title="Simple"><Story title="바보 (babo) 2:3!">hello</Story</template>'
+    const result = indexerCode(code, options)
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "meta": {
+          "title": "Simple",
+        },
+        "stories": [
+          {
+            "id": "simple--바보-babo-2-3",
+            "name": "바보 (babo) 2:3!",
           },
         ],
       }

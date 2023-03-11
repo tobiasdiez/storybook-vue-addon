@@ -7,14 +7,7 @@ export async function indexer(
   options: IndexerOptions
 ): Promise<IndexedCSFFile> {
   const code = (await fs.readFile(fileName, { encoding: 'utf-8' })).toString()
-  const { meta, stories } = indexerCode(code, options)
-  return {
-    meta,
-    stories: stories.map((story) => ({
-      ...story,
-      id: `${fileName}--${story.id}`,
-    })),
-  }
+  return indexerCode(code, options)
 }
 
 export function indexerCode(

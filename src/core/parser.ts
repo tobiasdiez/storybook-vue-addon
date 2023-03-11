@@ -6,6 +6,8 @@ import {
 } from 'vue/compiler-sfc'
 import type { ElementNode } from '@vue/compiler-core'
 
+import { toId } from '@storybook/csf'
+
 export interface ParsedMeta {
   title?: string
   component?: string
@@ -54,6 +56,10 @@ function parseTemplate(content: string): {
   const root = roots[0]
   if (root.type !== 1 || root.tag !== 'Stories')
     throw new Error('Expected root to be a <Stories> element.')
+  const meta = {
+    title: extractTitle(root),
+    component: extractComponent(root),
+  }
 
   const stories: ParsedStory[] = []
   for (const story of root.children ?? []) {
@@ -70,16 +76,13 @@ function parseTemplate(content: string): {
     if (storyTemplate === undefined)
       throw new Error('No template found in Story')
     stories.push({
-      id: title.replace(/[^a-zA-Z0-9]/g, '_'),
+      id: toId(meta.title || 'default', title),
       title,
       template: storyTemplate,
     })
   }
   return {
-    meta: {
-      title: extractTitle(root),
-      component: extractComponent(root),
-    },
+    meta,
     stories,
   }
 }

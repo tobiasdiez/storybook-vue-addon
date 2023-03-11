@@ -3,7 +3,10 @@ import MyButton from './Button.vue'
 </script>
 
 <template>
-  <Stories :component="MyButton" title="Components/Button">
+  <Stories
+    :component="MyButton"
+    title="Components/Button"
+  >
     <Story title="Primary">
       <MyButton label="Button" />
     </Story>

@@ -6,7 +6,7 @@ import {
 } from 'vue/compiler-sfc'
 import type { ElementNode } from '@vue/compiler-core'
 
-import { toId } from '@storybook/csf'
+import { sanitize } from '@storybook/csf'
 
 export interface ParsedMeta {
   title?: string
@@ -76,7 +76,7 @@ function parseTemplate(content: string): {
     if (storyTemplate === undefined)
       throw new Error('No template found in Story')
     stories.push({
-      id: toId(meta.title || 'default', title),
+      id: sanitize(title).replace(/[^a-zA-Z0-9]/g, '_'),
       title,
       template: storyTemplate,
     })

@@ -35,8 +35,31 @@ describe('indexer', () => {
         },
         "stories": [
           {
-            "id": "simple--바보-babo-2-3",
+            "id": "simple--babo-2-3",
             "name": "바보 (babo) 2:3!",
+          },
+        ],
+      }
+    `)
+  })
+
+  it('creates unique ids for stories with same title', () => {
+    const code =
+      '<template><Stories title="Simple"><Story title="Primary">hello</Story><Story title="Primary">hello two</Story></Stories></template>'
+    const result = indexerCode(code, options)
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "meta": {
+          "title": "Simple",
+        },
+        "stories": [
+          {
+            "id": "simple--primary",
+            "name": "Primary",
+          },
+          {
+            "id": "simple--primary",
+            "name": "Primary",
           },
         ],
       }

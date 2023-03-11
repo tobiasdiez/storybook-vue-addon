@@ -108,18 +108,17 @@ function generateStoryImport(
     id: 'test',
     compilerOptions: { bindingMetadata: resolvedScript?.bindings },
   })
-  const cleanedId = id.replace(/[^a-zA-Z0-9]/g, '_')
   const renderFunction = code.replace(
     'export function render',
-    `function render${cleanedId}`
+    `function render${id}`
   )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `
     ${renderFunction}
-    export const ${cleanedId} = () => Object.assign({render: render${cleanedId}}, _sfc_main)
-    ${cleanedId}.storyName = '${title}'
-    ${cleanedId}.parameters = {
+    export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
+    ${id}.storyName = '${title}'
+    ${id}.parameters = {
       docs: { source: { code: \`${template.trim()}\` } },
     };`
 }

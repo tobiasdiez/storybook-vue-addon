@@ -2,25 +2,22 @@
 
 ## [0.2.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.1.1...v0.2.0) (2023-03-18)
 
-
 ### 📝 Documentation
 
-* add features and inspiration by Histoire ([#35](https://github.com/tobiasdiez/storybook-vue-addon/issues/35)) ([7089e3c](https://github.com/tobiasdiez/storybook-vue-addon/commit/7089e3cc4ce90cbae6b32d9cefa4ffd948d84cc4))
-
+- add features and inspiration by Histoire ([#35](https://github.com/tobiasdiez/storybook-vue-addon/issues/35)) ([7089e3c](https://github.com/tobiasdiez/storybook-vue-addon/commit/7089e3cc4ce90cbae6b32d9cefa4ffd948d84cc4))
 
 ### 🔖 Features
 
-* add story indexer to support storyStoreV7 ([#38](https://github.com/tobiasdiez/storybook-vue-addon/issues/38)) ([421fe9a](https://github.com/tobiasdiez/storybook-vue-addon/commit/421fe9a4120908f7a88e4f89c02b06f24b136006))
-
+- add story indexer to support storyStoreV7 ([#38](https://github.com/tobiasdiez/storybook-vue-addon/issues/38)) ([421fe9a](https://github.com/tobiasdiez/storybook-vue-addon/commit/421fe9a4120908f7a88e4f89c02b06f24b136006))
 
 ### 🧹 Miscellaneous
 
-* add docs as section in changelog ([#36](https://github.com/tobiasdiez/storybook-vue-addon/issues/36)) ([f51bed2](https://github.com/tobiasdiez/storybook-vue-addon/commit/f51bed22106f2111a68a98546cc470c602558644))
-* **deps:** update all non-major dependencies ([#28](https://github.com/tobiasdiez/storybook-vue-addon/issues/28)) ([30bbbe0](https://github.com/tobiasdiez/storybook-vue-addon/commit/30bbbe012b6b7972da4f78ab9b3b965a7e473fcb))
-* **deps:** update all non-major dependencies ([#37](https://github.com/tobiasdiez/storybook-vue-addon/issues/37)) ([c4b5c3e](https://github.com/tobiasdiez/storybook-vue-addon/commit/c4b5c3edc47660a63495208666341cc36fa45b38))
-* **deps:** update devdependency typescript to v5 ([#39](https://github.com/tobiasdiez/storybook-vue-addon/issues/39)) ([b40d35c](https://github.com/tobiasdiez/storybook-vue-addon/commit/b40d35cb15883f349e1a1e1f04c004af89e4323b))
-* publish example storybook to chromatic ([#32](https://github.com/tobiasdiez/storybook-vue-addon/issues/32)) ([80e1b63](https://github.com/tobiasdiez/storybook-vue-addon/commit/80e1b63eeb1ef427ec9917c486e1fc6a33cac203))
-* upgrade storybook to v7 in example ([#29](https://github.com/tobiasdiez/storybook-vue-addon/issues/29)) ([f191d08](https://github.com/tobiasdiez/storybook-vue-addon/commit/f191d08d57a5ab59a3bee2d3e572ce3f8f6cdd15))
+- add docs as section in changelog ([#36](https://github.com/tobiasdiez/storybook-vue-addon/issues/36)) ([f51bed2](https://github.com/tobiasdiez/storybook-vue-addon/commit/f51bed22106f2111a68a98546cc470c602558644))
+- **deps:** update all non-major dependencies ([#28](https://github.com/tobiasdiez/storybook-vue-addon/issues/28)) ([30bbbe0](https://github.com/tobiasdiez/storybook-vue-addon/commit/30bbbe012b6b7972da4f78ab9b3b965a7e473fcb))
+- **deps:** update all non-major dependencies ([#37](https://github.com/tobiasdiez/storybook-vue-addon/issues/37)) ([c4b5c3e](https://github.com/tobiasdiez/storybook-vue-addon/commit/c4b5c3edc47660a63495208666341cc36fa45b38))
+- **deps:** update devdependency typescript to v5 ([#39](https://github.com/tobiasdiez/storybook-vue-addon/issues/39)) ([b40d35c](https://github.com/tobiasdiez/storybook-vue-addon/commit/b40d35cb15883f349e1a1e1f04c004af89e4323b))
+- publish example storybook to chromatic ([#32](https://github.com/tobiasdiez/storybook-vue-addon/issues/32)) ([80e1b63](https://github.com/tobiasdiez/storybook-vue-addon/commit/80e1b63eeb1ef427ec9917c486e1fc6a33cac203))
+- upgrade storybook to v7 in example ([#29](https://github.com/tobiasdiez/storybook-vue-addon/issues/29)) ([f191d08](https://github.com/tobiasdiez/storybook-vue-addon/commit/f191d08d57a5ab59a3bee2d3e572ce3f8f6cdd15))
 
 ## [0.1.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.1.0...v0.1.1) (2023-02-01)
 

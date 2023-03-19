@@ -16,10 +16,10 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache) {
         return \\"hello\\";
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
       "
@@ -41,10 +41,10 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache) {
         return \\"hello\\";
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
       "
@@ -72,10 +72,10 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache, $props, $setup, $data, $options) {
         return \\"hello\\";
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
       "
@@ -95,10 +95,10 @@ describe('transform', () => {
       function renderprimary_story(_ctx, _cache) {
         return \\"hello\\";
       }
-      export const primary_story = () =>
+      export const storyprimary_story = () =>
         Object.assign({ render: renderprimary_story }, _sfc_main);
-      primary_story.storyName = \\"Primary story\\";
-      primary_story.parameters = {
+      storyprimary_story.storyName = \\"Primary story\\";
+      storyprimary_story.parameters = {
         docs: { source: { code: \`hello\` } },
       };
       "
@@ -118,10 +118,10 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache) {
         return \\"hello\\";
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
       "
@@ -146,20 +146,20 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache) {
         return \\"hello\\";
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
 
       function rendersecondary(_ctx, _cache) {
         return \\"world\\";
       }
-      export const secondary = () =>
+      export const storysecondary = () =>
         Object.assign({ render: rendersecondary }, _sfc_main);
-      secondary.storyName = \\"Secondary\\";
-      secondary.parameters = {
+      storysecondary.storyName = \\"Secondary\\";
+      storysecondary.parameters = {
         docs: { source: { code: \`world\` } },
       };
       "
@@ -192,10 +192,10 @@ describe('transform', () => {
 
         return _openBlock(), _createBlock(_component_Button);
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`<Button>\` } },
       };
 
@@ -204,10 +204,10 @@ describe('transform', () => {
 
         return _openBlock(), _createBlock(_component_Button);
       }
-      export const secondary = () =>
+      export const storysecondary = () =>
         Object.assign({ render: rendersecondary }, _sfc_main);
-      secondary.storyName = \\"Secondary\\";
-      secondary.parameters = {
+      storysecondary.storyName = \\"Secondary\\";
+      storysecondary.parameters = {
         docs: { source: { code: \`<Button>\` } },
       };
       "
@@ -259,10 +259,10 @@ describe('transform', () => {
       function renderprimary(_ctx, _cache, $props, $setup, $data, $options) {
         return _openBlock(), _createBlock($setup[\\"test\\"]);
       }
-      export const primary = () =>
+      export const storyprimary = () =>
         Object.assign({ render: renderprimary }, _sfc_main);
-      primary.storyName = \\"Primary\\";
-      primary.parameters = {
+      storyprimary.storyName = \\"Primary\\";
+      storyprimary.parameters = {
         docs: { source: { code: \`<test></test>\` } },
       };
       "

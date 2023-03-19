@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.2.0...v0.2.1) (2023-03-19)
+
+
+### 🐛 Bug Fixes
+
+* properly export preset endpoint ([#42](https://github.com/tobiasdiez/storybook-vue-addon/issues/42)) ([4790ecd](https://github.com/tobiasdiez/storybook-vue-addon/commit/4790ecd2a7aebf37cd07c979ef8b0a761b32c560))
+
 ## [0.2.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.1.1...v0.2.0) (2023-03-18)
 
 ### 📝 Documentation

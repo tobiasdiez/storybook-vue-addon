@@ -16,7 +16,7 @@ describe('indexer', () => {
         },
         "stories": [
           {
-            "id": "storysimple--primary",
+            "id": "simple--storyprimary",
             "name": "Primary",
           },
         ],
@@ -35,7 +35,7 @@ describe('indexer', () => {
         },
         "stories": [
           {
-            "id": "storysimple--babo-2-3",
+            "id": "simple--story-babo-2-3",
             "name": "바보 (babo) 2:3!",
           },
         ],
@@ -54,11 +54,11 @@ describe('indexer', () => {
         },
         "stories": [
           {
-            "id": "storysimple--primary",
+            "id": "simple--storyprimary",
             "name": "Primary",
           },
           {
-            "id": "storysimple--primary",
+            "id": "simple--storyprimary",
             "name": "Primary",
           },
         ],

@@ -22,7 +22,7 @@ export function indexerCode(
     stories: stories
       // .filter(story => !story.template)
       .map(({ id, title }) => ({
-        id: EXPORT_PREFIX + toId(meta.title || 'default', id),
+        id: toId(meta.title || 'default', EXPORT_PREFIX + id),
         name: title,
       })),
   }

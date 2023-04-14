@@ -3,9 +3,6 @@ import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import { format as prettierFormat } from 'prettier'
 import { parse, ParsedMeta, ParsedStory } from './parser'
 
-// Prefix every story with 'story' to avoid collisions with standard js keywords (e.g. if the id is 'default')
-export const EXPORT_PREFIX = 'story'
-
 /**
  * Transforms a vue single-file-component into Storybook's Component Story Format (CSF).
  */
@@ -111,6 +108,10 @@ function generateStoryImport(
     id: 'test',
     compilerOptions: { bindingMetadata: resolvedScript?.bindings },
   })
+
+  // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')
+  id = id.charAt(0).toUpperCase() + id.slice(1)
+
   const renderFunction = code.replace(
     'export function render',
     `function render${id}`
@@ -119,9 +120,9 @@ function generateStoryImport(
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `
     ${renderFunction}
-    export const ${EXPORT_PREFIX}${id} = () => Object.assign({render: render${id}}, _sfc_main)
-    ${EXPORT_PREFIX}${id}.storyName = '${title}'
-    ${EXPORT_PREFIX}${id}.parameters = {
+    export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
+    ${id}.storyName = '${title}'
+    ${id}.parameters = {
       docs: { source: { code: \`${template.trim()}\` } },
     };`
 }

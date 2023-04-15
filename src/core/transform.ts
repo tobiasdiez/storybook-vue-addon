@@ -108,6 +108,10 @@ function generateStoryImport(
     id: 'test',
     compilerOptions: { bindingMetadata: resolvedScript?.bindings },
   })
+
+  // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')
+  id = id.charAt(0).toUpperCase() + id.slice(1)
+
   const renderFunction = code.replace(
     'export function render',
     `function render${id}`

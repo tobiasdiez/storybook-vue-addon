@@ -12,6 +12,7 @@ describe('indexer', () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "meta": {
+          "tags": [],
           "title": "Simple",
         },
         "stories": [
@@ -31,6 +32,7 @@ describe('indexer', () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "meta": {
+          "tags": [],
           "title": "Simple",
         },
         "stories": [
@@ -50,6 +52,7 @@ describe('indexer', () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "meta": {
+          "tags": [],
           "title": "Simple",
         },
         "stories": [

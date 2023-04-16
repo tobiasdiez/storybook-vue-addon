@@ -2,20 +2,21 @@ import type { SFCScriptBlock } from 'vue/compiler-sfc'
 import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import { format as prettierFormat } from 'prettier'
 import { parse, ParsedMeta, ParsedStory } from './parser'
+import { compile as compileMdx } from '@storybook/mdx2-csf'
 
 /**
  * Transforms a vue single-file-component into Storybook's Component Story Format (CSF).
  */
-export function transform(code: string) {
+export async function transform(code: string) {
   let result = ''
-  const { resolvedScript, meta, stories } = parse(code)
+  const { resolvedScript, meta, stories, docs } = parse(code)
   if (resolvedScript) {
     result += rewriteDefault(resolvedScript.content, '_sfc_main')
     result += '\n'
   } else {
     result += 'const _sfc_main = {}\n'
   }
-  result += transformTemplate({ meta, stories }, resolvedScript)
+  result += await transformTemplate({ meta, stories, docs }, resolvedScript)
   result = organizeImports(result)
   return result
 
@@ -77,25 +78,39 @@ export function transform(code: string) {
     */
 }
 
-function transformTemplate(
-  { meta, stories }: { meta: ParsedMeta; stories: ParsedStory[] },
+async function transformTemplate(
+  {
+    meta,
+    stories,
+    docs,
+  }: { meta: ParsedMeta; stories: ParsedStory[]; docs?: string },
   resolvedScript?: SFCScriptBlock
 ) {
-  let result = generateDefaultImport(meta)
+  let result = generateDefaultImport(meta, docs)
   for (const story of stories) {
     result += generateStoryImport(story, resolvedScript)
+  }
+  if (docs) {
+    let mdx = await compileMdx(docs, { skipCsf: true })
+    mdx = mdx.replace('export default MDXContent;', '')
+    result += mdx
   }
   return result
 }
 
-function generateDefaultImport({ title, component }: ParsedMeta) {
+function generateDefaultImport(
+  { title, component }: ParsedMeta,
+  docs?: string
+) {
   return `export default {
     ${title ? `title: '${title}',` : ''}
     ${component ? `component: ${component},` : ''}
     //decorators: [ ... ],
-    //parameters: { ... }
+    parameters: {
+      ${docs ? `docs: { page: MDXContent },` : ''}
     }
-    `
+  }
+  `
 }
 
 function generateStoryImport(

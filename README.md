@@ -44,6 +44,7 @@ import Button from './Button.vue'
 
 - Write stories as idiomatic Vue templates, bye bye string-based templates, as wished for in [storybookjs/storybook#9768](https://github.com/storybookjs/storybook/issues/9768)
 - Syntax highlighting and full editor support (including Volar) for writing story templates
+- Add markdown documentation in a custom `docs` block, directly in your `stories.vue` files (see below for details)
 - The component that is displayed needs only be declared once (via `<Stories :component="...">`) and not for every story
 - Simple integration with Storybook and automatic Vite support
 - Light: Vue stories are transpiled into ordinary CSF stories on the fly with minimal overhead
@@ -86,6 +87,45 @@ The way to write stories as idiomatic Vue templates is heavily inspired by the g
      ],
 
    ```
+
+## Adding documentation
+
+You can add documentation for your components directly in your story SFC using the custom `docs` block.
+
+```vue
+<template>Define your stories here as above</template>
+
+<docs lang="md">
+import { Canvas } from '@storybook/blocks';
+
+# Documentation
+
+Everything in one place. Isn't it great?
+
+You can render stories in the docs using the `<Canvas>` component.
+
+<Canvas />
+</docs>
+```
+
+You can use Markdown’s readable syntax (such as # heading) for your documentation, include stories, and freely embed JSX component blocks at any point in the file. See [Storybook Docs](https://storybook.js.org/docs/vue/writing-docs/introduction) for more information.
+There are a few minor differences to standard MDX documentation pages:
+
+- The `<Meta of=...>` tag is not needed.
+- You don't need to import the stories file. Simply refer to the defined stories by their name. For example:
+  ```vue
+  <template>
+    <Stories>
+      <Story title="Unchecked">
+        <Checkbox label="Unchecked" />
+      </Story>
+    </Stories>
+  </template>
+  <docs>
+    import { Canvas } from '@storybook/blocks';
+    <Canvas of={Unchecked} />
+  </docs>
+  ```
 
 ## Manual usage
 

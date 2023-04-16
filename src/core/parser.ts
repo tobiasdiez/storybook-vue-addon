@@ -11,6 +11,7 @@ import { sanitize } from '@storybook/csf'
 export interface ParsedMeta {
   title?: string
   component?: string
+  tags: string[]
 }
 
 export interface ParsedStory {
@@ -25,10 +26,15 @@ export function parse(code: string) {
 
   const resolvedScript = resolveScript(descriptor)
   const { meta, stories } = parseTemplate(descriptor.template.content)
+  const docsBlock = descriptor.customBlocks?.find(
+    (block) => block.type === 'docs'
+  )
+  const docs = docsBlock?.content.trim()
   return {
     resolvedScript,
     meta,
     stories,
+    docs,
   }
 }
 
@@ -59,6 +65,7 @@ function parseTemplate(content: string): {
   const meta = {
     title: extractTitle(root),
     component: extractComponent(root),
+    tags: [],
   }
 
   const stories: ParsedStory[] = []

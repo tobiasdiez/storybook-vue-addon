@@ -2,15 +2,15 @@ import { describe, expect, it } from 'vitest'
 import { transform } from '../src/core/transform'
 
 describe('transform', () => {
-  it('handles one simple story', () => {
+  it('handles one simple story', async () => {
     const code =
       '<template><Stories><Story title="Primary">hello</Story></Stories></template>'
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary(_ctx, _cache) {
@@ -25,17 +25,17 @@ describe('transform', () => {
       "
     `)
   })
-  it('extracts title from Stories', () => {
+  it('extracts title from Stories', async () => {
     const code =
       '<template><Stories title="test"><Story title="Primary">hello</Story></Stories></template>'
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         title: \\"test\\",
 
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary(_ctx, _cache) {
@@ -50,23 +50,23 @@ describe('transform', () => {
       "
     `)
   })
-  it('throws error if story does not have a title', () => {
+  it('throws error if story does not have a title', async () => {
     const code = '<template><Stories><Story>hello</Story></Stories></template>'
-    expect(() => transform(code)).toThrowErrorMatchingInlineSnapshot(
-      '"Story is missing a title"'
-    )
+    await expect(() =>
+      transform(code)
+    ).rejects.toThrowErrorMatchingInlineSnapshot('"Story is missing a title"')
   })
-  it('extracts component from Stories', () => {
+  it('extracts component from Stories', async () => {
     const code =
       '<script>const MyComponent = {}</script><template><Stories :component="MyComponent"><Story title="Primary">hello</Story></Stories></template>'
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const MyComponent = {};
       const _sfc_main = {};
       export default {
         component: MyComponent,
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
@@ -81,15 +81,15 @@ describe('transform', () => {
       "
     `)
   })
-  it('handles title with spaces', () => {
+  it('handles title with spaces', async () => {
     const code =
       '<template><Stories><Story title="Primary story">hello</Story></Stories></template>'
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary_story(_ctx, _cache) {
@@ -104,15 +104,15 @@ describe('transform', () => {
       "
     `)
   })
-  it('handles comment before stories tag', () => {
+  it('handles comment before stories tag', async () => {
     const code =
       '<template><!-- comment --><Stories><Story title="Primary">hello</Story></Stories></template>'
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary(_ctx, _cache) {
@@ -127,7 +127,7 @@ describe('transform', () => {
       "
     `)
   })
-  it('handles multiple stories', () => {
+  it('handles multiple stories', async () => {
     const code = `
       <template>
         <Stories>
@@ -135,12 +135,12 @@ describe('transform', () => {
           <Story title="Secondary">world</Story>
         </Stories>
       </template>`
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       function renderPrimary(_ctx, _cache) {
@@ -165,7 +165,7 @@ describe('transform', () => {
       "
     `)
   })
-  it('combines helper imports for multiple stories', () => {
+  it('combines helper imports for multiple stories', async () => {
     const code = `
       <template>
         <Stories>
@@ -173,12 +173,12 @@ describe('transform', () => {
           <Story title="Secondary"><Button></Story>
         </Stories>
       </template>`
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       import {
@@ -213,7 +213,7 @@ describe('transform', () => {
       "
     `)
   })
-  it('supports components defined in script setup', () => {
+  it('supports components defined in script setup', async () => {
     const code = `
       <script setup>
       const test = {
@@ -228,7 +228,7 @@ describe('transform', () => {
           <Story title="Primary"><test></test></Story>
         </Stories>
       </template>`
-    const result = transform(code)
+    const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {
         setup(__props, { expose }) {
@@ -251,7 +251,7 @@ describe('transform', () => {
       };
       export default {
         //decorators: [ ... ],
-        //parameters: { ... }
+        parameters: {},
       };
 
       import { createBlock as _createBlock, openBlock as _openBlock } from \\"vue\\";
@@ -265,6 +265,84 @@ describe('transform', () => {
       Primary.parameters = {
         docs: { source: { code: \`<test></test>\` } },
       };
+      "
+    `)
+  })
+  it('supports docs blocks', async () => {
+    const code = `
+      <template>
+        <Stories>
+          <Story title="Primary">
+            hello
+          </Story>
+        </Stories>
+      </template>
+      <docs>
+        # Hello
+        This is a story
+      </docs>
+      `
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {};
+      export default {
+        //decorators: [ ... ],
+        parameters: {
+          docs: { page: MDXContent },
+        },
+      };
+
+      function renderPrimary(_ctx, _cache) {
+        return \\"hello\\";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = \\"Primary\\";
+      Primary.parameters = {
+        docs: { source: { code: \`hello\` } },
+      }; /*@jsxRuntime automatic @jsxImportSource react*/
+      import { useMDXComponents as _provideComponents } from \\"@mdx-js/react\\";
+      import {
+        Fragment as _Fragment,
+        jsx as _jsx,
+        jsxs as _jsxs,
+      } from \\"react/jsx-runtime\\";
+      function MDXContent(props = {}) {
+        const { wrapper: MDXLayout } = Object.assign(
+          {},
+          _provideComponents(),
+          props.components
+        );
+        return MDXLayout
+          ? _jsx(
+              MDXLayout,
+              Object.assign({}, props, {
+                children: _jsx(_createMdxContent, {}),
+              })
+            )
+          : _createMdxContent();
+        function _createMdxContent() {
+          const _components = Object.assign(
+            {
+              h1: \\"h1\\",
+              p: \\"p\\",
+            },
+            _provideComponents(),
+            props.components
+          );
+          return _jsxs(_Fragment, {
+            children: [
+              _jsx(_components.h1, {
+                children: \\"Hello\\",
+              }),
+              \\"\\\\n\\",
+              _jsx(_components.p, {
+                children: \\"This is a story\\",
+              }),
+            ],
+          });
+        }
+      }
       "
     `)
   })

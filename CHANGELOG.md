@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.3.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.2.1...v0.3.0) (2023-04-16)
+
+
+### 🐛 Bug Fixes
+
+* gracefully handle stories named the same as standard javascript keywords ([#41](https://github.com/tobiasdiez/storybook-vue-addon/issues/41)) ([83abd96](https://github.com/tobiasdiez/storybook-vue-addon/commit/83abd96d68e3ff4d43764753a04540af50829dc3))
+
+
+### 🔖 Features
+
+* add documentations via custom docs block ([#53](https://github.com/tobiasdiez/storybook-vue-addon/issues/53)) ([77e010a](https://github.com/tobiasdiez/storybook-vue-addon/commit/77e010a178a251113949711032563701960215be)), closes [#49](https://github.com/tobiasdiez/storybook-vue-addon/issues/49)
+* add types for Story and Stories components ([#52](https://github.com/tobiasdiez/storybook-vue-addon/issues/52)) ([157dd57](https://github.com/tobiasdiez/storybook-vue-addon/commit/157dd57d942a55edaebf07129adeda0427da44ec))
+
+
+### 🧹 Miscellaneous
+
+* **deps:** update all non-major dependencies ([#40](https://github.com/tobiasdiez/storybook-vue-addon/issues/40)) ([fcf45ec](https://github.com/tobiasdiez/storybook-vue-addon/commit/fcf45ec63c6334127e7b87d9f342a7e07cd61e59))
+* **deps:** update dependency consola to v3 ([#51](https://github.com/tobiasdiez/storybook-vue-addon/issues/51)) ([0d584f8](https://github.com/tobiasdiez/storybook-vue-addon/commit/0d584f867cb797ae3d8da1f4aade243b75aaf104))
+* **deps:** update devdependency rimraf to v5 ([#50](https://github.com/tobiasdiez/storybook-vue-addon/issues/50)) ([844b44f](https://github.com/tobiasdiez/storybook-vue-addon/commit/844b44f8c7d2cd74dcac33b276a4e6f3eebe5e1c))
+* **deps:** update pnpm to v8 ([#45](https://github.com/tobiasdiez/storybook-vue-addon/issues/45)) ([47afeb6](https://github.com/tobiasdiez/storybook-vue-addon/commit/47afeb6ed59122504fb35eea59ead192f05f8863))
+
 ## [0.2.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.2.0...v0.2.1) (2023-03-19)
 
 ### 🐛 Bug Fixes

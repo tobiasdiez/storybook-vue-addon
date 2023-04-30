@@ -351,7 +351,7 @@ describe('transform', () => {
     const code = `
       <template>
         <Stories>
-          <Story title="Primary", :play="playFunction">
+          <Story title="Primary" :play="playFunction">
           hello
           </Story>
         </Stories>

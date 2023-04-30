@@ -347,7 +347,7 @@ describe('transform', () => {
     `)
   })
 
-  it('suupports play functions', async () => {
+  it('supports play functions', async () => {
     const code = `
       <template>
         <Stories>

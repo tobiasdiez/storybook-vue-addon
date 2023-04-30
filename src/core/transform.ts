@@ -136,7 +136,8 @@ function generateStoryImport(
   return `
     ${renderFunction}
     export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
-    ${id}.storyName = '${title}'${play ? `\n${id}.play = ${play}` : ''}
+    ${id}.storyName = '${title}'
+    ${play ? `${id}.play = ${play}` : ''}
     ${id}.parameters = {
       docs: { source: { code: \`${template.trim()}\` } },
     };`

@@ -18,6 +18,7 @@ export interface ParsedStory {
   id: string
   title: string
   template: string
+  play?: string
 }
 
 export function parse(code: string) {
@@ -75,6 +76,8 @@ function parseTemplate(content: string): {
     const title = extractTitle(story)
     if (!title) throw new Error('Story is missing a title')
 
+    const play = extractPlay(story)
+
     const storyTemplate = parseSFC(
       story.loc.source
         .replace(/<Story/, '<template')
@@ -85,6 +88,7 @@ function parseTemplate(content: string): {
     stories.push({
       id: sanitize(title).replace(/[^a-zA-Z0-9]/g, '_'),
       title,
+      play,
       template: storyTemplate,
     })
   }
@@ -101,6 +105,14 @@ function extractTitle(node: ElementNode) {
 
 function extractComponent(node: ElementNode) {
   const prop = extractProp(node, 'component')
+  if (prop && prop.type === 7)
+    return prop.exp?.type === 4
+      ? prop.exp?.content.replace('_ctx.', '')
+      : undefined
+}
+
+function extractPlay(node: ElementNode) {
+  const prop = extractProp(node, 'play')
   if (prop && prop.type === 7)
     return prop.exp?.type === 4
       ? prop.exp?.content.replace('_ctx.', '')

@@ -114,7 +114,7 @@ function generateDefaultImport(
 }
 
 function generateStoryImport(
-  { id, title, template }: ParsedStory,
+  { id, title, play, template }: ParsedStory,
   resolvedScript?: SFCScriptBlock
 ) {
   const { code } = compileTemplate({
@@ -136,7 +136,7 @@ function generateStoryImport(
   return `
     ${renderFunction}
     export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
-    ${id}.storyName = '${title}'
+    ${id}.storyName = '${title}'${play ? `\n${id}.play = ${play}` : ''}
     ${id}.parameters = {
       docs: { source: { code: \`${template.trim()}\` } },
     };`

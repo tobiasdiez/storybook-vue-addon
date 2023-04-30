@@ -346,4 +346,46 @@ describe('transform', () => {
       "
     `)
   })
+
+  it('suupports play functions', async () => {
+    const code = `
+      <template>
+        <Stories>
+          <Story title="Primary", :play="playFunction">
+          hello
+          </Story>
+        </Stories>
+      </template>
+
+      <script lang="ts">
+      function playFunction({canvasElement}: any) {
+        console.log("playFunction")
+      }
+      </script>
+      `
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+    "function playFunction({ canvasElement }: any) {
+      console.log(\\"playFunction\\");
+    }
+    
+    const _sfc_main = {};
+    export default {
+      //decorators: [ ... ],
+      parameters: {},
+    };
+    
+    function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+      return \\"hello\\";
+    }
+    export const Primary = () =>
+      Object.assign({ render: renderPrimary }, _sfc_main);
+    Primary.storyName = \\"Primary\\";
+    Primary.play = playFunction;
+    Primary.parameters = {
+      docs: { source: { code: \`hello\` } },
+    };
+    "
+    `)
+  })
 })

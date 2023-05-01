@@ -2,17 +2,15 @@
 
 ## [0.4.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.3.0...v0.4.0) (2023-05-01)
 
-
 ### 🔖 Features
 
-* add support for play functions ([#57](https://github.com/tobiasdiez/storybook-vue-addon/issues/57)) ([e309234](https://github.com/tobiasdiez/storybook-vue-addon/commit/e309234ef05fde9e1273da5b9fa0b19a31b97505))
-
+- add support for play functions ([#57](https://github.com/tobiasdiez/storybook-vue-addon/issues/57)) ([e309234](https://github.com/tobiasdiez/storybook-vue-addon/commit/e309234ef05fde9e1273da5b9fa0b19a31b97505))
 
 ### 🧹 Miscellaneous
 
-* **deps:** update all non-major dependencies ([#54](https://github.com/tobiasdiez/storybook-vue-addon/issues/54)) ([4993db7](https://github.com/tobiasdiez/storybook-vue-addon/commit/4993db737a53933bb4126636995fdc3a43d6f36f))
-* **deps:** update all non-major dependencies ([#56](https://github.com/tobiasdiez/storybook-vue-addon/issues/56)) ([e3a3396](https://github.com/tobiasdiez/storybook-vue-addon/commit/e3a3396b0a4c03ae03eb70b387080f7413cf5102))
-* use renovate widenPeerDependencies preset ([f7798bd](https://github.com/tobiasdiez/storybook-vue-addon/commit/f7798bdd50041973cbdc3ffb5a232958341e9270))
+- **deps:** update all non-major dependencies ([#54](https://github.com/tobiasdiez/storybook-vue-addon/issues/54)) ([4993db7](https://github.com/tobiasdiez/storybook-vue-addon/commit/4993db737a53933bb4126636995fdc3a43d6f36f))
+- **deps:** update all non-major dependencies ([#56](https://github.com/tobiasdiez/storybook-vue-addon/issues/56)) ([e3a3396](https://github.com/tobiasdiez/storybook-vue-addon/commit/e3a3396b0a4c03ae03eb70b387080f7413cf5102))
+- use renovate widenPeerDependencies preset ([f7798bd](https://github.com/tobiasdiez/storybook-vue-addon/commit/f7798bdd50041973cbdc3ffb5a232958341e9270))
 
 ## [0.3.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.2.1...v0.3.0) (2023-04-16)
 

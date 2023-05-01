@@ -49,6 +49,8 @@ interface StoriesProps {
 }
 type Stories = VueComponent<StoriesProps>
 
+import { Meta, StoryObj } from '@storybook/vue3'
+
 /**
  * Story that represents a component example.
  *
@@ -59,6 +61,12 @@ interface StoryProps {
    * Display name in the UI.
    */
   title: string
+  /**
+   * Function that is executed after the story is rendered.
+   *
+   * Must be defined in a non-setup script
+   */
+  play?: StoryObj<Meta<VueComponent<any>>>['play']
 }
 type Story = VueComponent<StoryProps>
 

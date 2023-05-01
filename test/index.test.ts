@@ -19,6 +19,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -44,6 +45,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -75,6 +77,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -98,6 +101,7 @@ describe('transform', () => {
       export const Primary_story = () =>
         Object.assign({ render: renderPrimary_story }, _sfc_main);
       Primary_story.storyName = \\"Primary story\\";
+
       Primary_story.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -121,6 +125,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -149,6 +154,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
@@ -159,6 +165,7 @@ describe('transform', () => {
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
       Secondary.storyName = \\"Secondary\\";
+
       Secondary.parameters = {
         docs: { source: { code: \`world\` } },
       };
@@ -195,6 +202,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`<Button>\` } },
       };
@@ -207,6 +215,7 @@ describe('transform', () => {
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
       Secondary.storyName = \\"Secondary\\";
+
       Secondary.parameters = {
         docs: { source: { code: \`<Button>\` } },
       };
@@ -262,6 +271,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`<test></test>\` } },
       };
@@ -298,6 +308,7 @@ describe('transform', () => {
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
       Primary.storyName = \\"Primary\\";
+
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       }; /*@jsxRuntime automatic @jsxImportSource react*/
@@ -344,6 +355,48 @@ describe('transform', () => {
         }
       }
       "
+    `)
+  })
+
+  it('supports play functions', async () => {
+    const code = `
+      <template>
+        <Stories>
+          <Story title="Primary" :play="playFunction">
+          hello
+          </Story>
+        </Stories>
+      </template>
+
+      <script lang="ts">
+      function playFunction({canvasElement}: any) {
+        console.log("playFunction")
+      }
+      </script>
+      `
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+    "function playFunction({ canvasElement }: any) {
+      console.log(\\"playFunction\\");
+    }
+    
+    const _sfc_main = {};
+    export default {
+      //decorators: [ ... ],
+      parameters: {},
+    };
+    
+    function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+      return \\"hello\\";
+    }
+    export const Primary = () =>
+      Object.assign({ render: renderPrimary }, _sfc_main);
+    Primary.storyName = \\"Primary\\";
+    Primary.play = playFunction;
+    Primary.parameters = {
+      docs: { source: { code: \`hello\` } },
+    };
+    "
     `)
   })
 })

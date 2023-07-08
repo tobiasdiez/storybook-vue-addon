@@ -57,8 +57,8 @@ importers:
         specifier: ^3.2.12
         version: 3.2.12
       nodemon:
-        specifier: ^2.0.22
-        version: 2.0.22
+        specifier: ^3.0.0
+        version: 3.0.0
       rimraf:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2510,7 +2510,7 @@ packages:
       prompts: 2.4.2
       puppeteer-core: 2.1.1
       read-pkg-up: 7.0.1
-      semver: 7.3.8
+      semver: 7.5.4
       shelljs: 0.8.5
       simple-update-notifier: 1.0.7
       strip-json-comments: 3.1.1
@@ -2658,7 +2658,7 @@ packages:
       pretty-hrtime: 1.0.3
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.3.8
+      semver: 7.5.4
       serve-favicon: 2.5.0
       telejson: 7.0.4
       ts-dedent: 2.2.0
@@ -2783,7 +2783,7 @@ packages:
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      semver: 7.3.8
+      semver: 7.5.4
       store2: 2.14.2
       telejson: 7.0.4
       ts-dedent: 2.2.0
@@ -3327,7 +3327,7 @@ packages:
       ignore: 5.2.0
       natural-compare-lite: 1.4.0
       regexpp: 3.2.0
-      semver: 7.3.8
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -3401,7 +3401,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.8
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -3422,7 +3422,7 @@ packages:
       eslint: 8.39.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0(eslint@8.39.0)
-      semver: 7.3.8
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4252,7 +4252,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.3.8
+      semver: 7.5.4
     dev: true
 
   /bundle-require@4.0.1(esbuild@0.17.11):
@@ -4549,7 +4549,7 @@ packages:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       md5-hex: 3.0.1
-      semver: 7.3.8
+      semver: 7.5.4
       well-known-symbols: 2.0.0
     dev: true
 
@@ -5442,7 +5442,7 @@ packages:
       is-core-module: 2.11.0
       minimatch: 3.1.2
       resolve: 1.22.1
-      semver: 7.3.8
+      semver: 7.5.4
     dev: true
 
   /eslint-plugin-node@11.1.0(eslint@8.39.0):
@@ -5488,7 +5488,7 @@ packages:
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.24
       safe-regex: 2.1.1
-      semver: 7.3.8
+      semver: 7.5.4
       strip-indent: 3.0.0
     dev: true
 
@@ -5517,7 +5517,7 @@ packages:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.0.10
-      semver: 7.3.8
+      semver: 7.5.4
       vue-eslint-parser: 9.1.0(eslint@8.39.0)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
@@ -7437,9 +7437,9 @@ packages:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
     dev: true
 
-  /nodemon@2.0.22:
-    resolution: {integrity: sha512-B8YqaKMmyuCO7BowF1Z1/mkPqLk6cs/l63Ojtd6otKjMx47Dq1utxfRxcavH1I7VSaL8n5BUaoutadnsX3AAVQ==}
-    engines: {node: '>=8.10.0'}
+  /nodemon@3.0.0:
+    resolution: {integrity: sha512-yU9NSp3n+DUSt3S2LmtXss+4kOsmC8ZLpXeGe5mKuLdqkoSRwmaplk2lo5cmve7TPw5MgMcd2cazL0KpUscoSQ==}
+    engines: {node: '>=10'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
@@ -7447,8 +7447,8 @@ packages:
       ignore-by-default: 1.0.1
       minimatch: 3.1.2
       pstree.remy: 1.1.8
-      semver: 5.7.1
-      simple-update-notifier: 1.0.7
+      semver: 7.5.4
+      simple-update-notifier: 2.0.0
       supports-color: 5.5.0
       touch: 3.1.0
       undefsafe: 2.0.5
@@ -8564,6 +8564,14 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /semver@7.5.4:
+    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
   /send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
     engines: {node: '>= 0.8.0'}
@@ -8688,6 +8696,13 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       semver: 7.0.0
+    dev: true
+
+  /simple-update-notifier@2.0.0:
+    resolution: {integrity: sha512-a2B9Y0KlNXl9u/vsW6sTIu9vGEpfKu2wRV6l1H3XEas/0gUIzGzBoP/IouTcUQbm9JWZLH3COxyn03TYlFax6w==}
+    engines: {node: '>=10'}
+    dependencies:
+      semver: 7.5.4
     dev: true
 
   /sirv@2.0.2:
@@ -9694,7 +9709,7 @@ packages:
       espree: 9.5.1
       esquery: 1.5.0
       lodash: 4.17.21
-      semver: 7.3.8
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true

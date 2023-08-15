@@ -121,7 +121,12 @@ function generateStoryImport(
     source: template.trim(),
     filename: 'test.vue',
     id: 'test',
-    compilerOptions: { bindingMetadata: resolvedScript?.bindings },
+    compilerOptions: {
+      bindingMetadata: resolvedScript?.bindings,
+      // prevent the hoisting of static variables since that would
+      // result in clashing variable names when the same HTML Tags are used in multiple stories within the same `*.stories.vue` file.
+      hoistStatic: false,
+    },
   })
 
   // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')

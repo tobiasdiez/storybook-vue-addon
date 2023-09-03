@@ -57,7 +57,7 @@ The way to write stories as idiomatic Vue templates is heavily inspired by the g
 
 ## Installation
 
-> Note: Currently, only the [`@storybook/vue3-vite`](https://github.com/storybookjs/storybook/tree/next/code/frameworks/vue3-vite) builder is supported.
+> Note: Currently, only the [`@storybook/vue3-vite`](https://github.com/storybookjs/storybook/tree/next/code/frameworks/vue3-vite) builder is supported (or the deprecated `@storybook/builder-vite` version 0.2.7 or higher).
 
 1. Add `storybook-vue-addon` to your dev-dependencies.
 

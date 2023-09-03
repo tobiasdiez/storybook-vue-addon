@@ -400,8 +400,8 @@ describe('transform', () => {
     `)
   })
 
-  it("should prevent hoisting static variables within the same story", async () => {
-     const code = `
+  it('should prevent hoisting static variables within the same story', async () => {
+    const code = `
       <template>
         <Stories>
           <Story title="Primary">
@@ -423,7 +423,7 @@ describe('transform', () => {
 
     const result = await transform(code)
 
-    expect(result.match(/const _hoisted_/g)).toBeNull();
+    expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
       "import { defineComponent as _defineComponent } from \\"vue\\";
 

@@ -1,4 +1,4 @@
-import type { SFCDescriptor } from 'vue/compiler-sfc'
+import type { SFCDescriptor, SFCScriptBlock } from 'vue/compiler-sfc'
 import {
   compileScript,
   compileTemplate,
@@ -12,6 +12,8 @@ export interface ParsedMeta {
   title?: string
   component?: string
   tags: string[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  args: Record<string, any>
 }
 
 export interface ParsedStory {
@@ -26,20 +28,25 @@ export function parse(code: string) {
   if (descriptor.template === null) throw new Error('No template found in SFC')
 
   const resolvedScript = resolveScript(descriptor)
+  const { args } = extractDefineArgs(resolvedScript)
+
+  // The `parseTemplate` should not build the meta, but just expose the raw data. The meta should be built by combining the resoluvedScript and the parsedTemplate.
   const { meta, stories } = parseTemplate(descriptor.template.content)
   const docsBlock = descriptor.customBlocks?.find(
     (block) => block.type === 'docs'
   )
   const docs = docsBlock?.content.trim()
+  // TODO: Before exposing the stories, we should merge the args from the script and the template, where the ones coming from the template override the ones from the script.
   return {
     resolvedScript,
     meta,
     stories,
     docs,
+    args,
   }
 }
 
-function parseTemplate(content: string): {
+export function parseTemplate(content: string): {
   meta: ParsedMeta
   stories: ParsedStory[]
 } {
@@ -63,11 +70,15 @@ function parseTemplate(content: string): {
   const root = roots[0]
   if (root.type !== 1 || root.tag !== 'Stories')
     throw new Error('Expected root to be a <Stories> element.')
+
   const meta = {
     title: extractTitle(root),
     component: extractComponent(root),
     tags: [],
-  }
+    // Here we should extract the args from the defineArgs call, within the script.
+    // But we are building this meta from `parseTemplate`. The meta should be built from `parse` instead.
+    // args: extractDefineArgs(resolvedScript),
+  } satisfies ParsedMeta
 
   const stories: ParsedStory[] = []
   for (const story of root.children ?? []) {
@@ -117,6 +128,63 @@ function extractPlay(node: ElementNode) {
     return prop.exp?.type === 4
       ? prop.exp?.content.replace('_ctx.', '')
       : undefined
+}
+/**
+ * This function should extract the args declared on the individual stories.
+ */
+function extractArgs(node: ElementNode): Record<string, unknown> {
+  const prop = extractProp(node, 'args')
+  console.log('prop', prop)
+  return {}
+}
+
+/**
+ * Open questions:
+ *
+ * - How to handle multiple defineArgs calls?
+ * - How to handle defineArgs calls in the template?
+ * - What should be the merging mechanism for args, so that args declared in the template override args declared in the script?
+ */
+export function extractDefineArgs(resolvedScript: SFCScriptBlock | undefined) {
+  /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
+  if (!resolvedScript || !resolvedScript?.scriptSetupAst) {
+    return { args: {} }
+  }
+
+  const ast = [
+    ...(resolvedScript?.scriptAst ?? []),
+    ...(resolvedScript?.scriptSetupAst ?? []),
+  ]
+
+  const filtered = ast.filter(
+    // @ts-expect-error expression is not on the type
+    (node) => node.expression?.callee.name === 'defineArgs'
+  )
+
+  // 1. we need to look through all function expressions in the script
+  const defineArgsCalls = filtered
+    .filter(
+      (node) => node.type === 'ExpressionStatement' && 'expression' in node
+    )
+    // @ts-expect-error expression is not on the type
+    .filter((node) => node.expression.callee.name === 'defineArgs')
+    // @ts-expect-error expression is not on the type
+    .map((node) => node.expression)
+
+  const args = {}
+
+  defineArgsCalls.forEach((node) => {
+    const arg = node.arguments[0]
+    if (arg.type === 'ObjectExpression') {
+      arg.properties.forEach((prop: any) => {
+        // @ts-expect-error expression is not on the type
+        args[prop.key.name] = prop.value.value
+      })
+    }
+  })
+
+  /* eslint-enable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
+  return { args }
 }
 
 // Minimal version of https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L297

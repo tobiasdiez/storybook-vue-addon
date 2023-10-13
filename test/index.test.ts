@@ -240,8 +240,8 @@ describe('transform', () => {
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {
-        setup(__props, { expose }) {
-          expose();
+        setup(__props, { expose: __expose }) {
+          __expose();
 
           const test = {
             data() {
@@ -318,6 +318,27 @@ describe('transform', () => {
         jsx as _jsx,
         jsxs as _jsxs,
       } from \\"react/jsx-runtime\\";
+      function _createMdxContent(props) {
+        const _components = Object.assign(
+          {
+            h1: \\"h1\\",
+            p: \\"p\\",
+          },
+          _provideComponents(),
+          props.components
+        );
+        return _jsxs(_Fragment, {
+          children: [
+            _jsx(_components.h1, {
+              children: \\"Hello\\",
+            }),
+            \\"\\\\n\\",
+            _jsx(_components.p, {
+              children: \\"This is a story\\",
+            }),
+          ],
+        });
+      }
       function MDXContent(props = {}) {
         const { wrapper: MDXLayout } = Object.assign(
           {},
@@ -328,31 +349,10 @@ describe('transform', () => {
           ? _jsx(
               MDXLayout,
               Object.assign({}, props, {
-                children: _jsx(_createMdxContent, {}),
+                children: _jsx(_createMdxContent, props),
               })
             )
-          : _createMdxContent();
-        function _createMdxContent() {
-          const _components = Object.assign(
-            {
-              h1: \\"h1\\",
-              p: \\"p\\",
-            },
-            _provideComponents(),
-            props.components
-          );
-          return _jsxs(_Fragment, {
-            children: [
-              _jsx(_components.h1, {
-                children: \\"Hello\\",
-              }),
-              \\"\\\\n\\",
-              _jsx(_components.p, {
-                children: \\"This is a story\\",
-              }),
-            ],
-          });
-        }
+          : _createMdxContent(props);
       }
       "
     `)
@@ -426,13 +426,12 @@ describe('transform', () => {
     expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
       "import { defineComponent as _defineComponent } from \\"vue\\";
+      const headingText = \\"Hello\\";
+      const paragraph = \\"World\\";
 
-      const _sfc_main = /*#__PURE__*/ _defineComponent({
-        setup(__props, { expose }) {
-          expose();
-
-          const headingText = \\"Hello\\";
-          const paragraph = \\"World\\";
+      const _sfc_main = _defineComponent({
+        setup(__props, { expose: __expose }) {
+          __expose();
 
           const __returned__ = { headingText, paragraph };
           Object.defineProperty(__returned__, \\"__isScriptSetup\\", {

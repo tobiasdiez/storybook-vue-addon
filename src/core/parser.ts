@@ -1,4 +1,4 @@
-import type { ElementNode } from '@vue/compiler-core'
+import type { ElementNode, NodeTypes as _NodeTypes } from '@vue/compiler-core'
 import type { SFCDescriptor } from 'vue/compiler-sfc'
 import {
   compileScript,
@@ -10,35 +10,10 @@ import { sanitize } from '@storybook/csf'
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228
-enum NodeTypes {
-  ROOT = 0,
-  ELEMENT = 1,
-  TEXT = 2,
-  COMMENT = 3,
-  SIMPLE_EXPRESSION = 4,
-  INTERPOLATION = 5,
-  ATTRIBUTE = 6,
-  DIRECTIVE = 7,
-  COMPOUND_EXPRESSION = 8,
-  IF = 9,
-  IF_BRANCH = 10,
-  FOR = 11,
-  TEXT_CALL = 12,
-  VNODE_CALL = 13,
-  JS_CALL_EXPRESSION = 14,
-  JS_OBJECT_EXPRESSION = 15,
-  JS_PROPERTY = 16,
-  JS_ARRAY_EXPRESSION = 17,
-  JS_FUNCTION_EXPRESSION = 18,
-  JS_CONDITIONAL_EXPRESSION = 19,
-  JS_CACHE_EXPRESSION = 20,
-  JS_BLOCK_STATEMENT = 21,
-  JS_TEMPLATE_LITERAL = 22,
-  JS_IF_STATEMENT = 23,
-  JS_ASSIGNMENT_EXPRESSION = 24,
-  JS_SEQUENCE_EXPRESSION = 25,
-  JS_RETURN_STATEMENT = 26,
-}
+const ELEMENT = 1 as _NodeTypes.ELEMENT
+const SIMPLE_EXPRESSION = 4 as _NodeTypes.SIMPLE_EXPRESSION
+const ATTRIBUTE = 6 as _NodeTypes.ATTRIBUTE
+const DIRECTIVE = 7 as _NodeTypes.DIRECTIVE
 
 export interface ParsedMeta {
   title?: string
@@ -85,14 +60,13 @@ function parseTemplate(content: string): {
   })
 
   const roots =
-    template.ast?.children.filter((node) => node.type === NodeTypes.ELEMENT) ??
-    []
+    template.ast?.children.filter((node) => node.type === ELEMENT) ?? []
   if (roots.length !== 1) {
     throw new Error('Expected exactly one <Stories> element as root.')
   }
 
   const root = roots[0]
-  if (root.type !== NodeTypes.ELEMENT || root.tag !== 'Stories')
+  if (root.type !== ELEMENT || root.tag !== 'Stories')
     throw new Error('Expected root to be a <Stories> element.')
   const meta = {
     title: extractTitle(root),
@@ -102,7 +76,7 @@ function parseTemplate(content: string): {
 
   const stories: ParsedStory[] = []
   for (const story of root.children ?? []) {
-    if (story.type !== NodeTypes.ELEMENT || story.tag !== 'Story') continue
+    if (story.type !== ELEMENT || story.tag !== 'Story') continue
 
     const title = extractTitle(story)
     if (!title) throw new Error('Story is missing a title')
@@ -131,21 +105,21 @@ function parseTemplate(content: string): {
 
 function extractTitle(node: ElementNode) {
   const prop = extractProp(node, 'title')
-  if (prop && prop.type === NodeTypes.ATTRIBUTE) return prop.value?.content
+  if (prop && prop.type === ATTRIBUTE) return prop.value?.content
 }
 
 function extractComponent(node: ElementNode) {
   const prop = extractProp(node, 'component')
-  if (prop && prop.type === NodeTypes.DIRECTIVE)
-    return prop.exp?.type === NodeTypes.SIMPLE_EXPRESSION
+  if (prop && prop.type === DIRECTIVE)
+    return prop.exp?.type === SIMPLE_EXPRESSION
       ? prop.exp?.content.replace('_ctx.', '')
       : undefined
 }
 
 function extractPlay(node: ElementNode) {
   const prop = extractProp(node, 'play')
-  if (prop && prop.type === NodeTypes.DIRECTIVE)
-    return prop.exp?.type === NodeTypes.SIMPLE_EXPRESSION
+  if (prop && prop.type === DIRECTIVE)
+    return prop.exp?.type === SIMPLE_EXPRESSION
       ? prop.exp?.content.replace('_ctx.', '')
       : undefined
 }
@@ -157,13 +131,13 @@ function resolveScript(descriptor: SFCDescriptor) {
 }
 
 function extractProp(node: ElementNode, name: string) {
-  if (node.type === NodeTypes.ELEMENT) {
+  if (node.type === ELEMENT) {
     return node.props.find(
       (prop) =>
         prop.name === name ||
         (prop.name === 'bind' &&
-          prop.type === NodeTypes.DIRECTIVE &&
-          prop.arg?.type === NodeTypes.SIMPLE_EXPRESSION &&
+          prop.type === DIRECTIVE &&
+          prop.arg?.type === SIMPLE_EXPRESSION &&
           prop.arg?.content === name)
     )
   }

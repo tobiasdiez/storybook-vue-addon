@@ -18,6 +18,7 @@
     "@storybook/addon-actions": "^7.4.6",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-interactions": "^7.4.6",
+    "storybook-vue-addon": "workspace:*",
     "@storybook/addon-links": "^7.4.6",
     "@storybook/jest": "^0.2.3",
     "@storybook/testing-library": "0.2.2",

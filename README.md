@@ -252,7 +252,7 @@ Commands:
 - `dev`: Build in watch mode.
 - `lint`: Check for eslint and prettier issues.
 - `test`: Run the tests.
-- `example:vite`: Open the example storybook (using vite).
+- `example:vite`: Open the example storybook (using vite). You need to run `build` or `dev` first.
 - `play`: Run the playground (currently not used).
 - `release`: Release a new version to npm.
 

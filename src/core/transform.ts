@@ -11,16 +11,16 @@ import { ParsedMeta, ParsedStory, parse } from './parser'
 export async function transform(code: string) {
   let result = ''
   const { resolvedScript, meta, stories, docs } = parse(code)
+  const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
-    const isTS = resolvedScript.lang === 'ts'
-    const plugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    result += rewriteDefault(resolvedScript.content, '_sfc_main', plugins)
+    const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
+    result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {}\n'
   }
   result += await transformTemplate({ meta, stories, docs }, resolvedScript)
-  result = organizeImports(result)
+  result = await organizeImports(result, isTS)
   return result
 
   /*
@@ -151,10 +151,10 @@ function generateStoryImport(
     };`
 }
 
-function organizeImports(result: string): string {
+async function organizeImports(result: string, isTS: boolean): Promise<string> {
   // Use prettier to organize imports
-  return prettierFormat(result, {
-    parser: 'babel',
+  return await prettierFormat(result, {
+    parser: isTS ? 'typescript' : 'babel',
     plugins: ['prettier-plugin-organize-imports'],
   })
 }

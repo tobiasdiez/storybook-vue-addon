@@ -325,7 +325,7 @@ describe('transform', () => {
             p: \\"p\\",
           },
           _provideComponents(),
-          props.components
+          props.components,
         );
         return _jsxs(_Fragment, {
           children: [
@@ -343,14 +343,14 @@ describe('transform', () => {
         const { wrapper: MDXLayout } = Object.assign(
           {},
           _provideComponents(),
-          props.components
+          props.components,
         );
         return MDXLayout
           ? _jsx(
               MDXLayout,
               Object.assign({}, props, {
                 children: _jsx(_createMdxContent, props),
-              })
+              }),
             )
           : _createMdxContent(props);
       }
@@ -464,7 +464,7 @@ describe('transform', () => {
               _createElementVNode(\\"h1\\", null, _toDisplayString($setup.headingText)),
               _createElementVNode(\\"p\\", null, _toDisplayString($setup.paragraph)),
             ],
-            64 /* STABLE_FRAGMENT */
+            64 /* STABLE_FRAGMENT */,
           )
         );
       }
@@ -491,7 +491,7 @@ describe('transform', () => {
               _createElementVNode(\\"h1\\", null, _toDisplayString($setup.headingText)),
               _createElementVNode(\\"p\\", null, _toDisplayString($setup.paragraph)),
             ],
-            64 /* STABLE_FRAGMENT */
+            64 /* STABLE_FRAGMENT */,
           )
         );
       }

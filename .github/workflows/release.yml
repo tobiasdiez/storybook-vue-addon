@@ -24,7 +24,7 @@ jobs:
 
       # Format changelog, workaround for https://github.com/google-github-actions/release-please-action/issues/542
       # Taken from https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.pr }}
         with:
           ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
@@ -53,7 +53,7 @@ jobs:
     needs: [release-pr]
     if: needs.release-pr.outputs.release_created
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: corepack enable
       - uses: actions/setup-node@v3
         with:

@@ -11,16 +11,16 @@ import { ParsedMeta, ParsedStory, parse } from './parser'
 export async function transform(code: string) {
   let result = ''
   const { resolvedScript, meta, stories, docs } = parse(code)
+  const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
-    const isTS = resolvedScript.lang === 'ts'
-    const plugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    result += rewriteDefault(resolvedScript.content, '_sfc_main', plugins)
+    const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
+    result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {}\n'
   }
   result += await transformTemplate({ meta, stories, docs }, resolvedScript)
-  result = organizeImports(result)
+  result = await organizeImports(result, isTS)
   return result
 
   /*
@@ -87,7 +87,7 @@ async function transformTemplate(
     stories,
     docs,
   }: { meta: ParsedMeta; stories: ParsedStory[]; docs?: string },
-  resolvedScript?: SFCScriptBlock
+  resolvedScript?: SFCScriptBlock,
 ) {
   let result = generateDefaultImport(meta, docs)
   for (const story of stories) {
@@ -103,7 +103,7 @@ async function transformTemplate(
 
 function generateDefaultImport(
   { title, component }: ParsedMeta,
-  docs?: string
+  docs?: string,
 ) {
   return `export default {
     ${title ? `title: '${title}',` : ''}
@@ -118,7 +118,7 @@ function generateDefaultImport(
 
 function generateStoryImport(
   { id, title, play, template }: ParsedStory,
-  resolvedScript?: SFCScriptBlock
+  resolvedScript?: SFCScriptBlock,
 ) {
   const { code } = compileTemplate({
     source: template.trim(),
@@ -137,7 +137,7 @@ function generateStoryImport(
 
   const renderFunction = code.replace(
     'export function render',
-    `function render${id}`
+    `function render${id}`,
   )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
@@ -151,10 +151,10 @@ function generateStoryImport(
     };`
 }
 
-function organizeImports(result: string): string {
+async function organizeImports(result: string, isTS: boolean): Promise<string> {
   // Use prettier to organize imports
-  return prettierFormat(result, {
-    parser: 'babel',
+  return await prettierFormat(result, {
+    parser: isTS ? 'typescript' : 'babel',
     plugins: ['prettier-plugin-organize-imports'],
   })
 }

@@ -5,7 +5,7 @@ import { toId } from '@storybook/csf'
 
 export async function indexer(
   fileName: string,
-  options: IndexerOptions
+  options: IndexerOptions,
 ): Promise<IndexedCSFFile> {
   const code = (await fs.readFile(fileName, { encoding: 'utf-8' })).toString()
   return indexerCode(code, options)
@@ -13,7 +13,7 @@ export async function indexer(
 
 export function indexerCode(
   code: string,
-  { makeTitle }: IndexerOptions
+  { makeTitle }: IndexerOptions,
 ): IndexedCSFFile {
   const { meta, stories, docs } = parse(code)
   const indexedStories: IndexedStory[] = stories

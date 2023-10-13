@@ -1,10 +1,11 @@
+import type { ElementNode } from '@vue/compiler-core'
+import { NodeTypes } from '@vue/compiler-core'
 import type { SFCDescriptor } from 'vue/compiler-sfc'
 import {
   compileScript,
   compileTemplate,
   parse as parseSFC,
 } from 'vue/compiler-sfc'
-import type { ElementNode } from '@vue/compiler-core'
 
 import { sanitize } from '@storybook/csf'
 
@@ -53,15 +54,14 @@ function parseTemplate(content: string): {
   })
 
   const roots =
-    template.ast?.children.filter(
-      (node) => node.type === 1 /* NodeTypes.ELEMENT */
-    ) ?? []
+    template.ast?.children.filter((node) => node.type === NodeTypes.ELEMENT) ??
+    []
   if (roots.length !== 1) {
     throw new Error('Expected exactly one <Stories> element as root.')
   }
 
   const root = roots[0]
-  if (root.type !== 1 || root.tag !== 'Stories')
+  if (root.type !== NodeTypes.ELEMENT || root.tag !== 'Stories')
     throw new Error('Expected root to be a <Stories> element.')
   const meta = {
     title: extractTitle(root),
@@ -71,7 +71,7 @@ function parseTemplate(content: string): {
 
   const stories: ParsedStory[] = []
   for (const story of root.children ?? []) {
-    if (story.type !== 1 || story.tag !== 'Story') continue
+    if (story.type !== NodeTypes.ELEMENT || story.tag !== 'Story') continue
 
     const title = extractTitle(story)
     if (!title) throw new Error('Story is missing a title')
@@ -100,21 +100,21 @@ function parseTemplate(content: string): {
 
 function extractTitle(node: ElementNode) {
   const prop = extractProp(node, 'title')
-  if (prop && prop.type === 6) return prop.value?.content
+  if (prop && prop.type === NodeTypes.ATTRIBUTE) return prop.value?.content
 }
 
 function extractComponent(node: ElementNode) {
   const prop = extractProp(node, 'component')
-  if (prop && prop.type === 7)
-    return prop.exp?.type === 4
+  if (prop && prop.type === NodeTypes.DIRECTIVE)
+    return prop.exp?.type === NodeTypes.SIMPLE_EXPRESSION
       ? prop.exp?.content.replace('_ctx.', '')
       : undefined
 }
 
 function extractPlay(node: ElementNode) {
   const prop = extractProp(node, 'play')
-  if (prop && prop.type === 7)
-    return prop.exp?.type === 4
+  if (prop && prop.type === NodeTypes.DIRECTIVE)
+    return prop.exp?.type === NodeTypes.SIMPLE_EXPRESSION
       ? prop.exp?.content.replace('_ctx.', '')
       : undefined
 }
@@ -126,13 +126,13 @@ function resolveScript(descriptor: SFCDescriptor) {
 }
 
 function extractProp(node: ElementNode, name: string) {
-  if (node.type === 1) {
+  if (node.type === NodeTypes.ELEMENT) {
     return node.props.find(
       (prop) =>
         prop.name === name ||
         (prop.name === 'bind' &&
-          prop.type === 7 &&
-          prop.arg?.type === 4 &&
+          prop.type === NodeTypes.DIRECTIVE &&
+          prop.arg?.type === NodeTypes.SIMPLE_EXPRESSION &&
           prop.arg?.content === name)
     )
   }

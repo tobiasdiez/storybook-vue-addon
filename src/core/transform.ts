@@ -1,3 +1,4 @@
+import type { ParserPlugin } from '@babel/parser'
 import { compile as compileMdx } from '@storybook/mdx2-csf'
 import { format as prettierFormat } from 'prettier'
 import type { SFCScriptBlock } from 'vue/compiler-sfc'
@@ -11,7 +12,9 @@ export async function transform(code: string) {
   let result = ''
   const { resolvedScript, meta, stories, docs } = parse(code)
   if (resolvedScript) {
-    result += rewriteDefault(resolvedScript.content, '_sfc_main')
+    const isTS = resolvedScript.lang === 'ts'
+    const plugins: ParserPlugin[] = isTS ? ['typescript'] : []
+    result += rewriteDefault(resolvedScript.content, '_sfc_main', plugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {}\n'

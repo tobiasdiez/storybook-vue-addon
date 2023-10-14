@@ -5,7 +5,7 @@ export default {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '../../../src/storybook.ts',
+    'storybook-vue-addon',
   ],
   framework: {
     name: '@storybook/vue3-vite',

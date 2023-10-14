@@ -145,6 +145,9 @@ importers:
       storybook:
         specifier: 7.4.6
         version: 7.4.6
+      storybook-vue-addon:
+        specifier: workspace:*
+        version: link:../..
       typescript:
         specifier: ~5.2.2
         version: 5.2.2

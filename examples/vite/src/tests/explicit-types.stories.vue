@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import MyButton from '../components/Button.vue'
-import type { Story, Stories } from '../../../../src/types'
+import type { Story, Stories } from 'storybook-vue-addon/types'
 </script>
 
 <template>

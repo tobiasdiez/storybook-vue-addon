@@ -127,6 +127,13 @@ There are a few minor differences to standard MDX documentation pages:
   </docs>
   ```
 
+## Typescript support
+Volar should be able to automatically recognize the `Stories` and `Story` components. It is also possible to import them from `storybook-vue-addon`:
+
+```ts
+import type { Stories, Story } from 'storybook-vue-addon/types'
+```
+
 ## Manual usage
 
 If for whatever reason you process Storybook stories in your build pipeline, you probably want to first transpile the Vue stories to classical CSF stories by adding `storybook-vue-addon` to your build.

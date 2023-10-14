@@ -26,6 +26,30 @@ describe('transform', () => {
       "
     `)
   })
+  it('handles a simple story without Stories container', async () => {
+    const code =
+      '<template><Story title="Primary">hello</Story></template>'
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {};
+      export default {
+        //decorators: [ ... ],
+        parameters: {},
+      };
+
+      function renderPrimary(_ctx, _cache) {
+        return \\"hello\\";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = \\"Primary\\";
+
+      Primary.parameters = {
+        docs: { source: { code: \`hello\` } },
+      };
+      "
+    `)
+  })
   it('extracts title from Stories', async () => {
     const code =
       '<template><Stories title="test"><Story title="Primary">hello</Story></Stories></template>'
@@ -52,6 +76,43 @@ describe('transform', () => {
       "
     `)
   })
+  it('extracts title from defineMeta', async () => {
+    const code =
+      '<script setup>defineMeta({ title: "test" })</script><template><Story title="Primary">hello</Story></template>'
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {
+        setup(__props, { expose: __expose }) {
+          __expose();
+
+          const __returned__ = {};
+          Object.defineProperty(__returned__, \\"__isScriptSetup\\", {
+            enumerable: false,
+            value: true,
+          });
+          return __returned__;
+        },
+      };
+      export default {
+        title: \\"test\\",
+
+        //decorators: [ ... ],
+        parameters: {},
+      };
+
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return \\"hello\\";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = \\"Primary\\";
+
+      Primary.parameters = {
+        docs: { source: { code: \`hello\` } },
+      };
+      "
+    `)
+  })
   it('throws error if story does not have a title', async () => {
     const code = '<template><Stories><Story>hello</Story></Stories></template>'
     await expect(() =>
@@ -65,6 +126,42 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const MyComponent = {};
       const _sfc_main = {};
+      export default {
+        component: MyComponent,
+        //decorators: [ ... ],
+        parameters: {},
+      };
+
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return \\"hello\\";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = \\"Primary\\";
+
+      Primary.parameters = {
+        docs: { source: { code: \`hello\` } },
+      };
+      "
+    `)
+  })
+  it('extracts component from defineMeta', async () => {
+    const code =
+      '<script setup>const MyComponent = {}; defineMeta({component: MyComponent})</script><template><Story title="Primary">hello</Story></template>'
+    const result = await transform(code)
+    expect(result).toMatchInlineSnapshot(`
+      "const _sfc_main = {
+        setup(__props, { expose: __expose }) {
+          __expose();
+          const MyComponent = {};
+          const __returned__ = { MyComponent };
+          Object.defineProperty(__returned__, \\"__isScriptSetup\\", {
+            enumerable: false,
+            value: true,
+          });
+          return __returned__;
+        },
+      };
       export default {
         component: MyComponent,
         //decorators: [ ... ],

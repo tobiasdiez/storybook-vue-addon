@@ -11,5 +11,6 @@ import Button from '../components/Button.vue'
     title="docs/1. Default export/native"
     :component="Button"
   >
+    <!--Define your stories here-->
   </Stories>
 </template>

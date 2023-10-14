@@ -86,8 +86,8 @@ async function transformTemplate(
     meta,
     stories,
     docs,
-  }: { meta: ParsedMeta; stories: ParsedStory[]; docs?: string },
-  resolvedScript?: SFCScriptBlock,
+  }: { meta?: ParsedMeta; stories: ParsedStory[]; docs?: string },
+  resolvedScript?: SFCScriptBlock
 ) {
   let result = generateDefaultImport(meta, docs)
   for (const story of stories) {
@@ -101,13 +101,10 @@ async function transformTemplate(
   return result
 }
 
-function generateDefaultImport(
-  { title, component }: ParsedMeta,
-  docs?: string,
-) {
+function generateDefaultImport(meta?: ParsedMeta, docs?: string) {
   return `export default {
-    ${title ? `title: '${title}',` : ''}
-    ${component ? `component: ${component},` : ''}
+    ${meta?.title ? `title: '${meta.title}',` : ''}
+    ${meta?.component ? `component: ${meta.component},` : ''}
     //decorators: [ ... ],
     parameters: {
       ${docs ? `docs: { page: MDXContent },` : ''}
@@ -118,7 +115,7 @@ function generateDefaultImport(
 
 function generateStoryImport(
   { id, title, play, template }: ParsedStory,
-  resolvedScript?: SFCScriptBlock,
+  resolvedScript?: SFCScriptBlock
 ) {
   const { code } = compileTemplate({
     source: template.trim(),
@@ -137,7 +134,7 @@ function generateStoryImport(
 
   const renderFunction = code.replace(
     'export function render',
-    `function render${id}`,
+    `function render${id}`
   )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase

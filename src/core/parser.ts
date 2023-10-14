@@ -1,12 +1,38 @@
 import type { ElementNode, NodeTypes as _NodeTypes } from '@vue/compiler-core'
-import type { SFCDescriptor } from 'vue/compiler-sfc'
+import { TS_NODE_TYPES } from '@vue/compiler-dom'
+import type { SFCDescriptor, SFCScriptBlock } from 'vue/compiler-sfc'
 import {
+  MagicString,
   compileScript,
   compileTemplate,
   parse as parseSFC,
 } from 'vue/compiler-sfc'
 
+import { CallExpression, Node } from '@babel/types'
+
 import { sanitize } from '@storybook/csf'
+// Taken from https://github.com/vuejs/core/blob/2857a59e61c9955e15553180e7480aa40714151c/packages/compiler-sfc/src/script/utils.ts#L35-L42
+export function unwrapTSNode(node: Node): Node {
+  if (TS_NODE_TYPES.includes(node.type)) {
+    return unwrapTSNode((node as any).expression)
+  } else {
+    return node
+  }
+}
+export function isCallOf(
+  node: Node | null | undefined,
+  test: string | ((id: string) => boolean) | null | undefined,
+): node is CallExpression {
+  return !!(
+    node &&
+    test &&
+    node.type === 'CallExpression' &&
+    node.callee.type === 'Identifier' &&
+    (typeof test === 'string'
+      ? node.callee.name === test
+      : test(node.callee.name))
+  )
+}
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228
@@ -33,7 +59,18 @@ export function parse(code: string) {
   if (descriptor.template === null) throw new Error('No template found in SFC')
 
   const resolvedScript = resolveScript(descriptor)
-  const { meta, stories } = parseTemplate(descriptor.template.content)
+  const parsedTemplate = parseTemplate(descriptor.template.content)
+  let { meta } = parsedTemplate
+  const { stories } = parsedTemplate
+  if (resolvedScript) {
+    const { meta: scriptMeta } = parseScript(resolvedScript)
+    if (meta && scriptMeta) {
+      throw new Error('Cannot define meta by both <Stories> and defineMeta')
+    }
+    if (scriptMeta) {
+      meta = scriptMeta
+    }
+  }
   const docsBlock = descriptor.customBlocks?.find(
     (block) => block.type === 'docs',
   )
@@ -47,7 +84,7 @@ export function parse(code: string) {
 }
 
 function parseTemplate(content: string): {
-  meta: ParsedMeta
+  meta?: ParsedMeta
   stories: ParsedStory[]
 } {
   const template = compileTemplate({
@@ -61,22 +98,31 @@ function parseTemplate(content: string): {
 
   const roots =
     template.ast?.children.filter((node) => node.type === ELEMENT) ?? []
-  if (roots.length !== 1) {
-    throw new Error('Expected exactly one <Stories> element as root.')
+  if (roots.length === 0) {
+    throw new Error(
+      'No root element found in template, must be <Stories> or <Story>',
+    )
   }
 
   const root = roots[0]
-  if (root.type !== ELEMENT || root.tag !== 'Stories')
-    throw new Error('Expected root to be a <Stories> element.')
-  const meta = {
-    title: extractTitle(root),
-    component: extractComponent(root),
-    tags: [],
+  let meta
+  let storyNodes = roots
+  if (root.type === ELEMENT && root.tag === 'Stories') {
+    meta = {
+      title: extractTitle(root),
+      component: extractComponent(root),
+      tags: [],
+    }
+    storyNodes = root.children ?? []
   }
 
   const stories: ParsedStory[] = []
-  for (const story of root.children ?? []) {
-    if (story.type !== ELEMENT || story.tag !== 'Story') continue
+  for (const story of storyNodes ?? []) {
+    if (story.type !== ELEMENT || story.tag !== 'Story') {
+      throw new Error(
+        'Only <Story> elements are allowed as children of <Stories> or as root element',
+      )
+    }
 
     const title = extractTitle(story)
     if (!title) throw new Error('Story is missing a title')
@@ -141,4 +187,78 @@ function extractProp(node: ElementNode, name: string) {
           prop.arg?.content === name),
     )
   }
+}
+
+interface ScriptCompileContext {
+  hasDefineMetaCall: boolean
+  meta?: ParsedMeta
+}
+function parseScript(resolvedScript: SFCScriptBlock): { meta?: ParsedMeta } {
+  if (!resolvedScript.scriptSetupAst) {
+    return { meta: undefined }
+  }
+  const ctx: ScriptCompileContext = {
+    hasDefineMetaCall: false,
+  }
+  const content = new MagicString(resolvedScript.content)
+  for (const node of resolvedScript.scriptSetupAst) {
+    if (node.type === 'ExpressionStatement') {
+      const expr = unwrapTSNode(node.expression)
+      // process `defineMeta` calls
+      if (processDefineMeta(ctx, expr)) {
+        // The ast is sadly out of sync with the content, so we have to find the meta call in the content
+        const startOffset = content.original.indexOf('defineMeta')
+        content.remove(startOffset, node.end! - node.start! + startOffset)
+      }
+    }
+  }
+  resolvedScript.content = content.toString()
+  return ctx.meta ? { meta: ctx.meta } : {}
+}
+
+// Similar to https://github.com/vuejs/core/blob/2857a59e61c9955e15553180e7480aa40714151c/packages/compiler-sfc/src/script/defineEmits.ts
+function processDefineMeta(ctx: ScriptCompileContext, node: Node) {
+  const defineMetaName = 'defineMeta'
+  if (!isCallOf(node, defineMetaName)) {
+    return false
+  }
+  if (ctx.hasDefineMetaCall) {
+    throw new Error(`duplicate ${defineMetaName}() call at ${node.start}`)
+  }
+  ctx.hasDefineMetaCall = true
+  const metaDecl = unwrapTSNode(node.arguments[0])
+  const meta: ParsedMeta = {
+    tags: [],
+  }
+  if (metaDecl.type === 'ObjectExpression') {
+    for (const prop of metaDecl.properties) {
+      if (prop.type === 'ObjectProperty') {
+        const key = unwrapTSNode(prop.key)
+        const valueNode = unwrapTSNode(prop.value)
+        if (key.type === 'Identifier') {
+          const value =
+            valueNode.type === 'StringLiteral'
+              ? valueNode.value
+              : valueNode.type === 'Identifier'
+              ? valueNode.name
+              : undefined
+          if (!value) {
+            throw new Error(
+              `defineMeta() ${key.name} must be a string literal or identifier`,
+            )
+          }
+          if (key.name === 'title') {
+            meta.title = value
+          } else if (key.name === 'component') {
+            meta.component = value
+          } else if (key.name === 'tags') {
+            meta.tags = value.split(',').map((tag) => tag.trim())
+          }
+        }
+      }
+    }
+  }
+  ctx.meta = meta
+
+  return true
 }

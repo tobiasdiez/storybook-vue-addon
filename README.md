@@ -88,6 +88,30 @@ The way to write stories as idiomatic Vue templates is heavily inspired by the g
 
    ```
 
+## Metadata
+
+The metadata for your stories is defined in the `<Stories>` component. Alternatively, you can use the `defineMeta` function in the `<script setup>` block of your story.
+In this case, you don't need to wrap your stories in a `<Stories>` component.
+
+  ```vue
+  <script setup lang="ts">
+  import Button from './Button.vue'
+
+  defineMeta({
+    title: 'Button',
+    component: Button,
+  })
+  </script>
+  <template>
+    <Story title="Primary">
+      <Button
+        background="#ff0"
+        label="Button"
+      />
+    </Story>
+  </template>
+  ```
+
 ## Adding documentation
 
 You can add documentation for your components directly in your story SFC using the custom `docs` block.

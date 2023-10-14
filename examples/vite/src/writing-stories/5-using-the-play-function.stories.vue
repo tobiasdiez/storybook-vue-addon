@@ -23,8 +23,8 @@ async function playFunction({ canvasElement }) {
   // 👇 Assert DOM structure
   await expect(
     canvas.getByText(
-      'Everything is perfect. Your account is ready and we should probably get you started!'
-    )
+      'Everything is perfect. Your account is ready and we should probably get you started!',
+    ),
   ).toBeInTheDocument()
 }
 </script>

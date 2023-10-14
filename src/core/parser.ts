@@ -35,7 +35,7 @@ export function parse(code: string) {
   const resolvedScript = resolveScript(descriptor)
   const { meta, stories } = parseTemplate(descriptor.template.content)
   const docsBlock = descriptor.customBlocks?.find(
-    (block) => block.type === 'docs'
+    (block) => block.type === 'docs',
   )
   const docs = docsBlock?.content.trim()
   return {
@@ -86,7 +86,7 @@ function parseTemplate(content: string): {
     const storyTemplate = parseSFC(
       story.loc.source
         .replace(/<Story/, '<template')
-        .replace(/<\/Story>/, '</template>')
+        .replace(/<\/Story>/, '</template>'),
     ).descriptor.template?.content
     if (storyTemplate === undefined)
       throw new Error('No template found in Story')
@@ -138,7 +138,7 @@ function extractProp(node: ElementNode, name: string) {
         (prop.name === 'bind' &&
           prop.type === DIRECTIVE &&
           prop.arg?.type === SIMPLE_EXPRESSION &&
-          prop.arg?.content === name)
+          prop.arg?.content === name),
     )
   }
 }

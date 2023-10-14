@@ -26,11 +26,6 @@ type VueComponent<Props> = import('vue').DefineComponent<
   {}
 >
 
-/**
- * Metadata to configure the stories for a component.
- *
- * @see [Default export](https://storybook.js.org/docs/vue/api/csf#default-export)
- */
 interface StoriesProps {
   /**
    * Title of the component which will be presented in the navigation. **Should be unique.**
@@ -47,15 +42,16 @@ interface StoriesProps {
    */
   component?: import('vue').DefineComponent
 }
+
+/**
+ * Metadata to configure the stories for a component.
+ *
+ * @see [Default export](https://storybook.js.org/docs/vue/api/csf#default-export)
+ */
 type Stories = VueComponent<StoriesProps>
 
 import { Meta, StoryObj } from '@storybook/vue3'
 
-/**
- * Story that represents a component example.
- *
- * @see [Named Story exports](https://storybook.js.org/docs/vue/api/csf#named-story-exports)
- */
 interface StoryProps {
   /**
    * Display name in the UI.
@@ -68,6 +64,12 @@ interface StoryProps {
    */
   play?: StoryObj<Meta<VueComponent<any>>>['play']
 }
+
+/**
+ * Story that represents a component example.
+ *
+ * @see [Named Story exports](https://storybook.js.org/docs/vue/api/csf#named-story-exports)
+ */
 type Story = VueComponent<StoryProps>
 
 // Register components globally
@@ -79,4 +81,4 @@ declare module '@vue/runtime-core' {
   }
 }
 
-export {}
+export { Stories, Story }

@@ -128,6 +128,7 @@ There are a few minor differences to standard MDX documentation pages:
   ```
 
 ## Typescript support
+
 Volar should be able to automatically recognize the `Stories` and `Story` components. It is also possible to import them from `storybook-vue-addon`:
 
 ```ts

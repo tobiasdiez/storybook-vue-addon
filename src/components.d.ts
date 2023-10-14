@@ -52,7 +52,6 @@ type Stories = VueComponent<StoriesProps>
 
 import { Meta, StoryObj } from '@storybook/vue3'
 
-
 interface StoryProps {
   /**
    * Display name in the UI.
@@ -82,7 +81,4 @@ declare module '@vue/runtime-core' {
   }
 }
 
-export {
-  Stories,
-  Story
-}
+export { Stories, Story }

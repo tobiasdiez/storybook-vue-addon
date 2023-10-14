@@ -6,7 +6,7 @@ import type { Story, Stories } from '../../../../src/types'
 <template>
   <Stories
     :component="MyButton"
-    title="Tests/Default Name"
+    title="Tests/Explicit types"
   >
     <Story title="Default">
       <MyButton label="Button" />

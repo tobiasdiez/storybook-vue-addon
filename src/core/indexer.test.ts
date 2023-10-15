@@ -1,4 +1,4 @@
-import { indexerCode } from '../src/core/indexer'
+import { indexerCode } from './indexer'
 import { describe, expect, it } from 'vitest'
 
 describe('indexer', () => {

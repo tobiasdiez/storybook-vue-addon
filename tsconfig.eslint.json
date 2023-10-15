@@ -7,7 +7,6 @@
   "include": [
     // whatever paths you intend to lint
     "src",
-    "test",
     "examples",
     "playground",
     "scripts",

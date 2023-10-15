@@ -76,7 +76,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "pnpm build:types && tsup",
+    "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build-types.json && rimraf src/core/components.d.ts",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
     "build:fix": "esno scripts/postbuild.ts",
@@ -121,6 +122,7 @@
     "vite": "^4.4.11",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
+    "vue-tsc": "^1.8.19",
     "webpack": "^5.88.2"
   },
   "pnpm": {

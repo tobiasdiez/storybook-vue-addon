@@ -84,6 +84,9 @@ importers:
       vue:
         specifier: ^3.3.4
         version: 3.3.4
+      vue-tsc:
+        specifier: ^1.8.19
+        version: 1.8.19(typescript@5.2.2)
       webpack:
         specifier: ^5.88.2
         version: 5.88.2(esbuild@0.18.20)

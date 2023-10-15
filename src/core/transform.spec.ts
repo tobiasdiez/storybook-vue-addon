@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { transform } from '../src/core/transform'
+import { transform } from './transform'
 
 describe('transform', () => {
   it('handles one simple story', async () => {

@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts" generic="TComponent = unknown">
-
 defineProps<{
   /**
    * Title of the component which will be presented in the navigation. **Should be unique.**

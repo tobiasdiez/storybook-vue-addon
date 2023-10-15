@@ -3,5 +3,5 @@
   "compilerOptions": {
     "skipLibCheck": true
   },
-  "files": ["src/core/components.ts"],
+  "files": ["src/core/components.ts"]
 }

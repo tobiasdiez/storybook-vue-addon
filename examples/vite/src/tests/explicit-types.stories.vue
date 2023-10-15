@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import MyButton from '../components/Button.vue'
-import type { Story, Stories } from 'storybook-vue-addon/types'
+import { Stories, Story } from 'storybook-vue-addon/types'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import type { Story, Stories } from 'storybook-vue-addon/types'
     :component="MyButton"
     title="Tests/Explicit types"
   >
-    <Story title="Default">
+    <Story title="test">
       <MyButton label="Button" />
     </Story>
   </Stories>

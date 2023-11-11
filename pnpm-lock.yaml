@@ -55,8 +55,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.51.0)
       esno:
-        specifier: ^0.17.0
-        version: 0.17.0
+        specifier: ^4.0.0
+        version: 4.0.0
       fast-glob:
         specifier: ^3.3.1
         version: 3.3.1
@@ -3978,7 +3978,7 @@ packages:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.3.4
-      vue-component-type-helpers: 1.8.20
+      vue-component-type-helpers: 1.8.22
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6658,11 +6658,11 @@ packages:
       - supports-color
     dev: true
 
-  /esno@0.17.0:
-    resolution: {integrity: sha512-w78cQGlptQfsBYfootUCitsKS+MD74uR5L6kNsvwVkJsfzEepIafbvWsx2xK4rcFP4IUftt4F6J8EhagUxX+Bg==}
+  /esno@4.0.0:
+    resolution: {integrity: sha512-tmaM9gfnSWqzePVJ5FJLYX9mMyE6ZevvOIvd1CMoMk2Fn1F3aKI/OQPjubS5wCIKlPpWfDfKFEtoslCNCiZJpQ==}
     hasBin: true
     dependencies:
-      tsx: 3.13.0
+      tsx: 4.1.1
     dev: true
 
   /espree@9.5.1:
@@ -10562,8 +10562,9 @@ packages:
       - ts-node
     dev: true
 
-  /tsx@3.13.0:
-    resolution: {integrity: sha512-rjmRpTu3as/5fjNq/kOkOtihgLxuIz6pbKdj9xwP4J5jOLkBxw/rjN5ANw+KyrrOXV5uB7HC8+SrrSJxT65y+A==}
+  /tsx@4.1.1:
+    resolution: {integrity: sha512-zyPn5BFMB0TB5kMLbYPNx4x/oL/oSlaecdKCv6WeJ0TeSEfx8RTJWjuB5TZ2dSewktgfBsBO/HNA9mrMWqLXMA==}
+    engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
       esbuild: 0.18.20
@@ -11072,8 +11073,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /vue-component-type-helpers@1.8.20:
-    resolution: {integrity: sha512-eaAOlvn+mkv9jX54w9BDdM8/kLhh5FFFGB9niuypE6StBGKSBA8/XbkbsVIfaBnRdFtdVxD2BC/PmWlpWl+WvA==}
+  /vue-component-type-helpers@1.8.22:
+    resolution: {integrity: sha512-LK3wJHs3vJxHG292C8cnsRusgyC5SEZDCzDCD01mdE/AoREFMl2tzLRuzwyuEsOIz13tqgBcnvysN3Lxsa14Fw==}
     dev: true
 
   /vue-docgen-api@4.60.0(vue@3.3.4):

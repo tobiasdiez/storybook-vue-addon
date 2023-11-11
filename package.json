@@ -111,7 +111,7 @@
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "esno": "^0.17.0",
+    "esno": "^4.0.0",
     "fast-glob": "^3.3.1",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",

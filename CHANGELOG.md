@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.5.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.4.0...v0.5.0) (2023-12-01)
+
+### 🔖 Features
+
+- add vue3-vite as supported builder ([#69](https://github.com/tobiasdiez/storybook-vue-addon/issues/69)) ([ebadd98](https://github.com/tobiasdiez/storybook-vue-addon/commit/ebadd98fc8775add86e60d83794bc394160e7338))
+- improve and document typescript support ([#81](https://github.com/tobiasdiez/storybook-vue-addon/issues/81)) ([84d9eb7](https://github.com/tobiasdiez/storybook-vue-addon/commit/84d9eb79f686133c60e9d47c760a1e9cc5495a52))
+
+### 🐛 Bug Fixes
+
+- disable vue compiler hoisting to fix clashing variables when using standard html tags ([#68](https://github.com/tobiasdiez/storybook-vue-addon/issues/68)) ([498c646](https://github.com/tobiasdiez/storybook-vue-addon/commit/498c646a88e63578a5b73cfdd01ef8a942c21af8))
+
+### 🧹 Miscellaneous
+
+- **deps:** update actions/checkout action to v4 ([#72](https://github.com/tobiasdiez/storybook-vue-addon/issues/72)) ([15b50a4](https://github.com/tobiasdiez/storybook-vue-addon/commit/15b50a46f4b7580f2e80a74be2c2c1513b03b15a))
+- **deps:** update actions/setup-node action to v4 ([#88](https://github.com/tobiasdiez/storybook-vue-addon/issues/88)) ([0de6909](https://github.com/tobiasdiez/storybook-vue-addon/commit/0de690943a82ed6875e34529e3958418a45f011b))
+- **deps:** update all non-major dependencies ([#58](https://github.com/tobiasdiez/storybook-vue-addon/issues/58)) ([361245d](https://github.com/tobiasdiez/storybook-vue-addon/commit/361245d6d4d6aedc8083416c8b018fe8eecd7a69))
+- **deps:** update chromaui/action action to v10 ([#93](https://github.com/tobiasdiez/storybook-vue-addon/issues/93)) ([8cadc29](https://github.com/tobiasdiez/storybook-vue-addon/commit/8cadc29a84ae38ca23ab05992cb0b5c36ec237e5))
+- **deps:** update dependency prettier to v3 ([#61](https://github.com/tobiasdiez/storybook-vue-addon/issues/61)) ([c3b87e4](https://github.com/tobiasdiez/storybook-vue-addon/commit/c3b87e42123c22e8f1934ccd017467cd7ed0d41e))
+- **deps:** update devdependency @types/node to v20 ([#89](https://github.com/tobiasdiez/storybook-vue-addon/issues/89)) ([09e2c65](https://github.com/tobiasdiez/storybook-vue-addon/commit/09e2c65523ceefbabb9c4856fe030f07ba12a310))
+- **deps:** update devdependency eslint-config-prettier to v9 ([#65](https://github.com/tobiasdiez/storybook-vue-addon/issues/65)) ([25f922c](https://github.com/tobiasdiez/storybook-vue-addon/commit/25f922c9f203d70fae35c343e4a0add91736c745))
+- **deps:** update devdependency eslint-plugin-unused-imports to v3 ([#64](https://github.com/tobiasdiez/storybook-vue-addon/issues/64)) ([02839f9](https://github.com/tobiasdiez/storybook-vue-addon/commit/02839f9b53c304ec562f34df20d9bf7bc6aa4897))
+- **deps:** update devdependency esno to v4 ([#90](https://github.com/tobiasdiez/storybook-vue-addon/issues/90)) ([32f57d9](https://github.com/tobiasdiez/storybook-vue-addon/commit/32f57d9669d49266cb8346f6c07901c00743404c))
+- **deps:** update devdependency nodemon to v3 ([#62](https://github.com/tobiasdiez/storybook-vue-addon/issues/62)) ([2d25010](https://github.com/tobiasdiez/storybook-vue-addon/commit/2d25010df85003aae69878b4883876817215b703))
+- **deps:** update devdependency rollup to v4 ([#78](https://github.com/tobiasdiez/storybook-vue-addon/issues/78)) ([ebe4c1e](https://github.com/tobiasdiez/storybook-vue-addon/commit/ebe4c1e0c228200194df259ac22f0e574e2e86da))
+- **deps:** update devdependency tsup to v7 ([#59](https://github.com/tobiasdiez/storybook-vue-addon/issues/59)) ([b940d41](https://github.com/tobiasdiez/storybook-vue-addon/commit/b940d417353652b380ca39289f1d208284804be8))
+- **deps:** update devdependency tsup to v8 ([#92](https://github.com/tobiasdiez/storybook-vue-addon/issues/92)) ([f9f129d](https://github.com/tobiasdiez/storybook-vue-addon/commit/f9f129db97cab4ee9d9fc3650885e3abc57492d2))
+- **deps:** update devdependency vite to v5 ([#91](https://github.com/tobiasdiez/storybook-vue-addon/issues/91)) ([8f1ec5b](https://github.com/tobiasdiez/storybook-vue-addon/commit/8f1ec5bd0e0dc99c6878573d3eff47dc725f627f))
+- move tests closer to code ([#83](https://github.com/tobiasdiez/storybook-vue-addon/issues/83)) ([5ad8d41](https://github.com/tobiasdiez/storybook-vue-addon/commit/5ad8d41b1bec3933a59dcb8fe5c49f2b84988ccd))
+- use workspace feature for example ([#79](https://github.com/tobiasdiez/storybook-vue-addon/issues/79)) ([fb512c8](https://github.com/tobiasdiez/storybook-vue-addon/commit/fb512c8ca55e1a22715aaf2731eedfc9c6cf4bb0))
+
 ## [0.4.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.3.0...v0.4.0) (2023-05-01)
 
 ### 🔖 Features

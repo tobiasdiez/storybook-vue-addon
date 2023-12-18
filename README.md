@@ -132,7 +132,7 @@ There are a few minor differences to standard MDX documentation pages:
 Volar should be able to automatically recognize the `Stories` and `Story` components. It is also possible to import them from `storybook-vue-addon`:
 
 ```ts
-import type { Stories, Story } from 'storybook-vue-addon/types'
+import { Stories, Story } from 'storybook-vue-addon/types'
 ```
 
 ## Manual usage

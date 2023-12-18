@@ -27,6 +27,9 @@ jobs:
       - name: Install
         run: pnpm install
 
+      - name: Build types
+        run: pnpm build:types
+
       - name: Lint
         run: pnpm lint
 

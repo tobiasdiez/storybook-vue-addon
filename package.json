@@ -29,6 +29,16 @@
       "require": "./dist/storybook.cjs",
       "import": "./dist/storybook.js"
     },
+    "./astro": {
+      "types": "./dist/astro.d.ts",
+      "import": "./dist/astro.js",
+      "require": "./dist/astro.cjs"
+    },
+    "./rspack": {
+      "types": "./dist/rspack.d.ts",
+      "import": "./dist/rspack.js",
+      "require": "./dist/rspack.cjs"
+    },
     "./vite": {
       "types": "./dist/vite.d.ts",
       "require": "./dist/vite.cjs",
@@ -98,8 +108,33 @@
     "unplugin": "^1.5.0"
   },
   "peerDependencies": {
+    "@nuxt/kit": "^3",
+    "@nuxt/schema": "^3",
+    "esbuild": "*",
+    "rollup": "^3",
     "vite": "^4.3.1 || ^5.0.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "webpack": "^4 || ^5"
+  },
+  "peerDependenciesMeta": {
+    "webpack": {
+      "optional": true
+    },
+    "rollup": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "@nuxt/kit": {
+      "optional": true
+    },
+    "@nuxt/schema": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@nuxt/schema": "^3.7.4",
@@ -116,8 +151,8 @@
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
     "rollup": "^4.0.2",
-    "tsup": "^8.0.0",
-    "typescript": "^5.2.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.5.4",
     "vite": "^5.0.0",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
@@ -130,8 +165,7 @@
         "@types/react",
         "react",
         "react-dom",
-        "@vue/compiler-sfc",
-        "webpack"
+        "@vue/compiler-sfc"
       ]
     }
   }

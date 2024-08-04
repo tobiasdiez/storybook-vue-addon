@@ -1,19 +1,19 @@
+import { addVitePlugin, addWebpackPlugin, defineNuxtModule } from '@nuxt/kit'
+import vite from './vite'
+import webpack from './webpack'
 import type { Options } from './types'
-import unplugin from '.'
-import { Nuxt } from '@nuxt/schema'
+import type * as PackageTypes from '@nuxt/schema'
 
-export default function (options: Options = {}, nuxt: Nuxt) {
-  // install webpack plugin
-  nuxt.hook('webpack:config', (configs) => {
-    configs.forEach((config) => {
-      config.plugins = config.plugins || []
-      config.plugins.unshift(unplugin.webpack(options))
-    })
-  })
+export interface ModuleOptions extends Options {}
 
-  // install vite plugin
-  nuxt.hook('vite:extendConfig', (config) => {
-    config.plugins = config.plugins || []
-    config.plugins.push(unplugin.vite(options))
-  })
-}
+export default defineNuxtModule<ModuleOptions>({
+  meta: {
+    name: 'nuxt-unplugin-starter',
+    configKey: 'unpluginStarter',
+  },
+  defaults: {},
+  setup(options, _nuxt) {
+    addVitePlugin(() => vite(options))
+    addWebpackPlugin(() => webpack(options))
+  },
+})

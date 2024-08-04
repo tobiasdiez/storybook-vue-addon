@@ -14,11 +14,11 @@ describe('transform', () => {
       };
 
       function renderPrimary(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
@@ -33,18 +33,18 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-        title: \\"test\\",
+        title: "test",
 
         //decorators: [ ... ],
         parameters: {},
       };
 
       function renderPrimary(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
@@ -56,7 +56,7 @@ describe('transform', () => {
     const code = '<template><Stories><Story>hello</Story></Stories></template>'
     await expect(() =>
       transform(code),
-    ).rejects.toThrowErrorMatchingInlineSnapshot('"Story is missing a title"')
+    ).rejects.toThrowErrorMatchingInlineSnapshot(`[Error: Story is missing a title]`)
   })
   it('extracts component from Stories', async () => {
     const code =
@@ -72,11 +72,11 @@ describe('transform', () => {
       };
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
@@ -96,11 +96,11 @@ describe('transform', () => {
       };
 
       function renderPrimary_story(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary_story = () =>
         Object.assign({ render: renderPrimary_story }, _sfc_main);
-      Primary_story.storyName = \\"Primary story\\";
+      Primary_story.storyName = "Primary story";
 
       Primary_story.parameters = {
         docs: { source: { code: \`hello\` } },
@@ -120,11 +120,11 @@ describe('transform', () => {
       };
 
       function renderPrimary(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
@@ -149,22 +149,22 @@ describe('transform', () => {
       };
 
       function renderPrimary(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       };
 
       function renderSecondary(_ctx, _cache) {
-        return \\"world\\";
+        return "world";
       }
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
-      Secondary.storyName = \\"Secondary\\";
+      Secondary.storyName = "Secondary";
 
       Secondary.parameters = {
         docs: { source: { code: \`world\` } },
@@ -192,29 +192,29 @@ describe('transform', () => {
         createBlock as _createBlock,
         openBlock as _openBlock,
         resolveComponent as _resolveComponent,
-      } from \\"vue\\";
+      } from "vue";
 
       function renderPrimary(_ctx, _cache) {
-        const _component_Button = _resolveComponent(\\"Button\\");
+        const _component_Button = _resolveComponent("Button");
 
         return _openBlock(), _createBlock(_component_Button);
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`<Button>\` } },
       };
 
       function renderSecondary(_ctx, _cache) {
-        const _component_Button = _resolveComponent(\\"Button\\");
+        const _component_Button = _resolveComponent("Button");
 
         return _openBlock(), _createBlock(_component_Button);
       }
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
-      Secondary.storyName = \\"Secondary\\";
+      Secondary.storyName = "Secondary";
 
       Secondary.parameters = {
         docs: { source: { code: \`<Button>\` } },
@@ -247,11 +247,11 @@ describe('transform', () => {
             data() {
               return { a: 123 };
             },
-            template: \\"<span>{{a}}</span>\\",
+            template: "<span>{{a}}</span>",
           };
 
           const __returned__ = { test };
-          Object.defineProperty(__returned__, \\"__isScriptSetup\\", {
+          Object.defineProperty(__returned__, "__isScriptSetup", {
             enumerable: false,
             value: true,
           });
@@ -263,14 +263,14 @@ describe('transform', () => {
         parameters: {},
       };
 
-      import { createBlock as _createBlock, openBlock as _openBlock } from \\"vue\\";
+      import { createBlock as _createBlock, openBlock as _openBlock } from "vue";
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return _openBlock(), _createBlock($setup[\\"test\\"]);
+        return _openBlock(), _createBlock($setup["test"]);
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`<test></test>\` } },
@@ -303,26 +303,26 @@ describe('transform', () => {
       };
 
       function renderPrimary(_ctx, _cache) {
-        return \\"hello\\";
+        return "hello";
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: { source: { code: \`hello\` } },
       }; /*@jsxRuntime automatic @jsxImportSource react*/
-      import { useMDXComponents as _provideComponents } from \\"@mdx-js/react\\";
+      import { useMDXComponents as _provideComponents } from "@mdx-js/react";
       import {
         Fragment as _Fragment,
         jsx as _jsx,
         jsxs as _jsxs,
-      } from \\"react/jsx-runtime\\";
+      } from "react/jsx-runtime";
       function _createMdxContent(props) {
         const _components = Object.assign(
           {
-            h1: \\"h1\\",
-            p: \\"p\\",
+            h1: "h1",
+            p: "p",
           },
           _provideComponents(),
           props.components,
@@ -330,11 +330,11 @@ describe('transform', () => {
         return _jsxs(_Fragment, {
           children: [
             _jsx(_components.h1, {
-              children: \\"Hello\\",
+              children: "Hello",
             }),
-            \\"\\\\n\\",
+            "\\n",
             _jsx(_components.p, {
-              children: \\"This is a story\\",
+              children: "This is a story",
             }),
           ],
         });
@@ -376,27 +376,27 @@ describe('transform', () => {
       `
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
-    "function playFunction({ canvasElement }: any) {
-      console.log(\\"playFunction\\");
-    }
+      "function playFunction({ canvasElement }: any) {
+        console.log("playFunction");
+      }
 
-    const _sfc_main = {};
-    export default {
-      //decorators: [ ... ],
-      parameters: {},
-    };
+      const _sfc_main = {};
+      export default {
+        //decorators: [ ... ],
+        parameters: {},
+      };
 
-    function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-      return \\"hello\\";
-    }
-    export const Primary = () =>
-      Object.assign({ render: renderPrimary }, _sfc_main);
-    Primary.storyName = \\"Primary\\";
-    Primary.play = playFunction;
-    Primary.parameters = {
-      docs: { source: { code: \`hello\` } },
-    };
-    "
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return "hello";
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = "Primary";
+      Primary.play = playFunction;
+      Primary.parameters = {
+        docs: { source: { code: \`hello\` } },
+      };
+      "
     `)
   })
 
@@ -425,16 +425,16 @@ describe('transform', () => {
 
     expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
-      "import { defineComponent as _defineComponent } from \\"vue\\";
-      const headingText = \\"Hello\\";
-      const paragraph = \\"World\\";
+      "import { defineComponent as _defineComponent } from "vue";
+      const headingText = "Hello";
+      const paragraph = "World";
 
       const _sfc_main = _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
 
           const __returned__ = { headingText, paragraph };
-          Object.defineProperty(__returned__, \\"__isScriptSetup\\", {
+          Object.defineProperty(__returned__, "__isScriptSetup", {
             enumerable: false,
             value: true,
           });
@@ -452,7 +452,7 @@ describe('transform', () => {
         Fragment as _Fragment,
         openBlock as _openBlock,
         toDisplayString as _toDisplayString,
-      } from \\"vue\\";
+      } from "vue";
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return (
@@ -461,8 +461,8 @@ describe('transform', () => {
             _Fragment,
             null,
             [
-              _createElementVNode(\\"h1\\", null, _toDisplayString($setup.headingText)),
-              _createElementVNode(\\"p\\", null, _toDisplayString($setup.paragraph)),
+              _createElementVNode("h1", null, _toDisplayString($setup.headingText)),
+              _createElementVNode("p", null, _toDisplayString($setup.paragraph)),
             ],
             64 /* STABLE_FRAGMENT */,
           )
@@ -470,7 +470,7 @@ describe('transform', () => {
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = \\"Primary\\";
+      Primary.storyName = "Primary";
 
       Primary.parameters = {
         docs: {
@@ -488,8 +488,8 @@ describe('transform', () => {
             _Fragment,
             null,
             [
-              _createElementVNode(\\"h1\\", null, _toDisplayString($setup.headingText)),
-              _createElementVNode(\\"p\\", null, _toDisplayString($setup.paragraph)),
+              _createElementVNode("h1", null, _toDisplayString($setup.headingText)),
+              _createElementVNode("p", null, _toDisplayString($setup.paragraph)),
             ],
             64 /* STABLE_FRAGMENT */,
           )
@@ -497,7 +497,7 @@ describe('transform', () => {
       }
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
-      Secondary.storyName = \\"Secondary\\";
+      Secondary.storyName = "Secondary";
 
       Secondary.parameters = {
         docs: {

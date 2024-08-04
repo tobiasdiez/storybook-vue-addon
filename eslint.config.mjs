@@ -11,5 +11,5 @@ export default unjs(
     rules: {
       'unicorn/filename-case': 'warn',
     },
-  }
+  },
 )

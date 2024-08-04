@@ -24,5 +24,5 @@ You can render stories in the docs using the `<Canvas>` component.
 
 <Canvas />
 
-See [Storybook Docs](https://storybook.js.org/docs/vue/writing-docs/introduction) for more information.
+See [Storybook Docs](https://storybook.js.org/docs/vue/writing-docs) for more information.
 </docs>

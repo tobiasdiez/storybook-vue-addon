@@ -142,7 +142,7 @@
     "@nuxt/schema": "3.12.4",
     "@types/node": "20.8.7",
     "@types/prettier": "3.0.0",
-    "@vitest/coverage-v8": "0.34.6",
+    "@vitest/coverage-v8": "2.0.5",
     "cross-env": "7.0.3",
     "eslint": "9.8.0",
     "eslint-config-prettier": "9.1.0",
@@ -156,7 +156,7 @@
     "tsup": "8.2.4",
     "typescript": "5.5.4",
     "vite": "5.3.5",
-    "vitest": "0.34.6",
+    "vitest": "2.0.5",
     "vue": "3.3.4",
     "webpack": "5.93.0"
   },

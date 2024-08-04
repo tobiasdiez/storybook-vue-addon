@@ -30,5 +30,5 @@ LoggedIn.args = {
 
 export const LoggedOut = Template.bind({})
 LoggedOut.args = {
-  user: null,
+  user: undefined,
 }

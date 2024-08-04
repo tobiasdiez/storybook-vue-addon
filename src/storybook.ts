@@ -1,7 +1,6 @@
 import type { StorybookConfig } from '@storybook/vue3-vite'
 import VitePlugin from './vite'
 import { indexer } from './core/indexer'
-import type { StoryIndexer } from '@storybook/types'
 
 export const viteFinal: StorybookConfig['viteFinal'] = (config) => {
   config.plugins = config.plugins || []
@@ -9,11 +8,15 @@ export const viteFinal: StorybookConfig['viteFinal'] = (config) => {
   return config
 }
 
-export const storyIndexers = (indexers: StoryIndexer[]): StoryIndexer[] => {
+// See https://storybook.js.org/docs/api/main-config/main-config-indexers
+export const experimental_indexers: StorybookConfig['experimental_indexers'] = (
+  indexers,
+) => {
   return [
     {
       test: /\.stories\.vue$/,
-      indexer,
+      index: indexer,
+      createIndex: indexer,
     },
     ...(indexers || []),
   ]

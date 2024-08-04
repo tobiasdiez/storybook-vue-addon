@@ -91,7 +91,7 @@ function parseTemplate(content: string): {
     if (storyTemplate === undefined)
       throw new Error('No template found in Story')
     stories.push({
-      id: sanitize(title).replace(/[^a-zA-Z0-9]/g, '_'),
+      id: sanitize(title).replace(/[^\dA-Za-z]/g, '_'),
       title,
       play,
       template: storyTemplate,

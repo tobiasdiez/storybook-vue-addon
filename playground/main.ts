@@ -1,1 +1,1 @@
-document.getElementById('app')!.innerHTML = '__UNPLUGIN__'
+document.querySelector('#app')!.innerHTML = '__UNPLUGIN__'

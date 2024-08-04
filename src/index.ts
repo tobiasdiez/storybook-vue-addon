@@ -8,7 +8,7 @@ const STORIES_INTERNAL_SUFFIX = '?vue&type=stories'
 const STORIES_PUBLIC_SUFFIX = '.stories.vue'
 
 export const unpluginFactory: UnpluginFactory<Options | undefined> = (
-  options,
+  _options,
 ) => ({
   name: 'storybook-vue-addon',
   enforce: 'pre',
@@ -17,7 +17,6 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
     if (source.endsWith(STORIES_PUBLIC_SUFFIX)) {
       // Determine what the actual entry would have been. We need "skipSelf" to avoid an infinite loop.
       // @ts-expect-error: not yet exposed -- https://github.com/unjs/unplugin/issues/47
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const resolution = (await this.resolve(source, importer, {
         skipSelf: true,
         ...options,

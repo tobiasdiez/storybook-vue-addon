@@ -14,6 +14,7 @@
     "vue",
     "storybook",
     "storybook-addon",
+    "storybook-addons",
     "unplugin",
     "vite",
     "webpack"
@@ -28,6 +29,16 @@
       "types": "./dist/storybook.d.ts",
       "require": "./dist/storybook.cjs",
       "import": "./dist/storybook.js"
+    },
+    "./astro": {
+      "types": "./dist/astro.d.ts",
+      "import": "./dist/astro.js",
+      "require": "./dist/astro.cjs"
+    },
+    "./rspack": {
+      "types": "./dist/rspack.d.ts",
+      "import": "./dist/rspack.js",
+      "require": "./dist/rspack.cjs"
     },
     "./vite": {
       "types": "./dist/vite.d.ts",
@@ -59,7 +70,7 @@
       "require": "./dist/types.cjs",
       "import": "./dist/types.js"
     },
-    "./*": "./*"
+    "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -79,10 +90,10 @@
     "build": "tsup",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
+    "build:fix": "jiti scripts/postbuild.ts",
     "lint": "pnpm lint:types && pnpm lint:eslint && pnpm lint:prettier",
-    "build:fix": "esno scripts/postbuild.ts",
     "lint:types": "vue-tsc --noEmit -p tsconfig.check-types.json",
-    "lint:eslint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --report-unused-disable-directives .",
+    "lint:eslint": "eslint --report-unused-disable-directives .",
     "lint:prettier": "prettier --check --ignore-path .gitignore . \"!pnpm-lock.yaml\"",
     "play": "npm -C playground run dev",
     "example:vite": "npm -C examples/vite run storybook",
@@ -99,27 +110,53 @@
     "unplugin": "^1.5.0"
   },
   "peerDependencies": {
-    "vite": "^4.3.1",
-    "vue": "^3.2.47"
+    "@nuxt/kit": "^3",
+    "@nuxt/schema": "^3",
+    "esbuild": "*",
+    "rollup": "^3",
+    "vite": "^4.3.1 || ^5.0.0",
+    "vue": "^3.2.47",
+    "webpack": "^4 || ^5"
+  },
+  "peerDependenciesMeta": {
+    "webpack": {
+      "optional": true
+    },
+    "rollup": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "@nuxt/kit": {
+      "optional": true
+    },
+    "@nuxt/schema": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@nuxt/kit": "^3.12.4",
     "@nuxt/schema": "^3.7.4",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@types/node": "^18.18.5",
-    "@types/prettier": "^2.7.3",
+    "@types/node": "^20.8.7",
+    "@types/prettier": "^3.0.0",
     "@vitest/coverage-v8": "^0.34.6",
     "cross-env": "^7.0.3",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "esno": "^0.17.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-unjs": "^0.3.2",
+    "eslint-plugin-unused-imports": "^4.0.1",
     "fast-glob": "^3.3.1",
+    "jiti": "^1.21.6",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
     "rollup": "^4.0.2",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.11",
+    "tsup": "^8.0.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.0.0",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
     "webpack": "^5.88.2"
@@ -131,9 +168,18 @@
         "@types/react",
         "react",
         "react-dom",
-        "@vue/compiler-sfc",
-        "webpack"
+        "@vue/compiler-sfc"
       ]
     }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "storybook": {
+    "displayName": "Vue CSF",
+    "supportedFrameworks": [
+      "vue"
+    ],
+    "icon": "https://github.com/vuejs/art/raw/a1c78b74569b70a25300925b4eacfefcc143b8f6/logo.png"
   }
 }

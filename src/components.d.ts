@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types -- TODO - Figure out how to properly type {} */
 type NonUndefinedable<T> = T extends undefined ? never : T
 type TypePropsToRuntimeProps<T> = {
   [K in keyof T]-?: {} extends Pick<T, K>

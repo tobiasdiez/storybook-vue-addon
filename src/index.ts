@@ -1,3 +1,4 @@
+import type { UnpluginFactory } from 'unplugin'
 import { createUnplugin } from 'unplugin'
 import { transform as transformStories } from './core/transform'
 import { logger } from './core/logger'
@@ -6,7 +7,9 @@ import type { Options } from './types'
 const STORIES_INTERNAL_SUFFIX = '?vue&type=stories'
 const STORIES_PUBLIC_SUFFIX = '.stories.vue'
 
-export default createUnplugin<Options | undefined>((_options) => ({
+export const unpluginFactory: UnpluginFactory<Options | undefined> = (
+  _options,
+) => ({
   name: 'storybook-vue-addon',
   enforce: 'pre',
   async resolveId(source, importer, options) {
@@ -14,7 +17,6 @@ export default createUnplugin<Options | undefined>((_options) => ({
     if (source.endsWith(STORIES_PUBLIC_SUFFIX)) {
       // Determine what the actual entry would have been. We need "skipSelf" to avoid an infinite loop.
       // @ts-expect-error: not yet exposed -- https://github.com/unjs/unplugin/issues/47
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       const resolution = (await this.resolve(source, importer, {
         skipSelf: true,
         ...options,
@@ -38,4 +40,8 @@ export default createUnplugin<Options | undefined>((_options) => ({
     logger.debug('transform', id)
     return transformStories(code)
   },
-}))
+})
+
+export const unplugin = /* #__PURE__ */ createUnplugin(unpluginFactory)
+
+export default unplugin

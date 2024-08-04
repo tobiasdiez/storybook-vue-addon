@@ -2,7 +2,7 @@ import type { Options } from './types'
 
 import unplugin from '.'
 
-export default plugin((options: Options) => ({
+const astro_ = (options: Options) => ({
   name: 'unplugin-starter',
   hooks: {
     'astro:config:setup': async (astro: any) => {
@@ -10,4 +10,5 @@ export default plugin((options: Options) => ({
       astro.config.vite.plugins.push(unplugin.vite(options))
     },
   },
-}))
+})
+export default astro_

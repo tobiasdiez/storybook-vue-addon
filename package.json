@@ -14,6 +14,7 @@
     "vue",
     "storybook",
     "storybook-addon",
+    "storybook-addons",
     "unplugin",
     "vite",
     "webpack"
@@ -69,7 +70,7 @@
       "require": "./dist/types.cjs",
       "import": "./dist/types.js"
     },
-    "./*": "./*"
+    "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -169,5 +170,15 @@
         "@vue/compiler-sfc"
       ]
     }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "storybook": {
+    "displayName": "Vue CSF",
+    "supportedFrameworks": [
+      "vue"
+    ],
+    "icon": "https://github.com/vuejs/art/raw/a1c78b74569b70a25300925b4eacfefcc143b8f6/logo.png"
   }
 }

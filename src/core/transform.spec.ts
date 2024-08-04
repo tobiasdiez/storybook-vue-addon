@@ -56,7 +56,9 @@ describe('transform', () => {
     const code = '<template><Stories><Story>hello</Story></Stories></template>'
     await expect(() =>
       transform(code),
-    ).rejects.toThrowErrorMatchingInlineSnapshot(`[Error: Story is missing a title]`)
+    ).rejects.toThrowErrorMatchingInlineSnapshot(
+      `[Error: Story is missing a title]`,
+    )
   })
   it('extracts component from Stories', async () => {
     const code =

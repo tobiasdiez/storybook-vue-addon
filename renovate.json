@@ -1,5 +1,0 @@
-{
-  "extends": ["@nuxtjs", ":widenPeerDependencies"],
-  "dependencyDashboard": false,
-  "ignorePaths": ["**/node_modules/**"]
-}

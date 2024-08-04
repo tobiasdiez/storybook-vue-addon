@@ -20,4 +20,5 @@ async function run() {
   }
 }
 
-await run()
+// eslint-disable-next-line unicorn/prefer-top-level-await -- use top-level await as soon as jiti supports it
+run()

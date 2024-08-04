@@ -447,9 +447,9 @@ describe('transform', () => {
       };
 
       import {
-        Fragment as _Fragment,
         createElementBlock as _createElementBlock,
         createElementVNode as _createElementVNode,
+        Fragment as _Fragment,
         openBlock as _openBlock,
         toDisplayString as _toDisplayString,
       } from \\"vue\\";

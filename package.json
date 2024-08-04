@@ -112,7 +112,7 @@
     "@nuxt/kit": "^3",
     "@nuxt/schema": "^3",
     "esbuild": "*",
-    "rollup": "^3",
+    "rollup": "^3 || ^4.0.0",
     "vite": "^4.3.1 || ^5.0.0",
     "vue": "^3.2.47",
     "webpack": "^4 || ^5"
@@ -151,7 +151,7 @@
     "fast-glob": "3.3.2",
     "jiti": "1.21.6",
     "nodemon": "3.0.1",
-    "rimraf": "5.0.5",
+    "rimraf": "6.0.1",
     "rollup": "4.20.0",
     "tsup": "8.2.4",
     "typescript": "5.5.4",

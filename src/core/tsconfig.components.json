@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "files": ["story.vue", "stories.vue"]
+}

@@ -87,8 +87,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm build:types && tsup",
-    "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build-types.json && rimraf src/core/components.d.ts",
+    "build": "tsup",
+    "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
     "build:fix": "jiti scripts/postbuild.ts",

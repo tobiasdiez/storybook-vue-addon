@@ -1,4 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<!-- This file is only used to build types to ease development (build:types command), and it is not shipped -->
 <script setup lang="ts" generic="TComponent = unknown">
 import type { Meta, StoryObj } from '@storybook/vue3'
 

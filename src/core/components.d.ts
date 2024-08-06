@@ -49,7 +49,7 @@ interface StoriesProps {
  *
  * @see [Default export](https://storybook.js.org/docs/vue/api/csf#default-export)
  */
-type Stories = VueComponent<StoriesProps>
+export type Stories = VueComponent<StoriesProps>
 
 import { Meta, StoryObj } from '@storybook/vue3'
 
@@ -71,7 +71,7 @@ interface StoryProps {
  *
  * @see [Named Story exports](https://storybook.js.org/docs/vue/api/csf#named-story-exports)
  */
-type Story = VueComponent<StoryProps>
+export type Story = VueComponent<StoryProps>
 
 // Register components globally
 // From https://github.com/vuejs/language-tools/blob/c290251387175be85b1d16bc6783c9712e49700a/packages/vscode-vue/README.md?plain=1#L84-L103
@@ -81,5 +81,3 @@ declare module '@vue/runtime-core' {
     Story: Story
   }
 }
-
-export { Stories, Story }

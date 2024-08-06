@@ -88,6 +88,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
     "build:fix": "jiti scripts/postbuild.ts",
@@ -158,6 +159,7 @@
     "vite": "5.3.5",
     "vitest": "2.0.5",
     "vue": "3.3.4",
+    "vue-tsc": "^2.0.29",
     "webpack": "5.93.0"
   },
   "pnpm": {

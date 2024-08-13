@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { userEvent, within } from '@storybook/testing-library'
 import { expect } from '@storybook/jest'
 import LoginForm from '../components/LoginForm.vue'

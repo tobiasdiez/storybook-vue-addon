@@ -1,18 +1,20 @@
+import type { Meta, StoryObj } from '@storybook/vue3'
+
 import Button from '../components/Button.vue'
 
-import type { Meta, StoryFn } from '@storybook/vue3'
-
-export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/vue/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
+const meta: Meta<typeof Button> = {
   title: 'docs/3. Rename stories/classical',
   component: Button,
-} as Meta<typeof Button>
+}
 
-export const Primary: StoryFn<typeof Button> = () => ({
-  components: { Button },
-  template: '<Button primary label="Button" />',
-})
-Primary.storyName = 'I am the primary'
+export default meta
+type Story = StoryObj<typeof Button>
+
+export const Primary: Story = {
+  // 👇 Rename this story
+  name: 'I am the primary',
+  args: {
+    label: 'Button',
+    primary: true,
+  },
+}

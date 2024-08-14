@@ -1,29 +1,60 @@
 // Button.stories.ts
 
+import type { Meta, StoryObj } from '@storybook/vue3'
+
 import Button from '../components/Button.vue'
 
-import type { Meta, StoryFn } from '@storybook/vue3'
-
-export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/vue/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
+const meta: Meta<typeof Button> = {
   title: 'docs/4. How to write stories/classical',
   component: Button,
-} as Meta<typeof Button>
+}
 
-export const Primary: StoryFn<typeof Button> = () => ({
-  components: { Button },
-  template: '<Button background="#ff0" label="Button" />',
-})
+export default meta
+type Story = StoryObj<typeof Button>
 
-export const Secondary: StoryFn<typeof Button> = () => ({
-  components: { Button },
-  template: '<Button background="#ff0" label="😄👍😍💯" />',
-})
+/*
+ *👇 Render functions are a framework specific feature to allow you control on how the component renders.
+ * See https://storybook.js.org/docs/api/csf
+ * to learn how to use render functions.
+ */
+export const Primary: Story = {
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return { args }
+    },
+    template: '<Button v-bind="args" />',
+  }),
+  args: {
+    background: '#ff0',
+    label: 'Button',
+  },
+}
 
-export const Tertiary: StoryFn<typeof Button> = () => ({
-  components: { Button },
-  template: '<Button background="#ff0" label="📚📕📈🤓" />',
-})
+export const Secondary: Story = {
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return { args }
+    },
+    template: '<Button v-bind="args" />',
+  }),
+  args: {
+    ...Primary.args,
+    label: '😄👍😍💯',
+  },
+}
+
+export const Tertiary: Story = {
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return { args }
+    },
+    template: '<Button v-bind="args" />',
+  }),
+  args: {
+    ...Primary.args,
+    label: '📚📕📈🤓',
+  },
+}

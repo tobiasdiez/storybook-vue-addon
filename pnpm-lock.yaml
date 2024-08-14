@@ -142,12 +142,6 @@ importers:
       npm-run-all2:
         specifier: 6.2.2
         version: 6.2.2
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
       storybook:
         specifier: 8.2.9
         version: 8.2.9(@babel/preset-env@7.25.3(@babel/core@7.25.2))

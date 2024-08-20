@@ -22,8 +22,8 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
         ...options,
       })) as { id: string; external: boolean }
 
-      // If it cannot be resolved or is external, just return it so that Rollup can display an error
-      if (!resolution || resolution.external) return resolution
+      // If it cannot be resolved or is external, return undefined so that the next plugin can handle it
+      if (!resolution || resolution.external) return undefined
 
       // We append a custom "type" so that the vue plugin is not handling the import
       resolution.id = resolution.id + STORIES_INTERNAL_SUFFIX

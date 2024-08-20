@@ -1,12 +1,11 @@
 <script setup>
-import { userEvent, within } from '@storybook/testing-library'
-import { expect } from '@storybook/jest'
+import { userEvent, within, expect } from '@storybook/test'
 import LoginForm from '../components/LoginForm.vue'
 </script>
 
 <script>
 /*
- * See https://storybook.js.org/docs/vue/writing-stories/play-function#working-with-the-canvas
+ * See https://storybook.js.org/docs/writing-stories/play-function#working-with-the-canvas
  * to learn more about using the canvasElement to query the DOM
  */
 async function playFunction({ canvasElement }) {
@@ -17,7 +16,7 @@ async function playFunction({ canvasElement }) {
 
   await userEvent.type(canvas.getByTestId('password'), 'a-random-password')
 
-  // See https://storybook.js.org/docs/vue/essentials/actions#automatically-matching-args to learn how to setup logging in the Actions panel
+  // See https://storybook.js.org/docs/essentials/actions#automatically-matching-args to learn how to setup logging in the Actions panel
   await userEvent.click(canvas.getByRole('button'))
 
   // 👇 Assert DOM structure

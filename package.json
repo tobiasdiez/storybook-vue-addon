@@ -70,6 +70,11 @@
       "require": "./dist/types.cjs",
       "import": "./dist/types.js"
     },
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "require": "./dist/core/index.cjs",
+      "import": "./dist/core/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
@@ -141,6 +146,7 @@
   "devDependencies": {
     "@nuxt/kit": "3.12.4",
     "@nuxt/schema": "3.12.4",
+    "@storybook/types": "^8.2.9",
     "@types/node": "20.8.7",
     "@types/prettier": "3.0.0",
     "@vitest/coverage-v8": "2.0.5",

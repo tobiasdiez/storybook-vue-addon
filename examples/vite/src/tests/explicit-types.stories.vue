@@ -8,7 +8,7 @@ import type { Stories, Story } from 'storybook-vue-addon/core'
     :component="MyButton"
     title="Tests/Explicit types"
   >
-    <Story title="test">
+    <Story title="Default">
       <MyButton label="Button" />
     </Story>
   </Stories>

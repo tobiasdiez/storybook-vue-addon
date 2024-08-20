@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.6.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.5.0...v0.6.0) (2024-08-20)
+
+### 🔖 Features
+
+- export Story and Stories components from `/core` ([#84](https://github.com/tobiasdiez/storybook-vue-addon/issues/84)) ([c74e0db](https://github.com/tobiasdiez/storybook-vue-addon/commit/c74e0dbc0b5f3aa949e9616c62ffd8f30836a042))
+
+### 🐛 Bug Fixes
+
+- improve virtual module handling to support storybook v8 ([#121](https://github.com/tobiasdiez/storybook-vue-addon/issues/121)) ([30147fd](https://github.com/tobiasdiez/storybook-vue-addon/commit/30147fde08d2eacef21a14875df846c6a142f7ac))
+
+### 🧹 Miscellaneous
+
+- Add chromatic as sponsor ([9f29587](https://github.com/tobiasdiez/storybook-vue-addon/commit/9f2958707e013a9b14122d417652c36552b4b35c))
+- upgrade to storybook v8 ([#101](https://github.com/tobiasdiez/storybook-vue-addon/issues/101)) ([96984bc](https://github.com/tobiasdiez/storybook-vue-addon/commit/96984bca3fd7a7cfeb757de5084546b9aa786abf))
+
 ## [0.5.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.4.0...v0.5.0) (2024-08-04)
 
 ### 🔖 Features

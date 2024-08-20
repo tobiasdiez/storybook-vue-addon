@@ -34,7 +34,7 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
   },
   transformInclude(id) {
     // logger.debug('transformInclude', id)
-    return id.endsWith(STORIES_INTERNAL_SUFFIX)
+    return id.endsWith(STORIES_PUBLIC_SUFFIX + STORIES_INTERNAL_SUFFIX)
   },
   transform(code, id) {
     logger.debug('transform', id)

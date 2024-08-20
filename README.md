@@ -258,7 +258,6 @@ Commands:
 
 - `build`: Build everything. Output can be found in `dist`.
 - `build:types`: Build the types for the `Story` and `Stories` components, to ease development in the `components.d.ts` file.
-- `build:types`: Build the types for the `Story` and `Stories` components, to ease development in the `components.d.ts` file.
 - `dev`: Build in watch mode.
 - `lint`: Check for eslint and prettier issues.
 - `test`: Run the tests.

@@ -36,6 +36,9 @@ importers:
       '@nuxt/schema':
         specifier: 3.12.4
         version: 3.12.4(rollup@4.20.0)
+      '@storybook/types':
+        specifier: ^8.2.9
+        version: 8.2.9(storybook@8.2.9(@babel/preset-env@7.25.3))
       '@types/node':
         specifier: 20.8.7
         version: 20.8.7
@@ -90,6 +93,9 @@ importers:
       vue:
         specifier: 3.3.4
         version: 3.3.4
+      vue-tsc:
+        specifier: ^2.0.29
+        version: 2.0.29(typescript@5.5.4)
       webpack:
         specifier: 5.93.0
         version: 5.93.0(esbuild@0.23.0)
@@ -1455,6 +1461,11 @@ packages:
 
   '@storybook/theming@8.2.9':
     resolution: {integrity: sha512-OL0NFvowPX85N5zIYdgeKKaFm7V4Vgtci093vL3cDZT13LGH6GuEzJKkUFGuUGNPFlJc+EgTj0o6PYKrOLyQ6w==}
+    peerDependencies:
+      storybook: ^8.2.9
+
+  '@storybook/types@8.2.9':
+    resolution: {integrity: sha512-FlrnZiI9lzvfA2k+VHxZ5P9JHXIbNUKIV6/469FwKlPiMhZrt9094O1lSKOfGo409mwBKDBm5X0hThbNc9ZnoQ==}
     peerDependencies:
       storybook: ^8.2.9
 
@@ -6040,7 +6051,7 @@ snapshots:
       '@types/cross-spawn': 6.0.3
       cross-spawn: 7.0.3
       globby: 14.0.2
-      jscodeshift: 0.15.2(@babel/preset-env@7.25.3(@babel/core@7.25.2))
+      jscodeshift: 0.15.2(@babel/preset-env@7.25.3)
       lodash: 4.17.21
       prettier: 3.3.3
       recast: 0.23.9
@@ -6130,6 +6141,10 @@ snapshots:
       - vitest
 
   '@storybook/theming@8.2.9(storybook@8.2.9(@babel/preset-env@7.25.3(@babel/core@7.25.2)))':
+    dependencies:
+      storybook: 8.2.9(@babel/preset-env@7.25.3(@babel/core@7.25.2))
+
+  '@storybook/types@8.2.9(storybook@8.2.9(@babel/preset-env@7.25.3))':
     dependencies:
       storybook: 8.2.9(@babel/preset-env@7.25.3(@babel/core@7.25.2))
 
@@ -7910,7 +7925,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscodeshift@0.15.2(@babel/preset-env@7.25.3(@babel/core@7.25.2)):
+  jscodeshift@0.15.2(@babel/preset-env@7.25.3):
     dependencies:
       '@babel/core': 7.25.2
       '@babel/parser': 7.25.3
@@ -9236,7 +9251,7 @@ snapshots:
       fs-extra: 11.2.0
       giget: 1.2.3
       globby: 14.0.2
-      jscodeshift: 0.15.2(@babel/preset-env@7.25.3(@babel/core@7.25.2))
+      jscodeshift: 0.15.2(@babel/preset-env@7.25.3)
       leven: 3.1.0
       ora: 5.4.1
       prettier: 3.3.3
@@ -9782,7 +9797,6 @@ snapshots:
       '@vue/language-core': 2.0.29(typescript@5.5.4)
       semver: 7.6.3
       typescript: 5.5.4
-    optional: true
 
   vue@3.3.4:
     dependencies:

@@ -132,7 +132,7 @@ There are a few minor differences to standard MDX documentation pages:
 Volar should be able to automatically recognize the `Stories` and `Story` components. It is also possible to import them from `storybook-vue-addon`:
 
 ```ts
-import type { Stories, Story } from 'storybook-vue-addon/types'
+import type { Stories, Story } from 'storybook-vue-addon/core'
 ```
 
 ## Manual usage
@@ -257,6 +257,7 @@ build({
 Commands:
 
 - `build`: Build everything. Output can be found in `dist`.
+- `build:types`: Build the types for the `Story` and `Stories` components, to ease development in the `components.d.ts` file.
 - `dev`: Build in watch mode.
 - `lint`: Check for eslint and prettier issues.
 - `test`: Run the tests.

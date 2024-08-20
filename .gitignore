@@ -82,3 +82,7 @@ dist
 
 # Storybook build output
 examples/vite/storybook-static/
+
+# vue-tsc build output
+src/core/story.vue.d.ts
+src/core/stories.vue.d.ts

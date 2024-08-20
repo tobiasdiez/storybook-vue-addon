@@ -70,6 +70,11 @@
       "require": "./dist/types.cjs",
       "import": "./dist/types.js"
     },
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "require": "./dist/core/index.cjs",
+      "import": "./dist/core/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
@@ -88,6 +93,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
     "build:fix": "jiti scripts/postbuild.ts",
@@ -140,6 +146,7 @@
   "devDependencies": {
     "@nuxt/kit": "3.12.4",
     "@nuxt/schema": "3.12.4",
+    "@storybook/types": "^8.2.9",
     "@types/node": "20.8.7",
     "@types/prettier": "3.0.0",
     "@vitest/coverage-v8": "2.0.5",
@@ -158,6 +165,7 @@
     "vite": "5.3.5",
     "vitest": "2.0.5",
     "vue": "3.3.4",
+    "vue-tsc": "^2.0.29",
     "webpack": "5.93.0"
   },
   "pnpm": {

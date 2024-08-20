@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.0...v0.6.1) (2024-08-20)
+
+
+### 🐛 Bug Fixes
+
+* only transform vue stories ([#122](https://github.com/tobiasdiez/storybook-vue-addon/issues/122)) ([be99430](https://github.com/tobiasdiez/storybook-vue-addon/commit/be99430aa88f4843630488b696de238d30bc6ff5))
+
 ## [0.6.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.5.0...v0.6.0) (2024-08-20)
 
 ### 🔖 Features

@@ -1,7 +1,7 @@
 {
   "name": "storybook-vue-addon",
   "type": "module",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "packageManager": "pnpm@9.6.0",
   "description": "Storybook stories in native Vue format",
   "license": "MIT",

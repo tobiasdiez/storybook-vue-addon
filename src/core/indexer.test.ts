@@ -26,7 +26,7 @@ describe('indexer', () => {
 
   it('handles stories with complex names', () => {
     const code =
-      '<template><Stories title="Simple"><Story title="바보 (babo) 2:3!">hello</Story</template>'
+      '<template><Stories title="Simple"><Story title="바보 (babo) 2:3!">hello</Story></Stories></template>'
     const result = indexerCode(code, options)
     expect(result).toMatchInlineSnapshot(`
       [

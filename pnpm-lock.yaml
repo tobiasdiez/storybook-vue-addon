@@ -37,7 +37,7 @@ importers:
         specifier: 3.12.4
         version: 3.12.4(rollup@4.21.0)
       '@storybook/types':
-        specifier: ^8.2.9
+        specifier: 8.2.9
         version: 8.2.9(storybook@8.2.9(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
       '@types/node':
         specifier: 20.16.1
@@ -94,7 +94,7 @@ importers:
         specifier: 3.4.38
         version: 3.4.38(typescript@5.5.4)
       vue-tsc:
-        specifier: ^2.0.29
+        specifier: 2.0.29
         version: 2.0.29(typescript@5.5.4)
       webpack:
         specifier: 5.93.0

@@ -2,12 +2,11 @@
 
 ## [0.6.2](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.1...v0.6.2) (2024-09-28)
 
-
 ### 🧹 Miscellaneous
 
-* **deps:** pin dependencies ([#125](https://github.com/tobiasdiez/storybook-vue-addon/issues/125)) ([0305aaf](https://github.com/tobiasdiez/storybook-vue-addon/commit/0305aafa1302de726ff435dba37c388d029c550a))
-* **deps:** update all non-major dependencies ([#80](https://github.com/tobiasdiez/storybook-vue-addon/issues/80)) ([f37cd86](https://github.com/tobiasdiez/storybook-vue-addon/commit/f37cd868a3c3a0766fbf93c097a399f2ba7faabc))
-* **deps:** update dependency jiti to v2 ([#128](https://github.com/tobiasdiez/storybook-vue-addon/issues/128)) ([de847db](https://github.com/tobiasdiez/storybook-vue-addon/commit/de847dbc34c73db748974871981cdd4f5a1a8a30))
+- **deps:** pin dependencies ([#125](https://github.com/tobiasdiez/storybook-vue-addon/issues/125)) ([0305aaf](https://github.com/tobiasdiez/storybook-vue-addon/commit/0305aafa1302de726ff435dba37c388d029c550a))
+- **deps:** update all non-major dependencies ([#80](https://github.com/tobiasdiez/storybook-vue-addon/issues/80)) ([f37cd86](https://github.com/tobiasdiez/storybook-vue-addon/commit/f37cd868a3c3a0766fbf93c097a399f2ba7faabc))
+- **deps:** update dependency jiti to v2 ([#128](https://github.com/tobiasdiez/storybook-vue-addon/issues/128)) ([de847db](https://github.com/tobiasdiez/storybook-vue-addon/commit/de847dbc34c73db748974871981cdd4f5a1a8a30))
 
 ## [0.6.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.0...v0.6.1) (2024-08-20)
 

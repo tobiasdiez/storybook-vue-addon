@@ -32,7 +32,7 @@
     "storybook": "8.2.9",
     "storybook-vue-addon": "workspace:*",
     "typescript": "5.5.4",
-    "vite": "5.4.2",
+    "vite": "6.0.2",
     "vue-loader": "17.4.2",
     "vue-tsc": "2.0.29"
   }

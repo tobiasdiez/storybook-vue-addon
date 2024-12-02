@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.2](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.1...v0.6.2) (2024-12-02)
+
+
+### 🧹 Miscellaneous
+
+* **deps:** pin dependencies ([#125](https://github.com/tobiasdiez/storybook-vue-addon/issues/125)) ([0305aaf](https://github.com/tobiasdiez/storybook-vue-addon/commit/0305aafa1302de726ff435dba37c388d029c550a))
+* **deps:** update all non-major dependencies ([#80](https://github.com/tobiasdiez/storybook-vue-addon/issues/80)) ([f37cd86](https://github.com/tobiasdiez/storybook-vue-addon/commit/f37cd868a3c3a0766fbf93c097a399f2ba7faabc))
+* **deps:** update codecov/codecov-action action to v5 ([#131](https://github.com/tobiasdiez/storybook-vue-addon/issues/131)) ([7796606](https://github.com/tobiasdiez/storybook-vue-addon/commit/779660653b0adcf1a70c1a28360db96f717e38a0))
+* **deps:** update dependency @types/node to v22 ([#130](https://github.com/tobiasdiez/storybook-vue-addon/issues/130)) ([5e5b337](https://github.com/tobiasdiez/storybook-vue-addon/commit/5e5b337551d6995d7b763a7cd4c9ad449dcaec9d))
+* **deps:** update dependency jiti to v2 ([#128](https://github.com/tobiasdiez/storybook-vue-addon/issues/128)) ([de847db](https://github.com/tobiasdiez/storybook-vue-addon/commit/de847dbc34c73db748974871981cdd4f5a1a8a30))
+* **deps:** update dependency vite to v6 ([#132](https://github.com/tobiasdiez/storybook-vue-addon/issues/132)) ([5b62017](https://github.com/tobiasdiez/storybook-vue-addon/commit/5b620172c8adc12061f01b5fb9f78f824463abdf))
+
 ## [0.6.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.0...v0.6.1) (2024-08-20)
 
 ### 🐛 Bug Fixes

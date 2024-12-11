@@ -112,7 +112,7 @@
     "consola": "^3.2.3",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^4.0.0",
-    "unplugin": "^1.5.0"
+    "unplugin": "^2.0.0"
   },
   "peerDependencies": {
     "@nuxt/kit": "^3",

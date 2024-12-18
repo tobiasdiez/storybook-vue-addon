@@ -4,6 +4,7 @@ import webpack from './webpack'
 import type { Options } from './types'
 import type * as _ from '@nuxt/schema'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ModuleOptions extends Options {}
 
 export default defineNuxtModule<ModuleOptions>({

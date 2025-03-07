@@ -1,16 +1,28 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    'config:recommended',
-    // Group all minor and patch updates together
-    'group:allNonMajor',
-    // Schedule updates to run every weekend
-    'schedule:weekends',
+    'config:best-practices',
     // Use "chore" type for all commit messages
     ':semanticCommitTypeAll(chore)',
+    // Update lock files: https://docs.renovatebot.com/presets-default/#maintainlockfilesmonthly
+    ':maintainLockFilesMonthly',
+    // Automerge all updates once they pass tests: https://docs.renovatebot.com/presets-default/#automergeall
+    ':automergeAll',
+    // Always widen peer dependency constraints: https://docs.renovatebot.com/presets-default/#widenpeerdependencies
+    ':widenPeerDependencies',
+    // Disable dashboard: https://docs.renovatebot.com/key-concepts/dashboard/
+    ':disableDependencyDashboard',
+    // Group all minor and patch updates together
+    'group:allNonMajor',
     // Pin all dev dependencies following https://docs.renovatebot.com/dependency-pinning/
     ':pinDevDependencies',
   ],
+  schedule: [
+    // Monthly, but give a 3-day window (due to throttling not all PRs may be created on the same day): https://docs.renovatebot.com/configuration-options/#schedule
+    'on the 2nd through 5th day of the month',
+  ],
+  // Always squash PRs: https://docs.renovatebot.com/configuration-options/#automergestrategy
+  automergeStrategy: 'squash',
   // Don't ignore 'examples' directories
   ignorePaths: ['**/node_modules/**'],
   packageRules: [

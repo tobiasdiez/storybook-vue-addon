@@ -27,7 +27,7 @@
     "@types/node": "22.10.2",
     "@vitejs/plugin-vue": "5.2.1",
     "@vue/tsconfig": "0.7.0",
-    "babel-loader": "9.2.1",
+    "babel-loader": "10.0.0",
     "npm-run-all2": "7.0.2",
     "storybook": "8.4.7",
     "storybook-vue-addon": "workspace:*",

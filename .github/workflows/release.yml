@@ -12,14 +12,14 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: google-github-actions/release-please-action@e4dc86ba9405554aeba3c6bb2d169500e7d3b4ee # v4
         id: release
         with:
           token: ${{ secrets.RELEASE_PR_TOKEN }}
 
       # Format changelog, workaround for https://github.com/google-github-actions/release-please-action/issues/542
       # Taken from https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         if: ${{ steps.release.outputs.pr }}
         with:
           token: ${{ secrets.RELEASE_PR_TOKEN }}
@@ -56,9 +56,9 @@ jobs:
     needs: [release-pr]
     if: needs.release-pr.outputs.release_created
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - run: corepack enable
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
         with:
           node-version-file: package.json
           cache: 'pnpm'

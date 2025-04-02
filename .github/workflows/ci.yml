@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
         with:
           node-version: 20
           cache: 'pnpm'
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
 
@@ -49,7 +49,7 @@ jobs:
         uses: pnpm/action-setup@v2
 
       - name: Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
@@ -68,7 +68,7 @@ jobs:
 
       - name: Publish and test example Storybook
         if: matrix.node == '18.x' && matrix.os == 'ubuntu-latest'
-        uses: chromaui/action@v11
+        uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11
         with:
           projectToken: '574df7cc3736'
           # Don't wait until Chroma verified the build (for this we have the Github check)
@@ -78,4 +78,4 @@ jobs:
 
       - name: Upload coverage
         if: matrix.node == '18.x' && matrix.os == 'ubuntu-latest'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@0565863a31f2c772f9f0395002a31e3f06189574 # v5

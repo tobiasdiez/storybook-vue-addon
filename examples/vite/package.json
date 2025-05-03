@@ -28,7 +28,7 @@
     "@vitejs/plugin-vue": "5.2.1",
     "@vue/tsconfig": "0.7.0",
     "babel-loader": "10.0.0",
-    "npm-run-all2": "7.0.2",
+    "npm-run-all2": "8.0.1",
     "storybook": "8.4.7",
     "storybook-vue-addon": "workspace:*",
     "typescript": "5.7.2",

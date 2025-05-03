@@ -2,23 +2,22 @@
 
 ## [0.6.3](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.2...v0.6.3) (2025-05-03)
 
-
 ### 🧹 Miscellaneous
 
-* **deps:** lock file maintenance ([#146](https://github.com/tobiasdiez/storybook-vue-addon/issues/146)) ([1ea9a23](https://github.com/tobiasdiez/storybook-vue-addon/commit/1ea9a2398b9910cb11eb5b8b14c013d5d9e2d377))
-* **deps:** lock file maintenance ([#150](https://github.com/tobiasdiez/storybook-vue-addon/issues/150)) ([7fd35cd](https://github.com/tobiasdiez/storybook-vue-addon/commit/7fd35cd670655b72ffcc26cd46247ffdc154f94b))
-* **deps:** pin dependencies ([#147](https://github.com/tobiasdiez/storybook-vue-addon/issues/147)) ([b8d4547](https://github.com/tobiasdiez/storybook-vue-addon/commit/b8d454710979d2fb85355ce0e27fc41ebcf0d605))
-* **deps:** update actions/setup-node digest to 49933ea ([#151](https://github.com/tobiasdiez/storybook-vue-addon/issues/151)) ([786d44e](https://github.com/tobiasdiez/storybook-vue-addon/commit/786d44ed55f6188832f4a96b52bef9f6f3142337))
-* **deps:** update chromaui/action digest to 649b4fd ([#149](https://github.com/tobiasdiez/storybook-vue-addon/issues/149)) ([9b76633](https://github.com/tobiasdiez/storybook-vue-addon/commit/9b76633065c0a656edc8d2f31034192eaa729031))
-* **deps:** update chromaui/action digest to e8cc4c3 ([#152](https://github.com/tobiasdiez/storybook-vue-addon/issues/152)) ([0a440f6](https://github.com/tobiasdiez/storybook-vue-addon/commit/0a440f67137cec747163b50b9e26fc33f39d4b55))
-* **deps:** update codecov/codecov-action digest to ad3126e ([#153](https://github.com/tobiasdiez/storybook-vue-addon/issues/153)) ([fcb3821](https://github.com/tobiasdiez/storybook-vue-addon/commit/fcb3821bc51deb3f068c0368c1c0c51a99c951a0))
-* **deps:** update dependency babel-loader to v10 ([#142](https://github.com/tobiasdiez/storybook-vue-addon/issues/142)) ([f09a4e0](https://github.com/tobiasdiez/storybook-vue-addon/commit/f09a4e005df5e7f637163ff86a348f923f4059bc))
-* **deps:** update dependency eslint-config-prettier to v10 ([#137](https://github.com/tobiasdiez/storybook-vue-addon/issues/137)) ([5c267c4](https://github.com/tobiasdiez/storybook-vue-addon/commit/5c267c43d05d865e3be3927543a6ebd28cd4ea0a))
-* **deps:** update dependency npm-run-all2 to v8 ([#154](https://github.com/tobiasdiez/storybook-vue-addon/issues/154)) ([a302592](https://github.com/tobiasdiez/storybook-vue-addon/commit/a3025924148a247215d183b17f799412b6a89663))
-* **deps:** update pnpm to v10 ([#139](https://github.com/tobiasdiez/storybook-vue-addon/issues/139)) ([15c048d](https://github.com/tobiasdiez/storybook-vue-addon/commit/15c048d46c1d396c8b93cb54b92e346cbb81d1f0))
-* **deps:** update pnpm/action-setup action to v4 ([#148](https://github.com/tobiasdiez/storybook-vue-addon/issues/148)) ([044fccd](https://github.com/tobiasdiez/storybook-vue-addon/commit/044fccd98a794c32f0b968826d9ab996bd0351b8))
-* **deps:** update vitest monorepo to v3 ([#138](https://github.com/tobiasdiez/storybook-vue-addon/issues/138)) ([48164df](https://github.com/tobiasdiez/storybook-vue-addon/commit/48164dfc269599f09d19189aa6c4d49b5f766927))
-* update renovate config to use automerge ([#143](https://github.com/tobiasdiez/storybook-vue-addon/issues/143)) ([9e71b94](https://github.com/tobiasdiez/storybook-vue-addon/commit/9e71b94991217b5082cc8bc7901d862fd3efba66))
+- **deps:** lock file maintenance ([#146](https://github.com/tobiasdiez/storybook-vue-addon/issues/146)) ([1ea9a23](https://github.com/tobiasdiez/storybook-vue-addon/commit/1ea9a2398b9910cb11eb5b8b14c013d5d9e2d377))
+- **deps:** lock file maintenance ([#150](https://github.com/tobiasdiez/storybook-vue-addon/issues/150)) ([7fd35cd](https://github.com/tobiasdiez/storybook-vue-addon/commit/7fd35cd670655b72ffcc26cd46247ffdc154f94b))
+- **deps:** pin dependencies ([#147](https://github.com/tobiasdiez/storybook-vue-addon/issues/147)) ([b8d4547](https://github.com/tobiasdiez/storybook-vue-addon/commit/b8d454710979d2fb85355ce0e27fc41ebcf0d605))
+- **deps:** update actions/setup-node digest to 49933ea ([#151](https://github.com/tobiasdiez/storybook-vue-addon/issues/151)) ([786d44e](https://github.com/tobiasdiez/storybook-vue-addon/commit/786d44ed55f6188832f4a96b52bef9f6f3142337))
+- **deps:** update chromaui/action digest to 649b4fd ([#149](https://github.com/tobiasdiez/storybook-vue-addon/issues/149)) ([9b76633](https://github.com/tobiasdiez/storybook-vue-addon/commit/9b76633065c0a656edc8d2f31034192eaa729031))
+- **deps:** update chromaui/action digest to e8cc4c3 ([#152](https://github.com/tobiasdiez/storybook-vue-addon/issues/152)) ([0a440f6](https://github.com/tobiasdiez/storybook-vue-addon/commit/0a440f67137cec747163b50b9e26fc33f39d4b55))
+- **deps:** update codecov/codecov-action digest to ad3126e ([#153](https://github.com/tobiasdiez/storybook-vue-addon/issues/153)) ([fcb3821](https://github.com/tobiasdiez/storybook-vue-addon/commit/fcb3821bc51deb3f068c0368c1c0c51a99c951a0))
+- **deps:** update dependency babel-loader to v10 ([#142](https://github.com/tobiasdiez/storybook-vue-addon/issues/142)) ([f09a4e0](https://github.com/tobiasdiez/storybook-vue-addon/commit/f09a4e005df5e7f637163ff86a348f923f4059bc))
+- **deps:** update dependency eslint-config-prettier to v10 ([#137](https://github.com/tobiasdiez/storybook-vue-addon/issues/137)) ([5c267c4](https://github.com/tobiasdiez/storybook-vue-addon/commit/5c267c43d05d865e3be3927543a6ebd28cd4ea0a))
+- **deps:** update dependency npm-run-all2 to v8 ([#154](https://github.com/tobiasdiez/storybook-vue-addon/issues/154)) ([a302592](https://github.com/tobiasdiez/storybook-vue-addon/commit/a3025924148a247215d183b17f799412b6a89663))
+- **deps:** update pnpm to v10 ([#139](https://github.com/tobiasdiez/storybook-vue-addon/issues/139)) ([15c048d](https://github.com/tobiasdiez/storybook-vue-addon/commit/15c048d46c1d396c8b93cb54b92e346cbb81d1f0))
+- **deps:** update pnpm/action-setup action to v4 ([#148](https://github.com/tobiasdiez/storybook-vue-addon/issues/148)) ([044fccd](https://github.com/tobiasdiez/storybook-vue-addon/commit/044fccd98a794c32f0b968826d9ab996bd0351b8))
+- **deps:** update vitest monorepo to v3 ([#138](https://github.com/tobiasdiez/storybook-vue-addon/issues/138)) ([48164df](https://github.com/tobiasdiez/storybook-vue-addon/commit/48164dfc269599f09d19189aa6c4d49b5f766927))
+- update renovate config to use automerge ([#143](https://github.com/tobiasdiez/storybook-vue-addon/issues/143)) ([9e71b94](https://github.com/tobiasdiez/storybook-vue-addon/commit/9e71b94991217b5082cc8bc7901d862fd3efba66))
 
 ## [0.6.2](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.1...v0.6.2) (2024-12-18)
 

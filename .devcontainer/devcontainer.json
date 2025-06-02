@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/ubuntu
 {
   "name": "Ubuntu",
-  "image": "mcr.microsoft.com/vscode/devcontainers/base:1-ubuntu-22.04",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:2-ubuntu-22.04",
 
   "onCreateCommand": "corepack enable && pnpm install",
 

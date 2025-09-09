@@ -4,6 +4,7 @@ import { format as prettierFormat } from 'prettier'
 import type { SFCScriptBlock } from 'vue/compiler-sfc'
 import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import { ParsedMeta, ParsedStory, parse } from './parser'
+import ts from 'typescript'
 
 /**
  * Transforms a vue single-file-component into Storybook's Component Story Format (CSF).
@@ -14,7 +15,18 @@ export async function transform(code: string) {
   const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
     const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
+    let content: string = resolvedScript.content
+
+    if (isTS) {
+      content = ts.transpileModule(resolvedScript.content, {
+        compilerOptions: {
+          target: ts.ScriptTarget.ESNext,
+          module: ts.ModuleKind.ESNext,
+        },
+      }).outputText
+    }
+
+    result += rewriteDefault(content, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {}\n'

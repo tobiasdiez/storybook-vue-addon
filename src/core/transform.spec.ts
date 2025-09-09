@@ -378,7 +378,7 @@ describe('transform', () => {
       `
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
-      "function playFunction({ canvasElement }: any) {
+      "function playFunction({ canvasElement }) {
         console.log("playFunction");
       }
 
@@ -430,11 +430,9 @@ describe('transform', () => {
       "import { defineComponent as _defineComponent } from "vue";
       const headingText = "Hello";
       const paragraph = "World";
-
       const _sfc_main = _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
-
           const __returned__ = { headingText, paragraph };
           Object.defineProperty(__returned__, "__isScriptSetup", {
             enumerable: false,
@@ -443,6 +441,7 @@ describe('transform', () => {
           return __returned__;
         },
       });
+
       export default {
         //decorators: [ ... ],
         parameters: {},
@@ -508,6 +507,66 @@ describe('transform', () => {
                   <p>{{ paragraph }}</p>\`,
           },
         },
+      };
+      "
+    `)
+  })
+
+  it('should transpile typescript inside script with lang="ts"', async () => {
+    const code = `
+      <template>
+        <Stories>
+          <Story title="Primary">
+            <p>{{ paragraph }}</p>
+          </Story>
+        </Stories>
+      </template>
+
+      <script setup lang="ts">
+        const paragraph: string = 'World';
+      </script>
+      `
+
+    const result = await transform(code)
+
+    expect(result).toMatchInlineSnapshot(`
+      "import { defineComponent as _defineComponent } from "vue";
+      const paragraph = "World";
+      const _sfc_main = _defineComponent({
+        setup(__props, { expose: __expose }) {
+          __expose();
+          const __returned__ = { paragraph };
+          Object.defineProperty(__returned__, "__isScriptSetup", {
+            enumerable: false,
+            value: true,
+          });
+          return __returned__;
+        },
+      });
+
+      export default {
+        //decorators: [ ... ],
+        parameters: {},
+      };
+
+      import {
+        createElementBlock as _createElementBlock,
+        openBlock as _openBlock,
+        toDisplayString as _toDisplayString,
+      } from "vue";
+
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return (
+          _openBlock(),
+          _createElementBlock("p", null, _toDisplayString($setup.paragraph))
+        );
+      }
+      export const Primary = () =>
+        Object.assign({ render: renderPrimary }, _sfc_main);
+      Primary.storyName = "Primary";
+
+      Primary.parameters = {
+        docs: { source: { code: \`<p>{{ paragraph }}</p>\` } },
       };
       "
     `)

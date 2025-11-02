@@ -4,6 +4,7 @@ import { indexer } from './core/indexer'
 
 export const viteFinal: StorybookConfig['viteFinal'] = (config) => {
   config.plugins = config.plugins || []
+  // @ts-expect-error: mismatch of nuxt vs storybook types
   config.plugins.unshift(VitePlugin({}))
   return config
 }

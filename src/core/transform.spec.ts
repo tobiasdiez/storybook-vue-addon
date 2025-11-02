@@ -199,7 +199,7 @@ describe('transform', () => {
       function renderPrimary(_ctx, _cache) {
         const _component_Button = _resolveComponent("Button");
 
-        return _openBlock(), _createBlock(_component_Button);
+        return (_openBlock(), _createBlock(_component_Button));
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);
@@ -212,7 +212,7 @@ describe('transform', () => {
       function renderSecondary(_ctx, _cache) {
         const _component_Button = _resolveComponent("Button");
 
-        return _openBlock(), _createBlock(_component_Button);
+        return (_openBlock(), _createBlock(_component_Button));
       }
       export const Secondary = () =>
         Object.assign({ render: renderSecondary }, _sfc_main);
@@ -268,7 +268,7 @@ describe('transform', () => {
       import { createBlock as _createBlock, openBlock as _openBlock } from "vue";
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return _openBlock(), _createBlock($setup["test"]);
+        return (_openBlock(), _createBlock($setup["test"]));
       }
       export const Primary = () =>
         Object.assign({ render: renderPrimary }, _sfc_main);

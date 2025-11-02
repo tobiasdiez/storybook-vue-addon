@@ -1,5 +1,5 @@
 <script setup>
-import { userEvent, within, expect } from '@storybook/test'
+import { userEvent, within, expect } from 'storybook/test'
 import LoginForm from '../components/LoginForm.vue'
 </script>
 

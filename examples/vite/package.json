@@ -15,14 +15,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.28.5",
-    "@storybook/addon-actions": "9.0.8",
-    "@storybook/addon-essentials": "8.6.14",
-    "@storybook/addon-interactions": "8.6.14",
     "@storybook/addon-links": "10.0.2",
-    "@storybook/addon-mdx-gfm": "8.6.14",
-    "@storybook/blocks": "8.6.14",
-    "@storybook/test": "8.6.14",
-    "@storybook/vue3": "10.0.2",
     "@storybook/vue3-vite": "10.0.2",
     "@types/node": "24.9.2",
     "@vitejs/plugin-vue": "6.0.1",
@@ -34,6 +27,8 @@
     "typescript": "5.9.3",
     "vite": "7.1.12",
     "vue-loader": "17.4.2",
-    "vue-tsc": "3.1.2"
+    "vue-tsc": "3.1.2",
+    "eslint-plugin-storybook": "10.0.2",
+    "@storybook/addon-docs": "10.0.2"
   }
 }

@@ -35,7 +35,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [18.x, 20.x, 22.x]
+        node: [20.x, 22.x, 24.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
@@ -67,7 +67,7 @@ jobs:
         run: pnpm run example:vite:build
 
       - name: Publish and test example Storybook
-        if: matrix.node == '18.x' && matrix.os == 'ubuntu-latest'
+        if: matrix.node == '20.x' && matrix.os == 'ubuntu-latest'
         uses: chromaui/action@ac86f2ff0a458ffbce7b40698abd44c0fa34d4b6 # v13
         with:
           projectToken: '574df7cc3736'
@@ -77,5 +77,5 @@ jobs:
           debug: true
 
       - name: Upload coverage
-        if: matrix.node == '18.x' && matrix.os == 'ubuntu-latest'
+        if: matrix.node == '20.x' && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5

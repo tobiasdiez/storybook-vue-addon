@@ -9,7 +9,7 @@
   // "remoteUser": "vscode",
   "features": {
     // For config options, see https://github.com/devcontainers/features/tree/main/src/node
-    "ghcr.io/devcontainers/features/node:1": "18"
+    "ghcr.io/devcontainers/features/node:1": "20"
   },
   "customizations": {
     "vscode": {

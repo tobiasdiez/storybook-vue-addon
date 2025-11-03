@@ -28,7 +28,6 @@
     "vite": "7.1.12",
     "vue-loader": "17.4.2",
     "vue-tsc": "3.1.2",
-    "eslint-plugin-storybook": "10.0.2",
     "@storybook/addon-docs": "10.0.2"
   }
 }

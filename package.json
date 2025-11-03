@@ -102,10 +102,10 @@
   "peerDependencies": {
     "@nuxt/kit": "^3 || ^4.0.0",
     "@nuxt/schema": "^3 || ^4.0.0",
+    "@storybook/vue3-vite": "10.0.2",
     "esbuild": "*",
     "rollup": "^3 || ^4.0.0",
     "storybook": "^10.0.2",
-    "@storybook/vue3-vite": "10.0.2",
     "vite": "^4.3.1 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "vue": "^3.2.47",
     "webpack": "^4 || ^5"
@@ -133,6 +133,7 @@
   "devDependencies": {
     "@nuxt/kit": "4.2.0",
     "@nuxt/schema": "4.2.0",
+    "@storybook/vue3-vite": "10.0.2",
     "@types/node": "24.9.2",
     "@types/prettier": "3.0.0",
     "@vitest/coverage-v8": "4.0.6",
@@ -144,10 +145,9 @@
     "fast-glob": "3.3.3",
     "jiti": "2.6.1",
     "nodemon": "3.1.10",
-    "storybook": "^10.0.2",
-    "@storybook/vue3-vite": "10.0.2",
     "rimraf": "6.1.0",
     "rollup": "4.52.5",
+    "storybook": "^10.0.2",
     "tsup": "8.5.0",
     "typescript": "5.9.3",
     "vite": "7.1.12",

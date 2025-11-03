@@ -14,7 +14,7 @@ import MyButton from '../components/Button.vue'
 </template>
 
 <docs lang="md">
-import { Canvas } from '@storybook/blocks';
+import { Canvas } from '@storybook/addon-docs/blocks';
 
 # Documentation
 

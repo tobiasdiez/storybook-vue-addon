@@ -6,7 +6,7 @@ import {
   parse as parseSFC,
 } from 'vue/compiler-sfc'
 
-import { sanitize } from '@storybook/csf'
+import { sanitize } from 'storybook/internal/csf'
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228

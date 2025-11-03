@@ -14,7 +14,6 @@
     "vue",
     "storybook",
     "storybook-addon",
-    "storybook-addons",
     "unplugin",
     "vite",
     "webpack"
@@ -22,62 +21,50 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     },
     "./preset": {
       "types": "./dist/storybook.d.ts",
-      "require": "./dist/storybook.cjs",
       "import": "./dist/storybook.js"
     },
     "./astro": {
       "types": "./dist/astro.d.ts",
-      "import": "./dist/astro.js",
-      "require": "./dist/astro.cjs"
+      "import": "./dist/astro.js"
     },
     "./rspack": {
       "types": "./dist/rspack.d.ts",
-      "import": "./dist/rspack.js",
-      "require": "./dist/rspack.cjs"
+      "import": "./dist/rspack.js"
     },
     "./vite": {
       "types": "./dist/vite.d.ts",
-      "require": "./dist/vite.cjs",
       "import": "./dist/vite.js"
     },
     "./webpack": {
       "types": "./dist/webpack.d.ts",
-      "require": "./dist/webpack.cjs",
       "import": "./dist/webpack.js"
     },
     "./rollup": {
       "types": "./dist/rollup.d.ts",
-      "require": "./dist/rollup.cjs",
       "import": "./dist/rollup.js"
     },
     "./esbuild": {
       "types": "./dist/esbuild.d.ts",
-      "require": "./dist/esbuild.cjs",
       "import": "./dist/esbuild.js"
     },
     "./nuxt": {
       "types": "./dist/nuxt.d.ts",
-      "require": "./dist/nuxt.cjs",
       "import": "./dist/nuxt.js"
     },
     "./types": {
       "types": "./dist/types.d.ts",
-      "require": "./dist/types.cjs",
       "import": "./dist/types.js"
     },
     "./core": {
       "types": "./dist/core/index.d.ts",
-      "require": "./dist/core/index.cjs",
       "import": "./dist/core/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typesVersions": {
@@ -96,7 +83,6 @@
     "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
-    "build:fix": "jiti scripts/postbuild.ts",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --report-unused-disable-directives .",
     "lint:prettier": "prettier --check --ignore-path .gitignore . \"!pnpm-lock.yaml\"",
@@ -107,7 +93,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@storybook/csf": "^0.1.1",
     "@storybook/mdx2-csf": "^1.1.0",
     "consola": "^3.2.3",
     "prettier": "^3.0.3",
@@ -117,8 +102,10 @@
   "peerDependencies": {
     "@nuxt/kit": "^3 || ^4.0.0",
     "@nuxt/schema": "^3 || ^4.0.0",
+    "@storybook/vue3-vite": "^10.0.0",
     "esbuild": "*",
     "rollup": "^3 || ^4.0.0",
+    "storybook": "^10.0.0",
     "vite": "^4.3.1 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "vue": "^3.2.47",
     "webpack": "^4 || ^5"
@@ -146,7 +133,7 @@
   "devDependencies": {
     "@nuxt/kit": "4.2.0",
     "@nuxt/schema": "4.2.0",
-    "@storybook/types": "8.6.14",
+    "@storybook/vue3-vite": "10.0.2",
     "@types/node": "24.10.0",
     "@types/prettier": "3.0.0",
     "@vitest/coverage-v8": "4.0.6",
@@ -160,6 +147,7 @@
     "nodemon": "3.1.10",
     "rimraf": "6.1.0",
     "rollup": "4.52.5",
+    "storybook": "^10.0.2",
     "tsup": "8.5.0",
     "typescript": "5.9.3",
     "vite": "7.1.12",

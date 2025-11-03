@@ -1,7 +1,6 @@
 import type { StorybookConfig } from '@storybook/vue3-vite'
 import VitePlugin from './vite'
 import { indexer } from './core/indexer'
-import { definePreviewAddon } from 'storybook/internal/csf'
 
 export const viteFinal: StorybookConfig['viteFinal'] = (config) => {
   config.plugins = config.plugins || []
@@ -23,4 +22,3 @@ export const experimental_indexers: StorybookConfig['experimental_indexers'] = (
   ]
 }
 
-export default definePreviewAddon({})

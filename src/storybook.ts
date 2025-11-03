@@ -23,4 +23,4 @@ export const experimental_indexers: StorybookConfig['experimental_indexers'] = (
   ]
 }
 
-export default () => definePreviewAddon({})
+export default definePreviewAddon({})

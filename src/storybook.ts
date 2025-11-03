@@ -21,4 +21,3 @@ export const experimental_indexers: StorybookConfig['experimental_indexers'] = (
     ...(indexers || []),
   ]
 }
-

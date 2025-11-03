@@ -135,7 +135,6 @@
     "@nuxt/schema": "4.2.0",
     "@storybook/vue3-vite": "10.0.2",
     "@types/node": "24.10.0",
-    "@types/prettier": "3.0.0",
     "@vitest/coverage-v8": "4.0.6",
     "cross-env": "10.1.0",
     "eslint": "9.39.0",

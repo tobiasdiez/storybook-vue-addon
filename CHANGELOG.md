@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.6.4](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.3...v0.6.4) (2025-11-05)
+
+### 🧹 Miscellaneous
+
+- **deps:** pin dependency storybook to 10.0.2 ([#196](https://github.com/tobiasdiez/storybook-vue-addon/issues/196)) ([1a9ee58](https://github.com/tobiasdiez/storybook-vue-addon/commit/1a9ee58119549ade5c51e5d3db6cce1fd2456f8b))
+- **deps:** remove @types/prettier (prettier provides its own types) ([#197](https://github.com/tobiasdiez/storybook-vue-addon/issues/197)) ([429b173](https://github.com/tobiasdiez/storybook-vue-addon/commit/429b1733f4f806dd1d8fc0236769f8260209a021))
+- **deps:** update all non-major dependencies ([#194](https://github.com/tobiasdiez/storybook-vue-addon/issues/194)) ([c75186c](https://github.com/tobiasdiez/storybook-vue-addon/commit/c75186ced0f1e347f168e89ef627caa90af6443c))
+- **deps:** update all non-major dependencies to v10.0.3 ([#198](https://github.com/tobiasdiez/storybook-vue-addon/issues/198)) ([408cd5c](https://github.com/tobiasdiez/storybook-vue-addon/commit/408cd5cdcf991066363988c5d52a4d36770ba1cc))
+- **deps:** update all non-major dependencies to v10.0.4 ([#200](https://github.com/tobiasdiez/storybook-vue-addon/issues/200)) ([11ecab2](https://github.com/tobiasdiez/storybook-vue-addon/commit/11ecab2cfd2000d9869b2f1b7dce36614b831e8b))
+- **deps:** update all non-major dependencies to v10.0.5 ([#203](https://github.com/tobiasdiez/storybook-vue-addon/issues/203)) ([7f5cec9](https://github.com/tobiasdiez/storybook-vue-addon/commit/7f5cec97b8e682d8079646cdf92945fc0105587b))
+- **deps:** update all non-major dependencies to v4.0.7 ([#201](https://github.com/tobiasdiez/storybook-vue-addon/issues/201)) ([7a08675](https://github.com/tobiasdiez/storybook-vue-addon/commit/7a086757a46da6c81482033142ce105572e5b726))
+- **deps:** update dependency eslint to v9.39.1 ([#199](https://github.com/tobiasdiez/storybook-vue-addon/issues/199)) ([fd99c0e](https://github.com/tobiasdiez/storybook-vue-addon/commit/fd99c0e751f09d225a399d8fa8bf9f4ca27d98cd))
+- **deps:** update dependency vite to v7.2.0 ([#202](https://github.com/tobiasdiez/storybook-vue-addon/issues/202)) ([68d995e](https://github.com/tobiasdiez/storybook-vue-addon/commit/68d995e9b8117703d3c3c6eac0937dacada8b566))
+- **deps:** update storybook monorepo (major) ([#160](https://github.com/tobiasdiez/storybook-vue-addon/issues/160)) ([0496c30](https://github.com/tobiasdiez/storybook-vue-addon/commit/0496c30a37dae083711e5aa8ccb2ce536ba5242e))
+
 ## [0.6.3](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.2...v0.6.3) (2025-11-02)
 
 ### 🧹 Miscellaneous

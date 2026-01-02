@@ -2,7 +2,7 @@
   "name": "storybook-vue-addon",
   "type": "module",
   "version": "0.6.3",
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.27.0",
   "description": "Storybook stories in native Vue format",
   "license": "MIT",
   "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",

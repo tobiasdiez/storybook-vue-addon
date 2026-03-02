@@ -137,7 +137,7 @@
     "@types/node": "24.10.4",
     "@vitest/coverage-v8": "4.0.16",
     "cross-env": "10.1.0",
-    "eslint": "9.39.2",
+    "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-unjs": "0.5.0",
     "eslint-plugin-unused-imports": "4.3.0",

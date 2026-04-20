@@ -24,7 +24,7 @@
     "npm-run-all2": "8.0.4",
     "storybook": "10.1.11",
     "storybook-vue-addon": "workspace:*",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "vite": "8.0.3",
     "vue-loader": "17.4.2",
     "vue-tsc": "3.2.1",

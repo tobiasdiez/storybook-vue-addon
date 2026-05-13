@@ -1,17 +1,15 @@
-import { IndexerOptions, IndexInput } from '@storybook/types'
+import type { IndexInput, IndexerOptions } from '@storybook/types'
 import { parse } from './parser'
 import fs from 'node:fs/promises'
 
-export async function indexer(
-  fileName: string,
-  options: IndexerOptions,
-): Promise<IndexInput[]> {
-  const code = (await fs.readFile(fileName, { encoding: 'utf8' })).toString()
+export async function indexer(fileName: string, options: IndexerOptions): Promise<IndexInput[]> {
+  const code = await fs.readFile(fileName, { encoding: 'utf8' })
   return indexerCode(code, { ...options, fileName })
 }
 
 export function indexerCode(
   code: string,
+  // oxlint-disable-next-line no-redundant-type-constituents
   { makeTitle, fileName }: IndexerOptions & { fileName: string },
 ): IndexInput[] {
   const { meta, stories, docs } = parse(code)
@@ -38,12 +36,12 @@ export function indexerCode(
     tags.push('autodocs')
   }
   const indexedStories: IndexInput[] = stories.map(({ id, title }) => ({
-    type: 'story',
-    importPath: fileName,
     exportName: id,
+    importPath: fileName,
     name: title,
+    tags,
     title: makeTitle(meta.title),
-    tags: tags,
+    type: 'story',
   }))
   return indexedStories
 }

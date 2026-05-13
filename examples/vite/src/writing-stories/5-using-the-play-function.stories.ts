@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { userEvent, within, expect } from 'storybook/test'
+import { expect, userEvent, within } from 'storybook/test'
 
 import LoginForm from '../components/LoginForm.vue'
 
 const meta: Meta<typeof LoginForm> = {
-  title: 'docs/5. Using the play function/classical',
   component: LoginForm,
+  title: 'docs/5. Using the play function/classical',
 }
 
 export default meta
@@ -24,10 +24,6 @@ export const EmptyForm: Story = {
  * to learn more about using the canvasElement to query the DOM
  */
 export const FilledForm: Story = {
-  render: () => ({
-    components: { LoginForm },
-    template: `<LoginForm />`,
-  }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
@@ -46,4 +42,8 @@ export const FilledForm: Story = {
       ),
     ).toBeInTheDocument()
   },
+  render: () => ({
+    components: { LoginForm },
+    template: `<LoginForm />`,
+  }),
 }

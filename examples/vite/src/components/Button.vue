@@ -1,42 +1,38 @@
 <template>
-  <button
-    type="button"
-    :class="classes"
-    :style="style"
-    @click="onClick"
-  >
+  <button type="button" :class="classes" :style="style" @click="onClick">
     {{ label }}
   </button>
 </template>
 
 <script>
+// oxlint-disable-next-line import/no-unassigned-import
 import './button.css'
-import { reactive, computed } from 'vue'
+import { computed, reactive } from 'vue'
 
 export default {
+  emits: ['click'],
+
   name: 'MyButton',
 
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    primary: {
-      type: Boolean,
-      default: false,
-    },
-    size: {
-      type: String,
-      validator: function (value) {
-        return ['small', 'medium', 'large'].includes(value)
-      },
-    },
     backgroundColor: {
       type: String,
     },
+    label: {
+      required: true,
+      type: String,
+    },
+    primary: {
+      default: false,
+      type: Boolean,
+    },
+    size: {
+      type: String,
+      validator(value) {
+        return ['small', 'medium', 'large'].includes(value)
+      },
+    },
   },
-
-  emits: ['click'],
 
   setup(props, { emit }) {
     props = reactive(props)
@@ -47,12 +43,12 @@ export default {
         'storybook-button--secondary': !props.primary,
         [`storybook-button--${props.size || 'medium'}`]: true,
       })),
-      style: computed(() => ({
-        backgroundColor: props.backgroundColor,
-      })),
       onClick() {
         emit('click')
       },
+      style: computed(() => ({
+        backgroundColor: props.backgroundColor,
+      })),
     }
   },
 }

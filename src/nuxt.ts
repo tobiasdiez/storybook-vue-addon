@@ -8,11 +8,11 @@ import type * as _ from '@nuxt/schema'
 export interface ModuleOptions extends Options {}
 
 export default defineNuxtModule<ModuleOptions>({
-  meta: {
-    name: 'nuxt-unplugin-starter',
-    configKey: 'unpluginStarter',
-  },
   defaults: {},
+  meta: {
+    configKey: 'unpluginStarter',
+    name: 'nuxt-unplugin-starter',
+  },
   setup(options, _nuxt) {
     addVitePlugin(() => vite(options))
     addWebpackPlugin(() => webpack(options))

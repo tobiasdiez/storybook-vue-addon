@@ -30,8 +30,8 @@ const Template = (args) => ({
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Primary.args = {
-  primary: true,
   label: 'Button',
+  primary: true,
 }
 
 export const Secondary = Template.bind({})
@@ -41,12 +41,12 @@ Secondary.args = {
 
 export const Large = Template.bind({})
 Large.args = {
-  size: 'large',
   label: 'Button',
+  size: 'large',
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  size: 'small',
   label: 'Button',
+  size: 'small',
 }

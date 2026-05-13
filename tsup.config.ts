@@ -1,9 +1,9 @@
 import type { Options } from 'tsup'
 
-export default <Options>{
-  entryPoints: ['src/*.ts', 'src/core/index.ts'],
+export default {
   clean: true,
-  format: ['esm'],
   dts: true,
+  entryPoints: ['src/*.ts', 'src/core/index.ts'],
+  format: ['esm'],
   splitting: true,
-}
+} as Options

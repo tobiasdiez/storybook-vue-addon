@@ -1,23 +1,35 @@
 {
   "name": "storybook-vue-addon",
-  "type": "module",
   "version": "0.6.4",
-  "packageManager": "pnpm@10.27.0",
   "description": "Storybook stories in native Vue format",
-  "license": "MIT",
-  "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
-  "repository": "github:tobiasdiez/unplugin-storybook-vue",
-  "bugs": {
-    "url": "https://github.com/tobiasdiez/unplugin-storybook-vue/issues"
-  },
   "keywords": [
-    "vue",
     "storybook",
     "storybook-addon",
     "unplugin",
     "vite",
+    "vue",
     "webpack"
   ],
+  "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
+  "bugs": {
+    "url": "https://github.com/tobiasdiez/unplugin-storybook-vue/issues"
+  },
+  "license": "MIT",
+  "repository": "github:tobiasdiez/unplugin-storybook-vue",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -65,19 +77,9 @@
     },
     "./package.json": "./package.json"
   },
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./*"
-      ]
-    }
+  "publishConfig": {
+    "access": "public"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsup",
     "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
@@ -98,6 +100,30 @@
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^4.0.0",
     "unplugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/kit": "4.2.2",
+    "@nuxt/schema": "4.2.2",
+    "@storybook/vue3-vite": "10.1.11",
+    "@types/node": "24.10.4",
+    "@vitest/coverage-v8": "4.0.16",
+    "cross-env": "10.1.0",
+    "fast-glob": "3.3.3",
+    "jiti": "2.6.1",
+    "nodemon": "3.1.11",
+    "oxfmt": "0.49.0",
+    "oxlint": "1.64.0",
+    "oxlint-tsgolint": "0.22.1",
+    "rimraf": "6.1.2",
+    "rollup": "4.54.0",
+    "storybook": "10.1.11",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.3",
+    "vitest": "4.0.16",
+    "vue": "3.5.26",
+    "vue-tsc": "3.2.1",
+    "webpack": "5.104.1"
   },
   "peerDependencies": {
     "@nuxt/kit": "^3 || ^4.0.0",
@@ -130,30 +156,10 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@nuxt/kit": "4.2.2",
-    "@nuxt/schema": "4.2.2",
-    "@storybook/vue3-vite": "10.1.11",
-    "@types/node": "24.10.4",
-    "@vitest/coverage-v8": "4.0.16",
-    "cross-env": "10.1.0",
-    "fast-glob": "3.3.3",
-    "jiti": "2.6.1",
-    "nodemon": "3.1.11",
-    "oxfmt": "0.49.0",
-    "oxlint": "1.64.0",
-    "oxlint-tsgolint": "0.22.1",
-    "rimraf": "6.1.2",
-    "rollup": "4.54.0",
-    "storybook": "10.1.11",
-    "tsup": "8.5.1",
-    "typescript": "5.9.3",
-    "vite": "8.0.3",
-    "vitest": "4.0.16",
-    "vue": "3.5.26",
-    "vue-tsc": "3.2.1",
-    "webpack": "5.104.1"
+  "engines": {
+    "node": ">=20.0.0"
   },
+  "packageManager": "pnpm@10.27.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
@@ -161,12 +167,6 @@
         "@vue/compiler-sfc"
       ]
     }
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=20.0.0"
   },
   "storybook": {
     "displayName": "Vue CSF",

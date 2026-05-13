@@ -35,13 +35,13 @@ jobs:
 
       - name: Format CHANGELOG.md
         if: ${{ steps.release.outputs.pr }}
-        run: npx prettier --write CHANGELOG.md .release-please-manifest.json
+        run: npx oxfmt --write CHANGELOG.md .release-please-manifest.json
 
       - name: Commit
         if: ${{ steps.release.outputs.pr }}
         run: |
           git add CHANGELOG.md .release-please-manifest.json
-          git commit -m 'chore: Format CHANGELOG.md with Prettier' --no-verify
+          git commit -m 'chore: Format CHANGELOG.md' --no-verify
 
       - name: Push changes
         if: ${{ steps.release.outputs.pr }}

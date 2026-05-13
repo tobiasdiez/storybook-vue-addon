@@ -3,8 +3,7 @@ import { transform } from './transform'
 
 describe('transform', () => {
   it('handles one simple story', async () => {
-    const code =
-      '<template><Stories><Story title="Primary">hello</Story></Stories></template>'
+    const code = '<template><Stories><Story title="Primary">hello</Story></Stories></template>'
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
@@ -26,6 +25,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('extracts title from Stories', async () => {
     const code =
       '<template><Stories title="test"><Story title="Primary">hello</Story></Stories></template>'
@@ -52,14 +52,14 @@ describe('transform', () => {
       "
     `)
   })
+
   it('throws error if story does not have a title', async () => {
     const code = '<template><Stories><Story>hello</Story></Stories></template>'
-    await expect(() =>
-      transform(code),
-    ).rejects.toThrowErrorMatchingInlineSnapshot(
+    await expect(async () => transform(code)).rejects.toThrowErrorMatchingInlineSnapshot(
       `[Error: Story is missing a title]`,
     )
   })
+
   it('extracts component from Stories', async () => {
     const code =
       '<script>const MyComponent = {}</script><template><Stories :component="MyComponent"><Story title="Primary">hello</Story></Stories></template>'
@@ -86,6 +86,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('handles title with spaces', async () => {
     const code =
       '<template><Stories><Story title="Primary story">hello</Story></Stories></template>'
@@ -110,6 +111,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('handles comment before stories tag', async () => {
     const code =
       '<template><!-- comment --><Stories><Story title="Primary">hello</Story></Stories></template>'
@@ -134,6 +136,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('handles multiple stories', async () => {
     const code = `
       <template>
@@ -174,6 +177,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('combines helper imports for multiple stories', async () => {
     const code = `
       <template>
@@ -224,6 +228,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('supports components defined in script setup', async () => {
     const code = `
       <script setup>
@@ -280,6 +285,7 @@ describe('transform', () => {
       "
     `)
   })
+
   it('supports docs blocks', async () => {
     const code = `
       <template>

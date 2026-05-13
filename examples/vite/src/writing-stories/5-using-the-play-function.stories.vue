@@ -1,5 +1,5 @@
 <script setup>
-import { userEvent, within, expect } from 'storybook/test'
+import { expect, userEvent, within } from 'storybook/test'
 import LoginForm from '../components/LoginForm.vue'
 </script>
 
@@ -29,17 +29,11 @@ async function playFunction({ canvasElement }) {
 </script>
 
 <template>
-  <Stories
-    title="docs/5. Using the play function/native"
-    :component="LoginForm"
-  >
+  <Stories title="docs/5. Using the play function/native" :component="LoginForm">
     <Story title="Empty Form">
       <LoginForm />
     </Story>
-    <Story
-      title="Filled Form"
-      :play="playFunction"
-    >
+    <Story title="Filled Form" :play="playFunction">
       <LoginForm />
     </Story>
   </Stories>

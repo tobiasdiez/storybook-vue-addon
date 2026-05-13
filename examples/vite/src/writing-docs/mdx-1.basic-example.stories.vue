@@ -2,10 +2,7 @@
 import Checkbox from '../components/Checkbox.vue'
 </script>
 <template>
-  <Stories
-    :component="Checkbox"
-    title="docs/Writing docs/MDX/1. Basic Example/native"
-  >
+  <Stories :component="Checkbox" title="docs/Writing docs/MDX/1. Basic Example/native">
     <Story title="Unchecked">
       <Checkbox label="Unchecked" />
     </Story>

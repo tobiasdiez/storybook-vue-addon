@@ -1,11 +1,6 @@
 <template>
   <div class="checkbox">
-    <input
-      type="checkbox"
-      :checked="checked"
-      :disabled="disabled"
-      @change="onChange"
-    />
+    <input type="checkbox" :checked="checked" :disabled="disabled" @change="onChange" />
     <label>{{ label }}</label>
   </div>
 </template>
@@ -13,19 +8,19 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
   checked: {
-    type: Boolean,
-    required: false,
     default: false,
+    required: false,
+    type: Boolean,
   },
   disabled: {
-    type: Boolean,
-    required: false,
     default: false,
+    required: false,
+    type: Boolean,
+  },
+  label: {
+    required: true,
+    type: String,
   },
 })
 

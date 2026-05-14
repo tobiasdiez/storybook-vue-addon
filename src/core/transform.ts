@@ -14,7 +14,10 @@ export async function transform(code: string) {
   const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
     const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
+    const sanitizedScriptContent = isTS
+      ? stripTypeOnlyDeclarations(resolvedScript.content)
+      : resolvedScript.content
+    result += rewriteDefault(sanitizedScriptContent, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {};\n'
@@ -172,4 +175,11 @@ ${id}.parameters = {
 `
 
   return { code: storyCode, storyImports: imports }
+}
+
+function stripTypeOnlyDeclarations(scriptContent: string): string {
+  // Type-only declarations are not valid in plain JavaScript output.
+  return scriptContent
+    .replace(/^\s*import\s+type\s+[\s\S]*?from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
+    .replace(/^\s*export\s+type\s+[\s\S]*?;?\s*$/gm, '')
 }

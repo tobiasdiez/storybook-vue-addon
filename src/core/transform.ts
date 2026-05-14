@@ -85,9 +85,24 @@ async function transformTemplate(
   resolvedScript?: SFCScriptBlock,
 ) {
   let result = generateDefaultImport(meta, docs)
+
+  // Collect all imports and story code separately
+  const imports = new Set<string>()
+  let storyCode = ''
+
   for (const story of stories) {
-    result += generateStoryImport(story, resolvedScript)
+    const { code, storyImports } = generateStoryImport(story, resolvedScript)
+    storyImports.forEach(imp => imports.add(imp))
+    storyCode += code
   }
+
+  // Add all collected imports at the top
+  if (imports.size > 0) {
+    result += Array.from(imports).join('\n') + '\n\n'
+  }
+
+  result += storyCode
+
   if (docs) {
     let mdx = await compileMdx(docs, { skipCsf: true })
     mdx = mdx.replace('export default MDXContent;', '')
@@ -111,11 +126,11 @@ function generateDefaultImport({ title, component }: ParsedMeta, docs?: string) 
 function generateStoryImport(
   { id, title, play, template }: ParsedStory,
   resolvedScript?: SFCScriptBlock,
-) {
+): { code: string; storyImports: string[] } {
   const { code } = compileTemplate({
     compilerOptions: {
       bindingMetadata: resolvedScript?.bindings,
-      // prevent the hoisting of static variables since that would
+      // Prevent the hoisting of static variables since that would
       // result in clashing variable names when the same HTML Tags are used in multiple stories within the same `*.stories.vue` file.
       hoistStatic: false,
     },
@@ -124,13 +139,26 @@ function generateStoryImport(
     source: template.trim(),
   })
 
+  // Extract import statements from the compiled code
+  const importRegex = /^import\s+.*?["'][^"']*["'];?$/gm
+  const imports: string[] = []
+  let codeWithoutImports = code
+
+  let match
+  while ((match = importRegex.exec(code)) !== null) {
+    imports.push(match[0])
+  }
+
+  // Remove all import statements from the code
+  codeWithoutImports = code.replace(importRegex, '').replace(/^\s*\n/gm, '')
+
   // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')
   id = id.charAt(0).toUpperCase() + id.slice(1)
 
-  const renderFunction = code.replace('export function render', `function render${id}`)
+  const renderFunction = codeWithoutImports.replace('export function render', `function render${id}`)
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
-  return `
+  const storyCode = `
 ${renderFunction}
 export const ${id} = () => Object.assign({render: render${id}}, _sfc_main);
 ${id}.storyName = '${title}';
@@ -139,6 +167,8 @@ ${id}.parameters = {
   docs: { source: { code: \`${template.trim()}\` } },
 };
 `
+
+  return { code: storyCode, storyImports: imports }
 }
 
 

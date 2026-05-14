@@ -92,7 +92,7 @@ async function transformTemplate(
 
   for (const story of stories) {
     const { code, storyImports } = generateStoryImport(story, resolvedScript)
-    storyImports.forEach(imp => imports.add(imp))
+    storyImports.forEach((imp) => imports.add(imp))
     storyCode += code
   }
 
@@ -155,7 +155,10 @@ function generateStoryImport(
   // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')
   id = id.charAt(0).toUpperCase() + id.slice(1)
 
-  const renderFunction = codeWithoutImports.replace('export function render', `function render${id}`)
+  const renderFunction = codeWithoutImports.replace(
+    'export function render',
+    `function render${id}`,
+  )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   const storyCode = `
@@ -170,5 +173,3 @@ ${id}.parameters = {
 
   return { code: storyCode, storyImports: imports }
 }
-
-

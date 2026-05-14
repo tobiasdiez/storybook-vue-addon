@@ -8,14 +8,14 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -37,13 +37,13 @@ describe('transform', () => {
       "const _sfc_main = {};
       export default {
           title: 'test',
-
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -72,14 +72,14 @@ describe('transform', () => {
       "const MyComponent = {}
       const _sfc_main = {}
       export default {
-
+          
           component: MyComponent,
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return "hello"
       }
@@ -100,14 +100,14 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary_story(_ctx, _cache) {
         return "hello"
       }
@@ -128,14 +128,14 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -161,14 +161,14 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -204,11 +204,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
         import { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from "vue"
@@ -267,7 +267,7 @@ describe('transform', () => {
               },
               template: '<span>{{a}}</span>'
             }
-
+            
       const __returned__ = { test }
       Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })
       return __returned__
@@ -275,11 +275,11 @@ describe('transform', () => {
 
       }
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
         import { openBlock as _openBlock, createBlock as _createBlock } from "vue"
@@ -316,14 +316,14 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
             docs: { page: MDXContent },
           }
         }
-
+        
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -382,17 +382,17 @@ describe('transform', () => {
             function playFunction({canvasElement}: any) {
               console.log("playFunction")
             }
-
+            
       const _sfc_main = {}
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
-
+        
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return "hello"
       }
@@ -434,12 +434,12 @@ describe('transform', () => {
       "import { defineComponent as _defineComponent } from 'vue'
       const headingText = 'Hello';
               const paragraph = 'World';
-
+            
       const _sfc_main = _defineComponent({
         setup(__props, { expose: __expose }) {
         __expose();
 
-
+              
       const __returned__ = { headingText, paragraph }
       Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })
       return __returned__
@@ -447,11 +447,11 @@ describe('transform', () => {
 
       })
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
         import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"

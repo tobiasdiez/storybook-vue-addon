@@ -17,12 +17,6 @@ importers:
       esbuild:
         specifier: '*'
         version: 0.27.7
-      prettier:
-        specifier: ^3.0.3
-        version: 3.8.3
-      prettier-plugin-organize-imports:
-        specifier: ^4.0.0
-        version: 4.3.0(prettier@3.8.3)(typescript@5.9.3)(vue-tsc@3.2.8(typescript@5.9.3))
       unplugin:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2232,16 +2226,6 @@ packages:
   postcss@8.5.14:
     resolution: {integrity: sha512-SoSL4+OSEtR99LHFZQiJLkT59C5B1amGO1NzTwj7TT1qCUgUO6hxOvzkOYxD+vMrXBM3XJIKzokoERdqQq/Zmg==}
     engines: {node: ^10 || ^12 || >=14}
-
-  prettier-plugin-organize-imports@4.3.0:
-    resolution: {integrity: sha512-FxFz0qFhyBsGdIsb697f/EkvHzi5SZOhWAjxcx2dLt+Q532bAlhswcXGYB1yzjZ69kW8UoadFBw7TyNwlq96Iw==}
-    peerDependencies:
-      prettier: '>=2.0'
-      typescript: '>=2.9'
-      vue-tsc: ^2.1.0 || 3
-    peerDependenciesMeta:
-      vue-tsc:
-        optional: true
 
   prettier@3.8.3:
     resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
@@ -4692,14 +4676,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier-plugin-organize-imports@4.3.0(prettier@3.8.3)(typescript@5.9.3)(vue-tsc@3.2.8(typescript@5.9.3)):
-    dependencies:
-      prettier: 3.8.3
-      typescript: 5.9.3
-    optionalDependencies:
-      vue-tsc: 3.2.8(typescript@5.9.3)
-
-  prettier@3.8.3: {}
+  prettier@3.8.3:
+    optional: true
 
   pretty-format@27.5.1:
     dependencies:

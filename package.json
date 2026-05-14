@@ -97,8 +97,6 @@
   "dependencies": {
     "@storybook/mdx2-csf": "^1.1.0",
     "consola": "^3.2.3",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^4.0.0",
     "unplugin": "^3.0.0"
   },
   "devDependencies": {

@@ -1,6 +1,5 @@
 import type { ParserPlugin } from '@babel/parser'
 import { compile as compileMdx } from '@storybook/mdx2-csf'
-import { format as prettierFormat } from 'prettier'
 import type { SFCScriptBlock } from 'vue/compiler-sfc'
 import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import type { ParsedMeta, ParsedStory } from './parser'
@@ -18,10 +17,9 @@ export async function transform(code: string) {
     result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
-    result += 'const _sfc_main = {}\n'
+    result += 'const _sfc_main = {};\n'
   }
   result += await transformTemplate({ docs, meta, stories }, resolvedScript)
-  result = await organizeImports(result, isTS)
   return result
 
   /*
@@ -133,19 +131,14 @@ function generateStoryImport(
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
   return `
-    ${renderFunction}
-    export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
-    ${id}.storyName = '${title}'
-    ${play ? `${id}.play = ${play}` : ''}
-    ${id}.parameters = {
-      docs: { source: { code: \`${template.trim()}\` } },
-    };`
+${renderFunction}
+export const ${id} = () => Object.assign({render: render${id}}, _sfc_main);
+${id}.storyName = '${title}';
+${play ? `${id}.play = ${play};` : ''}
+${id}.parameters = {
+  docs: { source: { code: \`${template.trim()}\` } },
+};
+`
 }
 
-async function organizeImports(result: string, isTS: boolean): Promise<string> {
-  // Use prettier to organize imports
-  return await prettierFormat(result, {
-    parser: isTS ? 'typescript' : 'babel',
-    plugins: ['prettier-plugin-organize-imports'],
-  })
-}
+

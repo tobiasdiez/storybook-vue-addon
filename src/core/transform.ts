@@ -122,7 +122,7 @@ function generateDefaultImport({ title, component }: ParsedMeta, docs?: string) 
     parameters: {
       ${docs ? `docs: { page: MDXContent },` : ''}
     }
-  }` + '\n'
+  }\n`
 }
 
 function generateStoryImport(

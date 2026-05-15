@@ -5,10 +5,7 @@ const label: string = 'Button'
 </script>
 
 <template>
-  <Stories
-    :component="MyButton"
-    title="Tests/Typescript parsing"
-  >
+  <Stories :component="MyButton" title="Tests/Typescript parsing">
     <Story title="Default">
       <MyButton :label="label" />
     </Story>

@@ -317,7 +317,7 @@ describe('transform', () => {
     const result = await transform(code)
 
     expect(result).not.toContain('import type')
-    expect(result).toContain("import MyButton from")
+    expect(result).toContain('import MyButton from')
   })
 
   it('supports docs blocks', async () => {

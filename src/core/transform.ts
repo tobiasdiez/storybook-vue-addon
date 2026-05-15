@@ -21,15 +21,11 @@ export async function transform(code: string) {
     if (isTS) {
       // Use Vite's transformWithEsbuild to transpile TypeScript to JavaScript
       // similar to how the Vue plugin does it internally (https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L218-L235)
-      const transformResult = await transformWithEsbuild(
-        content,
-        'component.ts',
-        {
-          format: 'esm',
-          loader: 'ts',
-          target: 'esnext',
-        }
-      )
+      const transformResult = await transformWithEsbuild(content, 'component.ts', {
+        format: 'esm',
+        loader: 'ts',
+        target: 'esnext',
+      })
       content = transformResult.code
     }
 

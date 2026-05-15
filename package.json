@@ -10,12 +10,12 @@
     "vue",
     "webpack"
   ],
-  "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
+  "homepage": "https://github.com/tobiasdiez/storybook-vue-addon#readme",
   "bugs": {
-    "url": "https://github.com/tobiasdiez/unplugin-storybook-vue/issues"
+    "url": "https://github.com/tobiasdiez/storybook-vue-addon/issues"
   },
   "license": "MIT",
-  "repository": "github:tobiasdiez/unplugin-storybook-vue",
+  "repository": "github:tobiasdiez/storybook-vue-addon",
   "files": [
     "dist"
   ],

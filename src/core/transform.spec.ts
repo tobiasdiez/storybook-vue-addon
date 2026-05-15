@@ -15,7 +15,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -43,7 +43,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -79,7 +79,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return "hello"
       }
@@ -107,7 +107,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary_story(_ctx, _cache) {
         return "hello"
       }
@@ -135,7 +135,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -168,7 +168,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -211,7 +211,7 @@ describe('transform', () => {
             
           }
         }
-        import { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from "vue"
+      import { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from "vue"
 
 
       function renderPrimary(_ctx, _cache) {
@@ -282,7 +282,7 @@ describe('transform', () => {
             
           }
         }
-        import { openBlock as _openBlock, createBlock as _createBlock } from "vue"
+      import { openBlock as _openBlock, createBlock as _createBlock } from "vue"
 
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
@@ -345,7 +345,7 @@ describe('transform', () => {
             docs: { page: MDXContent },
           }
         }
-        
+
       function renderPrimary(_ctx, _cache) {
         return "hello"
       }
@@ -414,7 +414,7 @@ describe('transform', () => {
             
           }
         }
-        
+
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
         return "hello"
       }
@@ -476,7 +476,7 @@ describe('transform', () => {
             
           }
         }
-        import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+      import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
 
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {

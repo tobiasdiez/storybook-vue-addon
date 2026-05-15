@@ -5,6 +5,8 @@ import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import type { ParsedMeta, ParsedStory } from './parser'
 import { parse } from './parser'
 
+import { transformWithEsbuild } from 'vite'
+
 /**
  * Transforms a vue single-file-component into Storybook's Component Story Format (CSF).
  */
@@ -14,10 +16,20 @@ export async function transform(code: string) {
   const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
     const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    const sanitizedScriptContent = isTS
-      ? stripTypeOnlyDeclarations(resolvedScript.content)
-      : resolvedScript.content
-    result += rewriteDefault(sanitizedScriptContent, '_sfc_main', babelPlugins)
+    let content: string = resolvedScript.content
+
+    if (isTS) {
+      // Use Vite's transformWithEsbuild to transpile TypeScript to JavaScript
+      // similar to how the Vue plugin does it internally (https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L218-L235)
+      const transformResult = await transformWithEsbuild(content, 'component.ts', {
+        format: 'esm',
+        loader: 'ts',
+        target: 'esnext',
+      })
+      content = transformResult.code
+    }
+
+    result += rewriteDefault(content, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
     result += 'const _sfc_main = {};\n'
@@ -174,11 +186,4 @@ ${id}.parameters = {
 `
 
   return { code: storyCode, storyImports: imports }
-}
-
-function stripTypeOnlyDeclarations(scriptContent: string): string {
-  // Type-only declarations are not valid in plain JavaScript output.
-  return scriptContent
-    .replace(/^\s*import\s+type\s+[\s\S]*?from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
-    .replace(/^\s*export\s+type\s+[\s\S]*?;?\s*$/gm, '')
 }

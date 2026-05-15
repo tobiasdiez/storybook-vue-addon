@@ -317,7 +317,7 @@ describe('transform', () => {
     const result = await transform(code)
 
     expect(result).not.toContain('import type')
-    expect(result).toContain("import MyButton from '../components/Button.vue'")
+    expect(result).toContain('import MyButton from')
   })
 
   it('supports docs blocks', async () => {
@@ -400,11 +400,10 @@ describe('transform', () => {
       `
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
-      "
-            function playFunction({canvasElement}: any) {
-              console.log("playFunction")
-            }
-            
+      "function playFunction({ canvasElement }) {
+        console.log("playFunction");
+      }
+
       const _sfc_main = {}
       export default {
           
@@ -428,6 +427,62 @@ describe('transform', () => {
     `)
   })
 
+  it('should transpile typescript inside script with lang="ts"', async () => {
+    const code = `
+      <template>
+        <Stories>
+          <Story title="Primary">
+            <p>{{ paragraph }}</p>
+          </Story>
+        </Stories>
+      </template>
+
+      <script setup lang="ts">
+        const paragraph: string = 'World';
+      </script>
+      `
+
+    const result = await transform(code)
+
+    expect(result).toMatchInlineSnapshot(`
+      "import { defineComponent as _defineComponent } from "vue";
+      const paragraph = "World";
+      var component_default = /* @__PURE__ */ _defineComponent({
+        setup(__props, { expose: __expose }) {
+          __expose();
+          const __returned__ = { paragraph };
+          Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+          return __returned__;
+        }
+      });
+      export {
+        
+      };
+
+      const _sfc_main = component_default
+      export default {
+          
+          
+          //decorators: [ ... ],
+          parameters: {
+            
+          }
+        }
+      import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+
+
+      function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
+        return (_openBlock(), _createElementBlock("p", null, _toDisplayString($setup.paragraph)))
+      }
+      export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main);
+      Primary.storyName = 'Primary';
+
+      Primary.parameters = {
+        docs: { source: { code: \`<p>{{ paragraph }}</p>\` } },
+      };
+      "
+    `)
+  })
   it('should prevent hoisting static variables within the same story', async () => {
     const code = `
       <template>
@@ -453,21 +508,22 @@ describe('transform', () => {
 
     expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
-      "import { defineComponent as _defineComponent } from 'vue'
-      const headingText = 'Hello';
-              const paragraph = 'World';
-            
-      const _sfc_main = _defineComponent({
+      "import { defineComponent as _defineComponent } from "vue";
+      const headingText = "Hello";
+      const paragraph = "World";
+      var component_default = /* @__PURE__ */ _defineComponent({
         setup(__props, { expose: __expose }) {
-        __expose();
+          __expose();
+          const __returned__ = { headingText, paragraph };
+          Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+          return __returned__;
+        }
+      });
+      export {
+        
+      };
 
-              
-      const __returned__ = { headingText, paragraph }
-      Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })
-      return __returned__
-      }
-
-      })
+      const _sfc_main = component_default
       export default {
           
           

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.7.0...v0.7.1) (2026-05-15)
+
+### 🧹 Miscellaneous
+
+- update URLs in package.json for homepage, bugs, and repository ([#240](https://github.com/tobiasdiez/storybook-vue-addon/issues/240)) ([53d0075](https://github.com/tobiasdiez/storybook-vue-addon/commit/53d00751c89f565417b15bb60d260868ecd29204))
+
 ## [0.7.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.4...v0.7.0) (2026-05-15)
 
 ### 🔖 Features

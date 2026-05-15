@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.7.0](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.4...v0.7.0) (2026-05-15)
+
+### 🔖 Features
+
+- remove prettier dependency ([#239](https://github.com/tobiasdiez/storybook-vue-addon/issues/239)) ([548f01c](https://github.com/tobiasdiez/storybook-vue-addon/commit/548f01c06c244bd1a9c7deaa960b70d7706a9cd2))
+
+### 🐛 Bug Fixes
+
+- typescript support in setup scripts ([#174](https://github.com/tobiasdiez/storybook-vue-addon/issues/174)) ([5755d92](https://github.com/tobiasdiez/storybook-vue-addon/commit/5755d928c22a39f5a9eede2459be0bd3f85d5110))
+
+### 🧹 Miscellaneous
+
+- **deps:** update all non-major dependencies ([#215](https://github.com/tobiasdiez/storybook-vue-addon/issues/215)) ([f2faf61](https://github.com/tobiasdiez/storybook-vue-addon/commit/f2faf615504cca456735678b62d69c3853562355))
+- fix linter and formatting issues ([c5e89e3](https://github.com/tobiasdiez/storybook-vue-addon/commit/c5e89e3bd9bd4ed43e9f7358baefc9feb580e482))
+- fix npm publishing workflow by using OIDC ([#235](https://github.com/tobiasdiez/storybook-vue-addon/issues/235)) ([4144868](https://github.com/tobiasdiez/storybook-vue-addon/commit/4144868c4b999b9a2c012c01cba8d16e9f8d1c6f))
+- migrate to oxlint and oxfmt ([6b36343](https://github.com/tobiasdiez/storybook-vue-addon/commit/6b36343d419a01b4e291914f8450db02d16f8d73))
+
 ## [0.6.4](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.6.3...v0.6.4) (2026-05-11)
 
 ### 🧹 Miscellaneous

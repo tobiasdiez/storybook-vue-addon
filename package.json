@@ -152,9 +152,6 @@
     },
     "@nuxt/schema": {
       "optional": true
-    },
-    "typescript": {
-      "optional": true
     }
   },
   "engines": {

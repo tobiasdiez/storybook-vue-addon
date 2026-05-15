@@ -1,12 +1,13 @@
-import type { ElementNode, NodeTypes as _NodeTypes } from '@vue/compiler-core'
-import type { SFCDescriptor } from 'vue/compiler-sfc'
-import {
-  compileScript,
-  compileTemplate,
-  parse as parseSFC,
-} from 'vue/compiler-sfc'
+import type {
+  AttributeNode,
+  DirectiveNode,
+  ElementNode,
+  NodeTypes as _NodeTypes,
+} from '@vue/compiler-core'
+import type { SFCDescriptor, SFCScriptBlock } from 'vue/compiler-sfc'
+import { compileScript, compileTemplate, parse as parseSFC } from 'vue/compiler-sfc'
 
-import { sanitize } from '@storybook/csf'
+import { sanitize } from 'storybook/internal/csf'
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228
@@ -30,19 +31,19 @@ export interface ParsedStory {
 
 export function parse(code: string) {
   const { descriptor } = parseSFC(code)
-  if (descriptor.template === null) throw new Error('No template found in SFC')
+  if (descriptor.template === null) {
+    throw new Error('No template found in SFC')
+  }
 
   const resolvedScript = resolveScript(descriptor)
   const { meta, stories } = parseTemplate(descriptor.template.content)
-  const docsBlock = descriptor.customBlocks?.find(
-    (block) => block.type === 'docs',
-  )
+  const docsBlock = descriptor.customBlocks?.find((block) => block.type === 'docs')
   const docs = docsBlock?.content.trim()
   return {
-    resolvedScript,
-    meta,
-    stories,
     docs,
+    meta,
+    resolvedScript,
+    stories,
   }
 }
 
@@ -59,42 +60,45 @@ function parseTemplate(content: string): {
       }, */
   })
 
-  const roots =
-    template.ast?.children.filter((node) => node.type === ELEMENT) ?? []
+  const roots = template.ast?.children.filter((node) => node.type === ELEMENT) ?? []
   if (roots.length !== 1) {
     throw new Error('Expected exactly one <Stories> element as root.')
   }
 
   const root = roots[0]
-  if (root.type !== ELEMENT || root.tag !== 'Stories')
+  if (root.type !== ELEMENT || root.tag !== 'Stories') {
     throw new Error('Expected root to be a <Stories> element.')
+  }
   const meta = {
-    title: extractTitle(root),
     component: extractComponent(root),
     tags: [],
+    title: extractTitle(root),
   }
 
   const stories: ParsedStory[] = []
   for (const story of root.children ?? []) {
-    if (story.type !== ELEMENT || story.tag !== 'Story') continue
+    if (story.type !== ELEMENT || story.tag !== 'Story') {
+      continue
+    }
 
     const title = extractTitle(story)
-    if (!title) throw new Error('Story is missing a title')
+    if (!title) {
+      throw new Error('Story is missing a title')
+    }
 
     const play = extractPlay(story)
 
     const storyTemplate = parseSFC(
-      story.loc.source
-        .replace(/<Story/, '<template')
-        .replace(/<\/Story>/, '</template>'),
+      story.loc.source.replace(/<Story/, '<template').replace(/<\/Story>/, '</template>'),
     ).descriptor.template?.content
-    if (storyTemplate === undefined)
+    if (storyTemplate === undefined) {
       throw new Error('No template found in Story')
+    }
     stories.push({
       id: sanitize(title).replace(/[^\dA-Za-z]/g, '_'),
-      title,
       play,
       template: storyTemplate,
+      title,
     })
   }
   return {
@@ -103,34 +107,35 @@ function parseTemplate(content: string): {
   }
 }
 
-function extractTitle(node: ElementNode) {
+function extractTitle(node: ElementNode): string | undefined {
   const prop = extractProp(node, 'title')
-  if (prop && prop.type === ATTRIBUTE) return prop.value?.content
+  if (prop && prop.type === ATTRIBUTE) {
+    return prop.value?.content
+  }
 }
 
-function extractComponent(node: ElementNode) {
+function extractComponent(node: ElementNode): string | undefined {
   const prop = extractProp(node, 'component')
-  if (prop && prop.type === DIRECTIVE)
-    return prop.exp?.type === SIMPLE_EXPRESSION
-      ? prop.exp?.content.replace('_ctx.', '')
-      : undefined
+  if (prop && prop.type === DIRECTIVE) {
+    return prop.exp?.type === SIMPLE_EXPRESSION ? prop.exp?.content.replace('_ctx.', '') : undefined
+  }
 }
 
-function extractPlay(node: ElementNode) {
+function extractPlay(node: ElementNode): string | undefined {
   const prop = extractProp(node, 'play')
-  if (prop && prop.type === DIRECTIVE)
-    return prop.exp?.type === SIMPLE_EXPRESSION
-      ? prop.exp?.content.replace('_ctx.', '')
-      : undefined
+  if (prop && prop.type === DIRECTIVE) {
+    return prop.exp?.type === SIMPLE_EXPRESSION ? prop.exp?.content.replace('_ctx.', '') : undefined
+  }
 }
 
 // Minimal version of https://github.com/vitejs/vite/blob/57916a476924541dd7136065ceee37ae033ca78c/packages/plugin-vue/src/main.ts#L297
-function resolveScript(descriptor: SFCDescriptor) {
-  if (descriptor.script || descriptor.scriptSetup)
+function resolveScript(descriptor: SFCDescriptor): SFCScriptBlock | undefined {
+  if (descriptor.script || descriptor.scriptSetup) {
     return compileScript(descriptor, { id: 'test' })
+  }
 }
 
-function extractProp(node: ElementNode, name: string) {
+function extractProp(node: ElementNode, name: string): AttributeNode | DirectiveNode | undefined {
   if (node.type === ELEMENT) {
     return node.props.find(
       (prop) =>

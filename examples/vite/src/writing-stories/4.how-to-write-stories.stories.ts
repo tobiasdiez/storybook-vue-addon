@@ -1,12 +1,12 @@
 // Button.stories.ts
 
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 import Button from '../components/Button.vue'
 
 const meta: Meta<typeof Button> = {
-  title: 'docs/4. How to write stories/classical',
   component: Button,
+  title: 'docs/4. How to write stories/classical',
 }
 
 export default meta
@@ -18,20 +18,10 @@ type Story = StoryObj<typeof Button>
  * to learn how to use render functions.
  */
 export const Primary: Story = {
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args }
-    },
-    template: '<Button v-bind="args" />',
-  }),
   args: {
     background: '#ff0',
     label: 'Button',
   },
-}
-
-export const Secondary: Story = {
   render: (args) => ({
     components: { Button },
     setup() {
@@ -39,13 +29,13 @@ export const Secondary: Story = {
     },
     template: '<Button v-bind="args" />',
   }),
+}
+
+export const Secondary: Story = {
   args: {
     ...Primary.args,
     label: '😄👍😍💯',
   },
-}
-
-export const Tertiary: Story = {
   render: (args) => ({
     components: { Button },
     setup() {
@@ -53,8 +43,18 @@ export const Tertiary: Story = {
     },
     template: '<Button v-bind="args" />',
   }),
+}
+
+export const Tertiary: Story = {
   args: {
     ...Primary.args,
     label: '📚📕📈🤓',
   },
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return { args }
+    },
+    template: '<Button v-bind="args" />',
+  }),
 }

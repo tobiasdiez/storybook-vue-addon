@@ -1,83 +1,25 @@
 {
   "name": "storybook-vue-addon",
-  "type": "module",
-  "version": "0.6.2",
-  "packageManager": "pnpm@10.6.1",
+  "version": "0.6.4",
   "description": "Storybook stories in native Vue format",
-  "license": "MIT",
+  "keywords": [
+    "storybook",
+    "storybook-addon",
+    "unplugin",
+    "vite",
+    "vue",
+    "webpack"
+  ],
   "homepage": "https://github.com/tobiasdiez/unplugin-storybook-vue#readme",
-  "repository": "github:tobiasdiez/unplugin-storybook-vue",
   "bugs": {
     "url": "https://github.com/tobiasdiez/unplugin-storybook-vue/issues"
   },
-  "keywords": [
-    "vue",
-    "storybook",
-    "storybook-addon",
-    "storybook-addons",
-    "unplugin",
-    "vite",
-    "webpack"
+  "license": "MIT",
+  "repository": "github:tobiasdiez/unplugin-storybook-vue",
+  "files": [
+    "dist"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    },
-    "./preset": {
-      "types": "./dist/storybook.d.ts",
-      "require": "./dist/storybook.cjs",
-      "import": "./dist/storybook.js"
-    },
-    "./astro": {
-      "types": "./dist/astro.d.ts",
-      "import": "./dist/astro.js",
-      "require": "./dist/astro.cjs"
-    },
-    "./rspack": {
-      "types": "./dist/rspack.d.ts",
-      "import": "./dist/rspack.js",
-      "require": "./dist/rspack.cjs"
-    },
-    "./vite": {
-      "types": "./dist/vite.d.ts",
-      "require": "./dist/vite.cjs",
-      "import": "./dist/vite.js"
-    },
-    "./webpack": {
-      "types": "./dist/webpack.d.ts",
-      "require": "./dist/webpack.cjs",
-      "import": "./dist/webpack.js"
-    },
-    "./rollup": {
-      "types": "./dist/rollup.d.ts",
-      "require": "./dist/rollup.cjs",
-      "import": "./dist/rollup.js"
-    },
-    "./esbuild": {
-      "types": "./dist/esbuild.d.ts",
-      "require": "./dist/esbuild.cjs",
-      "import": "./dist/esbuild.js"
-    },
-    "./nuxt": {
-      "types": "./dist/nuxt.d.ts",
-      "require": "./dist/nuxt.cjs",
-      "import": "./dist/nuxt.js"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "require": "./dist/types.cjs",
-      "import": "./dist/types.js"
-    },
-    "./core": {
-      "types": "./dist/core/index.d.ts",
-      "require": "./dist/core/index.cjs",
-      "import": "./dist/core/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "dist/index.cjs",
+  "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typesVersions": {
@@ -88,18 +30,64 @@
       ]
     }
   },
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./preset": {
+      "types": "./dist/storybook.d.ts",
+      "import": "./dist/storybook.js"
+    },
+    "./astro": {
+      "types": "./dist/astro.d.ts",
+      "import": "./dist/astro.js"
+    },
+    "./rspack": {
+      "types": "./dist/rspack.d.ts",
+      "import": "./dist/rspack.js"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "import": "./dist/vite.js"
+    },
+    "./webpack": {
+      "types": "./dist/webpack.d.ts",
+      "import": "./dist/webpack.js"
+    },
+    "./rollup": {
+      "types": "./dist/rollup.d.ts",
+      "import": "./dist/rollup.js"
+    },
+    "./esbuild": {
+      "types": "./dist/esbuild.d.ts",
+      "import": "./dist/esbuild.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    },
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
     "dev": "tsup --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
-    "build:fix": "jiti scripts/postbuild.ts",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier",
-    "lint:eslint": "eslint --report-unused-disable-directives .",
-    "lint:prettier": "prettier --check --ignore-path .gitignore . \"!pnpm-lock.yaml\"",
+    "lint": "pnpm lint:oxlint && pnpm lint:oxfmt",
+    "lint:oxlint": "oxlint --type-aware",
+    "lint:oxfmt": "oxfmt --check",
     "play": "npm -C playground run dev",
     "example:vite": "npm -C examples/vite run storybook",
     "example:vite:build": "npm -C examples/vite run build-storybook",
@@ -107,19 +95,42 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@storybook/csf": "^0.1.1",
     "@storybook/mdx2-csf": "^1.1.0",
     "consola": "^3.2.3",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^4.0.0",
-    "unplugin": "^2.0.0"
+    "unplugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/kit": "4.4.4",
+    "@nuxt/schema": "4.4.4",
+    "@storybook/vue3-vite": "10.3.6",
+    "@types/node": "24.12.3",
+    "@vitest/coverage-v8": "4.1.5",
+    "cross-env": "10.1.0",
+    "fast-glob": "3.3.3",
+    "jiti": "2.7.0",
+    "nodemon": "3.1.14",
+    "oxfmt": "0.49.0",
+    "oxlint": "1.64.0",
+    "oxlint-tsgolint": "0.22.1",
+    "rimraf": "6.1.3",
+    "rollup": "4.60.3",
+    "storybook": "10.3.6",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.11",
+    "vitest": "4.1.5",
+    "vue": "3.5.34",
+    "vue-tsc": "3.2.8",
+    "webpack": "5.106.2"
   },
   "peerDependencies": {
-    "@nuxt/kit": "^3",
-    "@nuxt/schema": "^3",
+    "@nuxt/kit": "^3 || ^4.0.0",
+    "@nuxt/schema": "^3 || ^4.0.0",
+    "@storybook/vue3-vite": "^10.0.0",
     "esbuild": "*",
     "rollup": "^3 || ^4.0.0",
-    "vite": "^4.3.1 || ^5.0.0 || ^6.0.0",
+    "storybook": "^10.0.0",
+    "vite": "^4.3.1 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "vue": "^3.2.47",
     "webpack": "^4 || ^5",
     "typescript": "^5"
@@ -147,31 +158,10 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@nuxt/kit": "3.14.1592",
-    "@nuxt/schema": "3.14.1592",
-    "@storybook/types": "8.4.7",
-    "@types/node": "22.10.2",
-    "@types/prettier": "3.0.0",
-    "@vitest/coverage-v8": "3.0.8",
-    "cross-env": "7.0.3",
-    "eslint": "9.17.0",
-    "eslint-config-prettier": "10.1.1",
-    "eslint-config-unjs": "0.4.2",
-    "eslint-plugin-unused-imports": "4.1.4",
-    "fast-glob": "3.3.2",
-    "jiti": "2.4.2",
-    "nodemon": "3.1.9",
-    "rimraf": "6.0.1",
-    "rollup": "4.28.1",
-    "tsup": "8.3.5",
-    "typescript": "5.7.2",
-    "vite": "6.0.3",
-    "vitest": "3.0.8",
-    "vue": "3.5.13",
-    "vue-tsc": "3.0.1",
-    "webpack": "5.97.1"
+  "engines": {
+    "node": ">=20.0.0"
   },
+  "packageManager": "pnpm@10.33.4",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
@@ -179,12 +169,6 @@
         "@vue/compiler-sfc"
       ]
     }
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "storybook": {
     "displayName": "Vue CSF",

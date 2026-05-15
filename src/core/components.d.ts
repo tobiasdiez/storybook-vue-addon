@@ -51,7 +51,7 @@ interface StoriesProps {
  */
 export type Stories = VueComponent<StoriesProps>
 
-import { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 interface StoryProps {
   /**

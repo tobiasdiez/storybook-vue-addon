@@ -12,14 +12,14 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
-      - uses: google-github-actions/release-please-action@e4dc86ba9405554aeba3c6bb2d169500e7d3b4ee # v4
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
         with:
           token: ${{ secrets.RELEASE_PR_TOKEN }}
 
       # Format changelog, workaround for https://github.com/google-github-actions/release-please-action/issues/542
       # Taken from https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         if: ${{ steps.release.outputs.pr }}
         with:
           token: ${{ secrets.RELEASE_PR_TOKEN }}
@@ -35,17 +35,17 @@ jobs:
 
       - name: Format CHANGELOG.md
         if: ${{ steps.release.outputs.pr }}
-        run: npx prettier --write CHANGELOG.md .release-please-manifest.json
+        run: npx oxfmt --write CHANGELOG.md .release-please-manifest.json
 
       - name: Commit
         if: ${{ steps.release.outputs.pr }}
         run: |
           git add CHANGELOG.md .release-please-manifest.json
-          git commit -m 'chore: Format CHANGELOG.md with Prettier' --no-verify
+          git commit -m 'chore: Format CHANGELOG.md' --no-verify
 
       - name: Push changes
         if: ${{ steps.release.outputs.pr }}
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@d30dc2d070765d7e509df00c34c5fa2dd636ff74 # master
         with:
           github_token: ${{ secrets.RELEASE_PR_TOKEN }}
           branch: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
@@ -53,20 +53,25 @@ jobs:
   publish_npm:
     name: Publish to npm
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     needs: [release-pr]
     if: needs.release-pr.outputs.release_created
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - run: corepack enable
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version-file: package.json
+          ## we need at least npm 24 to use OIDC publishing
+          ## at the same time we don't want to bump the node
+          ## version in `package.json` as that would introduce
+          ## a change to the package itself
+          # node-version-file: package.json
+          node-version: 24.15.0
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Config npm
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish to npm
         run: pnpm publish --access public --no-git-checks

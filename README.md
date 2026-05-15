@@ -14,27 +14,15 @@ Example: `Button.stories.vue`
 import Button from './Button.vue'
 </script>
 <template>
-  <Stories
-    title="Stories in Vue format 😍"
-    :component="Button"
-  >
+  <Stories title="Stories in Vue format 😍" :component="Button">
     <Story title="Primary">
-      <Button
-        background="#ff0"
-        label="Button"
-      />
+      <Button background="#ff0" label="Button" />
     </Story>
     <Story title="Secondary">
-      <Button
-        background="#ff0"
-        label="😄👍😍💯"
-      />
+      <Button background="#ff0" label="😄👍😍💯" />
     </Story>
     <Story title="Tertiary">
-      <Button
-        background="#ff0"
-        label="📚📕📈🤓"
-      />
+      <Button background="#ff0" label="📚📕📈🤓" />
     </Story>
   </Stories>
 </template>
@@ -57,7 +45,7 @@ The way to write stories as idiomatic Vue templates is heavily inspired by the g
 
 ## Installation
 
-> Note: Currently, only the [`@storybook/vue3-vite`](https://github.com/storybookjs/storybook/tree/next/code/frameworks/vue3-vite) builder is supported (or the deprecated `@storybook/builder-vite` version 0.2.7 or higher).
+> Note: Currently, only the [`@storybook/vue3-vite`](https://github.com/storybookjs/storybook/tree/next/code/frameworks/vue3-vite) builder is supported.
 
 1. Add `storybook-vue-addon` to your dev-dependencies.
 

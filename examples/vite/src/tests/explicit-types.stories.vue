@@ -4,10 +4,7 @@ import type { Stories, Story } from 'storybook-vue-addon/core'
 </script>
 
 <template>
-  <Stories
-    :component="MyButton"
-    title="Tests/Explicit types"
-  >
+  <Stories :component="MyButton" title="Tests/Explicit types">
     <Story title="Default">
       <MyButton label="Button" />
     </Story>

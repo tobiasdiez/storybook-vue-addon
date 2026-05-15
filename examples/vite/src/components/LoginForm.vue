@@ -2,24 +2,10 @@
   <div class="container">
     <form @submit.prevent="handleSubmit">
       <label for="email">Email</label>
-      <input
-        v-model="email"
-        id="email"
-        type="text"
-        data-testid="email"
-      />
+      <input v-model="email" id="email" type="text" data-testid="email" />
       <label for="password">Password</label>
-      <input
-        v-model="password"
-        id="password"
-        type="password"
-        data-testid="password"
-      />
-      <Button
-        label="Submit"
-        type="submit"
-        primary
-      ></Button>
+      <input v-model="password" id="password" type="password" data-testid="password" />
+      <Button label="Submit" type="submit" primary></Button>
     </form>
 
     <p>

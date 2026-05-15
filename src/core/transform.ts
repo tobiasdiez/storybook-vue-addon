@@ -1,6 +1,5 @@
 import type { ParserPlugin } from '@babel/parser'
 import { compile as compileMdx } from '@storybook/mdx2-csf'
-import { format as prettierFormat } from 'prettier'
 import type { SFCScriptBlock } from 'vue/compiler-sfc'
 import { compileTemplate, rewriteDefault } from 'vue/compiler-sfc'
 import type { ParsedMeta, ParsedStory } from './parser'
@@ -15,13 +14,15 @@ export async function transform(code: string) {
   const isTS = resolvedScript?.lang === 'ts'
   if (resolvedScript) {
     const babelPlugins: ParserPlugin[] = isTS ? ['typescript'] : []
-    result += rewriteDefault(resolvedScript.content, '_sfc_main', babelPlugins)
+    const sanitizedScriptContent = isTS
+      ? stripTypeOnlyDeclarations(resolvedScript.content)
+      : resolvedScript.content
+    result += rewriteDefault(sanitizedScriptContent, '_sfc_main', babelPlugins)
     result += '\n'
   } else {
-    result += 'const _sfc_main = {}\n'
+    result += 'const _sfc_main = {};\n'
   }
   result += await transformTemplate({ docs, meta, stories }, resolvedScript)
-  result = await organizeImports(result, isTS)
   return result
 
   /*
@@ -87,9 +88,24 @@ async function transformTemplate(
   resolvedScript?: SFCScriptBlock,
 ) {
   let result = generateDefaultImport(meta, docs)
+
+  // Collect all imports and story code separately
+  const imports = new Set<string>()
+  let storyCode = ''
+
   for (const story of stories) {
-    result += generateStoryImport(story, resolvedScript)
+    const { code, storyImports } = generateStoryImport(story, resolvedScript)
+    storyImports.forEach((imp) => imports.add(imp))
+    storyCode += code
   }
+
+  // Add all collected imports at the top
+  if (imports.size > 0) {
+    result += Array.from(imports).join('\n') + '\n\n'
+  }
+
+  result += storyCode
+
   if (docs) {
     let mdx = await compileMdx(docs, { skipCsf: true })
     mdx = mdx.replace('export default MDXContent;', '')
@@ -106,18 +122,17 @@ function generateDefaultImport({ title, component }: ParsedMeta, docs?: string) 
     parameters: {
       ${docs ? `docs: { page: MDXContent },` : ''}
     }
-  }
-  `
+  }\n`
 }
 
 function generateStoryImport(
   { id, title, play, template }: ParsedStory,
   resolvedScript?: SFCScriptBlock,
-) {
+): { code: string; storyImports: string[] } {
   const { code } = compileTemplate({
     compilerOptions: {
       bindingMetadata: resolvedScript?.bindings,
-      // prevent the hoisting of static variables since that would
+      // Prevent the hoisting of static variables since that would
       // result in clashing variable names when the same HTML Tags are used in multiple stories within the same `*.stories.vue` file.
       hoistStatic: false,
     },
@@ -126,26 +141,44 @@ function generateStoryImport(
     source: template.trim(),
   })
 
+  // Extract import statements from the compiled code
+  const importRegex = /^import\s+.*?["'][^"']*["'];?$/gm
+  const imports: string[] = []
+  let codeWithoutImports = code
+
+  let match
+  while ((match = importRegex.exec(code)) !== null) {
+    imports.push(match[0])
+  }
+
+  // Remove all import statements from the code
+  codeWithoutImports = code.replace(importRegex, '').replace(/^\s*\n/gm, '')
+
   // Capitalize id to avoid collisions with standard js keywords (e.g. if the id is 'default')
   id = id.charAt(0).toUpperCase() + id.slice(1)
 
-  const renderFunction = code.replace('export function render', `function render${id}`)
+  const renderFunction = codeWithoutImports.replace(
+    'export function render',
+    `function render${id}`,
+  )
 
   // Each named export is a story, has to return a Vue ComponentOptionsBase
-  return `
-    ${renderFunction}
-    export const ${id} = () => Object.assign({render: render${id}}, _sfc_main)
-    ${id}.storyName = '${title}'
-    ${play ? `${id}.play = ${play}` : ''}
-    ${id}.parameters = {
-      docs: { source: { code: \`${template.trim()}\` } },
-    };`
+  const storyCode = `
+${renderFunction}
+export const ${id} = () => Object.assign({render: render${id}}, _sfc_main);
+${id}.storyName = '${title}';
+${play ? `${id}.play = ${play};` : ''}
+${id}.parameters = {
+  docs: { source: { code: \`${template.trim()}\` } },
+};
+`
+
+  return { code: storyCode, storyImports: imports }
 }
 
-async function organizeImports(result: string, isTS: boolean): Promise<string> {
-  // Use prettier to organize imports
-  return await prettierFormat(result, {
-    parser: isTS ? 'typescript' : 'babel',
-    plugins: ['prettier-plugin-organize-imports'],
-  })
+function stripTypeOnlyDeclarations(scriptContent: string): string {
+  // Type-only declarations are not valid in plain JavaScript output.
+  return scriptContent
+    .replace(/^\s*import\s+type\s+[\s\S]*?from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
+    .replace(/^\s*export\s+type\s+[\s\S]*?;?\s*$/gm, '')
 }

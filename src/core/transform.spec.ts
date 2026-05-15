@@ -483,31 +483,38 @@ describe('transform', () => {
       "
     `)
   })
-
-  it('should transpile typescript inside script with lang="ts"', async () => {
+  it('should prevent hoisting static variables within the same story', async () => {
     const code = `
       <template>
         <Stories>
           <Story title="Primary">
+            <h1>{{ headingText }}</h1>
+            <p>{{ paragraph }}</p>
+          </Story>
+           <Story title="Secondary">
+            <h1>{{ headingText }}</h1>
             <p>{{ paragraph }}</p>
           </Story>
         </Stories>
       </template>
 
       <script setup lang="ts">
-        const paragraph: string = 'World';
+        const headingText = 'Hello';
+        const paragraph = 'World';
       </script>
       `
 
     const result = await transform(code)
 
+    expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
       "import { defineComponent as _defineComponent } from "vue";
+      const headingText = "Hello";
       const paragraph = "World";
       var component_default = /* @__PURE__ */ _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
-          const __returned__ = { paragraph };
+          const __returned__ = { headingText, paragraph };
           Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
           return __returned__;
         }
@@ -525,17 +532,35 @@ describe('transform', () => {
             
           }
         }
-      import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+      import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
 
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return (_openBlock(), _createElementBlock("p", null, _toDisplayString($setup.paragraph)))
+        return (_openBlock(), _createElementBlock(_Fragment, null, [
+          _createElementVNode("h1", null, _toDisplayString($setup.headingText)),
+          _createElementVNode("p", null, _toDisplayString($setup.paragraph))
+        ], 64 /* STABLE_FRAGMENT */))
       }
       export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main);
       Primary.storyName = 'Primary';
 
       Primary.parameters = {
-        docs: { source: { code: \`<p>{{ paragraph }}</p>\` } },
+        docs: { source: { code: \`<h1>{{ headingText }}</h1>
+                  <p>{{ paragraph }}</p>\` } },
+      };
+
+      function renderSecondary(_ctx, _cache, $props, $setup, $data, $options) {
+        return (_openBlock(), _createElementBlock(_Fragment, null, [
+          _createElementVNode("h1", null, _toDisplayString($setup.headingText)),
+          _createElementVNode("p", null, _toDisplayString($setup.paragraph))
+        ], 64 /* STABLE_FRAGMENT */))
+      }
+      export const Secondary = () => Object.assign({render: renderSecondary}, _sfc_main);
+      Secondary.storyName = 'Secondary';
+
+      Secondary.parameters = {
+        docs: { source: { code: \`<h1>{{ headingText }}</h1>
+                  <p>{{ paragraph }}</p>\` } },
       };
       "
     `)

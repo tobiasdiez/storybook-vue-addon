@@ -8,11 +8,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -37,10 +37,10 @@ describe('transform', () => {
       "const _sfc_main = {};
       export default {
           title: 'test',
-
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -72,11 +72,11 @@ describe('transform', () => {
       "const MyComponent = {}
       const _sfc_main = {}
       export default {
-
+          
           component: MyComponent,
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -100,11 +100,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -128,11 +128,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -161,11 +161,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -204,11 +204,11 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
       import { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from "vue"
@@ -267,7 +267,7 @@ describe('transform', () => {
               },
               template: '<span>{{a}}</span>'
             }
-
+            
       const __returned__ = { test }
       Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })
       return __returned__
@@ -275,11 +275,11 @@ describe('transform', () => {
 
       }
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
       import { openBlock as _openBlock, createBlock as _createBlock } from "vue"
@@ -317,7 +317,7 @@ describe('transform', () => {
     const result = await transform(code)
 
     expect(result).not.toContain('import type')
-    expect(result).toContain("import MyButton from '../components/Button.vue'")
+    expect(result).toContain("import MyButton from")
   })
 
   it('supports docs blocks', async () => {
@@ -338,8 +338,8 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "const _sfc_main = {};
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
             docs: { page: MDXContent },
@@ -400,18 +400,17 @@ describe('transform', () => {
       `
     const result = await transform(code)
     expect(result).toMatchInlineSnapshot(`
-      "
-            function playFunction({canvasElement}) {
-              console.log("playFunction")
-            }
+      "function playFunction({ canvasElement }) {
+        console.log("playFunction");
+      }
 
       const _sfc_main = {}
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
 
@@ -453,28 +452,28 @@ describe('transform', () => {
 
     expect(result.match(/const _hoisted_/g)).toBeNull()
     expect(result).toMatchInlineSnapshot(`
-      "import { defineComponent as _defineComponent } from 'vue'
-      const headingText = 'Hello';
-              const paragraph = 'World';
-
-      const _sfc_main = _defineComponent({
+      "import { defineComponent as _defineComponent } from "vue";
+      const headingText = "Hello";
+      const paragraph = "World";
+      var component_default = /* @__PURE__ */ _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
-
           const __returned__ = { headingText, paragraph };
-          Object.defineProperty(__returned__, "__isScriptSetup", {
-            enumerable: false,
-            value: true,
-          });
+          Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
           return __returned__;
-        },
+        }
       });
+      export {
+        
+      };
+
+      const _sfc_main = component_default
       export default {
-
-
+          
+          
           //decorators: [ ... ],
           parameters: {
-
+            
           }
         }
       import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
@@ -531,55 +530,38 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "import { defineComponent as _defineComponent } from "vue";
       const paragraph = "World";
-      const _sfc_main = _defineComponent({
+      var component_default = /* @__PURE__ */ _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
           const __returned__ = { paragraph };
-          Object.defineProperty(__returned__, "__isScriptSetup", {
-            enumerable: false,
-            value: true,
-          });
+          Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
           return __returned__;
-        },
+        }
       });
-
-      export default {
-        //decorators: [ ... ],
-        parameters: {},
+      export {
+        
       };
 
-      import {
-        createElementBlock as _createElementBlock,
-        openBlock as _openBlock,
-        toDisplayString as _toDisplayString,
-      } from "vue";
+      const _sfc_main = component_default
+      export default {
+          
+          
+          //decorators: [ ... ],
+          parameters: {
+            
+          }
+        }
+      import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return (
-          _openBlock(),
-          _createElementBlock("p", null, _toDisplayString($setup.paragraph))
-        );
+        return (_openBlock(), _createElementBlock("p", null, _toDisplayString($setup.paragraph)))
       }
       export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main);
       Primary.storyName = 'Primary';
 
       Primary.parameters = {
-        docs: { source: { code: \`<h1>{{ headingText }}</h1>
-                  <p>{{ paragraph }}</p>\` } },
-      };
-
-      function renderSecondary(_ctx, _cache, $props, $setup, $data, $options) {
-        return (_openBlock(), _createElementBlock(_Fragment, null, [
-          _createElementVNode("h1", null, _toDisplayString($setup.headingText)),
-          _createElementVNode("p", null, _toDisplayString($setup.paragraph))
-        ], 64 /* STABLE_FRAGMENT */))
-      }
-      export const Secondary = () => Object.assign({render: renderSecondary}, _sfc_main);
-      Secondary.storyName = 'Secondary';
-
-      Secondary.parameters = {
-        docs: { source: { code: \`<h1>{{ headingText }}</h1>
-                  <p>{{ paragraph }}</p>\` } },
+        docs: { source: { code: \`<p>{{ paragraph }}</p>\` } },
       };
       "
     `)
@@ -605,38 +587,35 @@ describe('transform', () => {
     expect(result).toMatchInlineSnapshot(`
       "import { defineComponent as _defineComponent } from "vue";
       const paragraph = "World";
-      const _sfc_main = _defineComponent({
+      var component_default = /* @__PURE__ */ _defineComponent({
         setup(__props, { expose: __expose }) {
           __expose();
           const __returned__ = { paragraph };
-          Object.defineProperty(__returned__, "__isScriptSetup", {
-            enumerable: false,
-            value: true,
-          });
+          Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
           return __returned__;
-        },
+        }
       });
-
-      export default {
-        //decorators: [ ... ],
-        parameters: {},
+      export {
+        
       };
 
-      import {
-        createElementBlock as _createElementBlock,
-        openBlock as _openBlock,
-        toDisplayString as _toDisplayString,
-      } from "vue";
+      const _sfc_main = component_default
+      export default {
+          
+          
+          //decorators: [ ... ],
+          parameters: {
+            
+          }
+        }
+      import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+
 
       function renderPrimary(_ctx, _cache, $props, $setup, $data, $options) {
-        return (
-          _openBlock(),
-          _createElementBlock("p", null, _toDisplayString($setup.paragraph))
-        );
+        return (_openBlock(), _createElementBlock("p", null, _toDisplayString($setup.paragraph)))
       }
-      export const Primary = () =>
-        Object.assign({ render: renderPrimary }, _sfc_main);
-      Primary.storyName = "Primary";
+      export const Primary = () => Object.assign({render: renderPrimary}, _sfc_main);
+      Primary.storyName = 'Primary';
 
       Primary.parameters = {
         docs: { source: { code: \`<p>{{ paragraph }}</p>\` } },

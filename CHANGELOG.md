@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.7.2](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.7.1...v0.7.2) (2026-06-05)
+
+### 🧹 Miscellaneous
+
+- **deps:** update ad-m/github-push-action digest to 881a632 ([#242](https://github.com/tobiasdiez/storybook-vue-addon/issues/242)) ([c8efbd3](https://github.com/tobiasdiez/storybook-vue-addon/commit/c8efbd328cbdc979dafa2607877c581afb05686f))
+- **deps:** update all non-major dependencies ([#243](https://github.com/tobiasdiez/storybook-vue-addon/issues/243)) ([04dc60f](https://github.com/tobiasdiez/storybook-vue-addon/commit/04dc60f0efc3270ba32008a2f1e229760d9d4912))
+- **deps:** update all non-major dependencies ([#252](https://github.com/tobiasdiez/storybook-vue-addon/issues/252)) ([28e0feb](https://github.com/tobiasdiez/storybook-vue-addon/commit/28e0feb79d08e9551d806b809b6586da4372eaa3))
+- **deps:** update all non-major dependencies ([#253](https://github.com/tobiasdiez/storybook-vue-addon/issues/253)) ([580e54e](https://github.com/tobiasdiez/storybook-vue-addon/commit/580e54e8f30c9a5705d60d1ed4fb3c3c7616cf27))
+- **deps:** update all non-major dependencies to v10.4.2 ([#254](https://github.com/tobiasdiez/storybook-vue-addon/issues/254)) ([5be9459](https://github.com/tobiasdiez/storybook-vue-addon/commit/5be945967b75f9b9aa4653d8b07772120df05470))
+- **deps:** update all non-major dependencies to v17.3.0 ([#256](https://github.com/tobiasdiez/storybook-vue-addon/issues/256)) ([755f8d0](https://github.com/tobiasdiez/storybook-vue-addon/commit/755f8d0dc1a218d4845dd5338438a9740ab28ae5))
+- **deps:** update all non-major dependencies to v4.4.7 ([#255](https://github.com/tobiasdiez/storybook-vue-addon/issues/255)) ([31c9ec1](https://github.com/tobiasdiez/storybook-vue-addon/commit/31c9ec127021c1915fe2ee4bfd3e1a3a75ebf55a))
+- **deps:** update all non-major dependencies to v4.61.0 ([#251](https://github.com/tobiasdiez/storybook-vue-addon/issues/251)) ([0036e04](https://github.com/tobiasdiez/storybook-vue-addon/commit/0036e04d2cbd1005932dd7ac595f163742010042))
+- **deps:** update all non-major dependencies to v6.0.3 ([#249](https://github.com/tobiasdiez/storybook-vue-addon/issues/249)) ([6de8f91](https://github.com/tobiasdiez/storybook-vue-addon/commit/6de8f911f8244469ef56c361c5efd56abcbb34b7))
+- **deps:** update all non-major dependencies to v8.0.15 ([#250](https://github.com/tobiasdiez/storybook-vue-addon/issues/250)) ([c4d7616](https://github.com/tobiasdiez/storybook-vue-addon/commit/c4d7616d319bb046bc91b0ff265f39a5277dcf60))
+- **deps:** update chromaui/action action to v17 ([#245](https://github.com/tobiasdiez/storybook-vue-addon/issues/245)) ([9abfd92](https://github.com/tobiasdiez/storybook-vue-addon/commit/9abfd9266dcd76ebb8ae7740e178031b3079005a))
+- **deps:** update dependency npm-run-all2 to v9 ([#246](https://github.com/tobiasdiez/storybook-vue-addon/issues/246)) ([ef0b44a](https://github.com/tobiasdiez/storybook-vue-addon/commit/ef0b44a7600796a9e63733c1feda5f2a2dc26c6c))
+- **deps:** update dependency vue-tsc to v3.3.3 ([#248](https://github.com/tobiasdiez/storybook-vue-addon/issues/248)) ([1371343](https://github.com/tobiasdiez/storybook-vue-addon/commit/1371343d238bff482aeab4f8c1481ae419588da1))
+
 ## [0.7.1](https://github.com/tobiasdiez/storybook-vue-addon/compare/v0.7.0...v0.7.1) (2026-05-15)
 
 ### 🧹 Miscellaneous

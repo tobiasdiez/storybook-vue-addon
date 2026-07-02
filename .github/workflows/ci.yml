@@ -68,7 +68,7 @@ jobs:
 
       - name: Publish and test example Storybook
         if: matrix.node == '20.x' && matrix.os == 'ubuntu-latest'
-        uses: chromaui/action@b5b575184e923495cfbd28d3c0df91b42379c94e # v18.0.0
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
         with:
           projectToken: '574df7cc3736'
           # Don't wait until Chroma verified the build (for this we have the Github check)

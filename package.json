@@ -121,7 +121,7 @@
     "vitest": "4.1.9",
     "vue": "3.5.39",
     "vue-tsc": "3.3.5",
-    "webpack": "5.108.1"
+    "webpack": "5.108.2"
   },
   "peerDependencies": {
     "@nuxt/kit": "^3 || ^4.0.0",

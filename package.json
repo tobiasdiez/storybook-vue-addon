@@ -20,8 +20,6 @@
     "dist"
   ],
   "type": "module",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "typesVersions": {
     "*": {
       "*": [
@@ -31,59 +29,26 @@
     }
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./preset": {
-      "types": "./dist/storybook.d.ts",
-      "import": "./dist/storybook.js"
-    },
-    "./astro": {
-      "types": "./dist/astro.d.ts",
-      "import": "./dist/astro.js"
-    },
-    "./rspack": {
-      "types": "./dist/rspack.d.ts",
-      "import": "./dist/rspack.js"
-    },
-    "./vite": {
-      "types": "./dist/vite.d.ts",
-      "import": "./dist/vite.js"
-    },
-    "./webpack": {
-      "types": "./dist/webpack.d.ts",
-      "import": "./dist/webpack.js"
-    },
-    "./rollup": {
-      "types": "./dist/rollup.d.ts",
-      "import": "./dist/rollup.js"
-    },
-    "./esbuild": {
-      "types": "./dist/esbuild.d.ts",
-      "import": "./dist/esbuild.js"
-    },
-    "./nuxt": {
-      "types": "./dist/nuxt.d.ts",
-      "import": "./dist/nuxt.js"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/types.js"
-    },
-    "./core": {
-      "types": "./dist/core/index.d.ts",
-      "import": "./dist/core/index.js"
-    },
+    ".": "./dist/index.mjs",
+    "./preset": "./dist/storybook.mjs",
+    "./astro": "./dist/astro.mjs",
+    "./rspack": "./dist/rspack.mjs",
+    "./vite": "./dist/vite.mjs",
+    "./webpack": "./dist/webpack.mjs",
+    "./rollup": "./dist/rollup.mjs",
+    "./esbuild": "./dist/esbuild.mjs",
+    "./nuxt": "./dist/nuxt.mjs",
+    "./types": "./dist/types.mjs",
+    "./core": "./dist/core/index.mjs",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "build:types": "pnpm vue-tsc --declaration --emitDeclarationOnly -p src/core/tsconfig.components.json",
-    "dev": "tsup --watch src",
+    "dev": "tsdown --watch src",
     "prepublishOnly": "pnpm test && pnpm build",
     "lint": "pnpm lint:oxlint && pnpm lint:oxfmt",
     "lint:oxlint": "oxlint --type-aware",
@@ -115,7 +80,7 @@
     "rimraf": "6.1.3",
     "rollup": "4.62.2",
     "storybook": "10.4.6",
-    "tsup": "8.5.1",
+    "tsdown": "0.23.0",
     "typescript": "5.9.3",
     "vite": "8.1.3",
     "vitest": "4.1.9",

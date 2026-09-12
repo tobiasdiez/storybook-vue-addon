@@ -123,14 +123,6 @@
     "node": ">=20.0.0"
   },
   "packageManager": "pnpm@12.4.0",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@babel/preset-env",
-        "@vue/compiler-sfc"
-      ]
-    }
-  },
   "storybook": {
     "displayName": "Vue CSF",
     "supportedFrameworks": [

@@ -1,3 +1,5 @@
 packages:
   - playground
   - examples/vite
+allowBuilds:
+  esbuild: false

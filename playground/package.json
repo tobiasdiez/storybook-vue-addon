@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "nodemon -w '../src/**/*.ts' -e .ts -x vite"
   },

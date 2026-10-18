@@ -1,6 +1,6 @@
 import type { Options } from './types'
 
-import unplugin from '.'
+import { unplugin } from '.'
 
 // oxlint-disable-next-line no-underscore-dangle
 const astro_ = (options: Options) => ({

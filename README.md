@@ -135,11 +135,7 @@ If for whatever reason you process Storybook stories in your build pipeline, you
 import VueStories from 'storybook-vue-addon/vite'
 
 export default defineConfig({
-  plugins: [
-    VueStories({
-      /* options */
-    }),
-  ],
+  plugins: [VueStories({/* options */})],
 })
 ```
 
@@ -155,11 +151,7 @@ Example: [`playground/`](./playground/)
 import VueStories from 'storybook-vue-addon/rollup'
 
 export default {
-  plugins: [
-    VueStories({
-      /* options */
-    }),
-  ],
+  plugins: [VueStories({/* options */})],
 }
 ```
 
@@ -172,11 +164,7 @@ export default {
 // webpack.config.js
 module.exports = {
   /* ... */
-  plugins: [
-    require('storybook-vue-addon/webpack')({
-      /* options */
-    }),
-  ],
+  plugins: [require('storybook-vue-addon/webpack')({/* options */})],
 }
 ```
 
@@ -188,14 +176,7 @@ module.exports = {
 ```ts
 // nuxt.config.js
 export default {
-  buildModules: [
-    [
-      'storybook-vue-addon/nuxt',
-      {
-        /* options */
-      },
-    ],
-  ],
+  buildModules: [['storybook-vue-addon/nuxt', {/* options */}]],
 }
 ```
 
@@ -210,11 +191,7 @@ export default {
 // vue.config.js
 module.exports = {
   configureWebpack: {
-    plugins: [
-      require('storybook-vue-addon/webpack')({
-        /* options */
-      }),
-    ],
+    plugins: [require('storybook-vue-addon/webpack')({/* options */})],
   },
 }
 ```

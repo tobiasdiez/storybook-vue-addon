@@ -1,6 +1,6 @@
 {
   "name": "storybook-vue-addon",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "description": "Storybook stories in native Vue format",
   "keywords": [
     "storybook",

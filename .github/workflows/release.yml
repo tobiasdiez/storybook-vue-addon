@@ -45,7 +45,7 @@ jobs:
 
       - name: Push changes
         if: ${{ steps.release.outputs.pr }}
-        uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aec2b324c # master
+        uses: ad-m/github-push-action@7fba72704ad2db819788db8f2d9e7d1dfbebe089 # master
         with:
           github_token: ${{ secrets.RELEASE_PR_TOKEN }}
           branch: ${{ fromJson(steps.release.outputs.pr).headBranchName }}

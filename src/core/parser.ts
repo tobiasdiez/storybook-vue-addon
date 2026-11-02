@@ -11,7 +11,6 @@ import { sanitize } from 'storybook/internal/csf'
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228
-// So the enum values are hard-coded, which is exactly what no-unsafe-enum-assignment forbids.
 /* oxlint-disable typescript/no-unsafe-enum-assignment */
 const ELEMENT = 1 as _NodeTypes.ELEMENT
 const SIMPLE_EXPRESSION = 4 as _NodeTypes.SIMPLE_EXPRESSION

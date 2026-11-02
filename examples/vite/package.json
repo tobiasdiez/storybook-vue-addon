@@ -18,7 +18,7 @@
     "@storybook/addon-docs": "10.6.2",
     "@storybook/addon-links": "10.6.2",
     "@storybook/vue3-vite": "10.6.2",
-    "@types/node": "24.19.2",
+    "@types/node": "26.6.6",
     "@vitejs/plugin-vue": "6.0.10",
     "@vue/tsconfig": "0.9.1",
     "babel-loader": "10.1.1",

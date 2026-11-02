@@ -68,7 +68,7 @@
     "@nuxt/kit": "4.6.1",
     "@nuxt/schema": "4.6.1",
     "@storybook/vue3-vite": "10.6.2",
-    "@types/node": "24.19.2",
+    "@types/node": "26.6.6",
     "@vitest/coverage-v8": "5.0.5",
     "@vue/compiler-core": "3.5.44",
     "cross-env": "10.1.0",

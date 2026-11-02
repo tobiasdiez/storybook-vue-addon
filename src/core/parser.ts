@@ -11,10 +11,12 @@ import { sanitize } from 'storybook/internal/csf'
 
 // import { NodeTypes } from '@vue/compiler-core'
 // Doesn't work, for some reason, maybe https://github.com/vuejs/core/issues/1228
+/* oxlint-disable typescript/no-unsafe-enum-assignment */
 const ELEMENT = 1 as _NodeTypes.ELEMENT
 const SIMPLE_EXPRESSION = 4 as _NodeTypes.SIMPLE_EXPRESSION
 const ATTRIBUTE = 6 as _NodeTypes.ATTRIBUTE
 const DIRECTIVE = 7 as _NodeTypes.DIRECTIVE
+/* oxlint-enable typescript/no-unsafe-enum-assignment */
 
 export interface ParsedMeta {
   title?: string
